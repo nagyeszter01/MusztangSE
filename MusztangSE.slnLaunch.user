@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "MusztangSE_WebAPI\\MusztangSE_WebAPI.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MusztangSE.Frontend\\MusztangSE.Frontend.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
