@@ -103,3 +103,39 @@ main h1 {
 main h1 span {
     color: red;
 }
+
+
+.tartalom {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*tartalom osztály h1 es cimsora*/
+.tartalom h1 {
+      font-size: 40px;
+      color: #a00000;
+      font-weight: bold;
+}
+
+#cim {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.feher {
+    color: white;
+}
+
+.piros {
+    color: red;
+}
+
+
+
+/*Lábléc*/
+.lablec {
+    background: #111;
+    height: 20px;
+}

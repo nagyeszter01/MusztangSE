@@ -3,114 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Musztáng SE</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Segoe UI", sans-serif;
-        }
-
-        body {
-            height: 100vh;
-            overflow: hidden;
-            color: white;
-        }
-
-        /* Videó háttér */
-        .video-container {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-        }
-
-            .video-container video {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            /* SÖTÉTÍTÉS – EZ A LÉNYEG */
-            .video-container::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.9);
-            }
-
-
-        /* Fejléc */
-        header {
-            position: relative;
-            height: 100px;
-        }
-
-        /* Logo bal felül */
-        .logo {
-            position: absolute;
-            left: 40px;
-            top: 20px;
-        }
-
-        /* NAV KÖZÉP FELÜL */
-        .nav-center {
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(50, 50, 50, 0.6);
-            border-radius: 30px;
-            padding: 10px 30px;
-        }
-
-
-        .logo img {
-            height: 60px;
-            border-radius: 30px;
-        }
-
-        /* Menü */
-        nav {
-            background: rgba(50, 50, 50, 0.6);
-            border-radius: 30px;
-            padding: 10px 25px;
-        }
-
-            nav a {
-                color: white;
-                text-decoration: none;
-                margin: 0 15px;
-                font-weight: 500;
-                transition: color 0.3s;
-            }
-
-                nav a:hover {
-                    color: #ff3b3b;
-                }
-
-                nav a.active {
-                    color: red;
-                }
-
-        /* Középső cím */
-        main {
-            height: calc(100vh - 120px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-            main h1 {
-                font-size: 64px;
-                letter-spacing: 2px;
-            }
-
-                main h1 span {
-                    color: red;
-                }
-
-    </style>
+    <link rel="stylesheet" href="Fooldal/style.css">
+ 
 </head>
 
 <body>
@@ -121,30 +15,34 @@
             <source src="Fooldal/video/hatter.mp4" type="video/mp4">
             A böngésződ nem támogatja a videót.
         </video>
-        
+
     </div>
 
     <!-- Fejléc / Menü -->
     <header>
-    <div class="logo">
-        <img src="Fooldal/img/logo.jpg" alt="Musztáng SE">
-    </div>
+        <div class="logo">
+            <img src="Fooldal/img/logo.jpg" alt="Musztáng SE">
+        </div>
 
-    <nav class="nav-center">
-        <a href="#">Kezdőlap</a>
-        <a href="#">Rólunk</a>
-        <a href="#">Helyszínek</a>
-        <a href="#">Edzőink</a>
-        <a href="#">Események</a>
-        <a href="../Bejelentkezes/bejelentkezes.html" class="active">Tagoknak</a>
-    </nav>
-</header>
+        <nav class="nav-center">
+            <a href="#">Kezdőlap</a>
+            <a href="#">Rólunk</a>
+            <a href="#">Helyszínek</a>
+            <a href="#">Edzőink</a>
+            <a href="#">Események</a>
+            <a href="../Bejelentkezes/bejelentkezes.html" class="active">Tagoknak</a>
+        </nav>
+    </header>
 
 
     <!-- Középső szöveg -->
     <main>
-        <h1>Musztáng <span>SE</span></h1>
+        <div class="tartalom">
+            <h1 id="cim"></h1>  <!--Musztáng SE-->
+        </div>
     </main>
+
+    <script src="Fooldal/fooldal.js"></script>
 
 </body>
 </html>

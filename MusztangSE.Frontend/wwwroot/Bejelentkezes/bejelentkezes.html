@@ -4,25 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MustangSE/Bejelentkezes</title>
-  <link rel="stylesheet" href="bejelentkezes.css">
-  <style>
-    
-  </style>
+  <link rel="stylesheet" href="/Bejelentkezes/bejelentkezes.css">
 </head>
 <body>
 
     <div class="fejlec">
         <!--Logó kép formátumban -->
-        <img src="logo.jpg" alt="logo" class="logo">
+        <<img src="/Fooldal/img/logo.jpg" alt="logo" class="logo">
 
         <!--Navigácios sáv-->
-        <nav> 
-            <a href="fooldal.html">Kezdőlap</a>
+        <nav>
+            <a href="../Fooldal/fooldal.html">Kezdőlap</a>
             <a href="rolunk.html">Rólunk</a>
             <a href="#">Helyszínek</a>
             <a href="#">Edzőink</a>
             <a href="#">Eredmények</a>
-            <a href="bejelentkezes.html" class="tagok" >Tagoknak</a>
+            <a href="bejelentkezes.html" class="tagok">Tagoknak</a>
         </nav>
     </div>
 
@@ -30,32 +27,33 @@
 
 
 
-  <div class="doboz">
-    <h1>Bejelentkezés</h1>
-    <p>Válaszd ki a szereped és töltsd ki az űrlapot!</p>
+    <div class="doboz">
+        <h1>Bejelentkezés</h1>
+        <p>Válaszd ki a szereped és töltsd ki az űrlapot!</p>
 
-    <!--Kiválszthatjuk hogy edzöként vagy sportoloként lépünk be -->
-    <div class="szerep-valaszto">
-      <div class="szerep-opcio kivalasztva" data-szerep="edzo">Edző</div>
-      <div class="szerep-opcio" data-szerep="sportolo">Sportoló</div>
+        <!--Kiválszthatjuk hogy edzöként vagy sportoloként lépünk be -->
+        <div class="szerep-valaszto">
+            <div class="szerep-opcio kivalasztva" data-szerep="edzo">Edző</div>
+            <div class="szerep-opcio" data-szerep="sportolo">Sportoló</div>
+        </div>
+
+        <!--A bekért adatokat elüldi az adabásisnak-->
+        <form action="" method="post" enctype="text/plain">
+            <input type="hidden" id="szerep" name="szerep" value="edzo">
+
+            <!--Input mezők itt lehet be irni a felhasználó nevet és a jelszót-->
+            <label for="azonosito">Azonosító</label>
+            <input id="azonosito" name="azonosito" required>
+
+            <label for="jelszo">Jelszó</label>
+            <input type="password" id="jelszo" name="jelszo" required>
+            <!--Bejelentkezés gomb-->
+            <button type="submit" class="gomb">Bejelentkezés</button>
+        </form>
+
     </div>
 
-    <!--A bekért adatokat elüldi az adabásisnak-->
-    <form action="" method="post" enctype="text/plain">
-      <input type="hidden" id="szerep" name="szerep" value="edzo">
+    <script src="/Bejelentkezes/bejelentkezes.js"></script>
 
-      <!--Input mezők itt lehet be irni a felhasználó nevet és a jelszót-->
-      <label for="azonosito">Azonosító</label>
-      <input id="azonosito" name="azonosito" required>
 
-      <label for="jelszo">Jelszó</label>
-      <input type="password" id="jelszo" name="jelszo" required>
-      <!--Bejelentkezés gomb-->
-      <button type="submit" class="gomb">Bejelentkezés</button>
-    </form>
-
-  </div>
-
-  <script src="bejeletkezes.js"></script>
-</body>
 </html>
