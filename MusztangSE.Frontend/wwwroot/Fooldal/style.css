@@ -15,6 +15,9 @@ body {
     color: white;
 }
 
+
+
+
 /* fejléc */
 
 header {
@@ -130,6 +133,7 @@ nav a {
 /* Rólunk section rész img,tartalom,gomb*/
 
 .rolunk-section {
+    position: relative;
     background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
     color: #ddd;
 }
@@ -159,11 +163,14 @@ nav a {
     text-decoration: none;
 }
 
-
-
-/* Reszponzív */
-@media (max-width: 900px) {
-    .rolunk-tartalom {
-        grid-template-columns: 1fr;
-    }
+.rolunkcim {
+    font-size: 50px;
+    margin-left: auto 0;
+    font-family: Arial, sans-serif;
 }
+    /* Reszponzív */
+    @media (max-width: 900px) {
+        .rolunk-tartalom {
+            grid-template-columns: 1fr;
+        }
+    }
