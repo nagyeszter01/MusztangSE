@@ -4,45 +4,79 @@
     <meta charset="UTF-8">
     <title>Musztáng SE</title>
     <link rel="stylesheet" href="Fooldal/style.css">
- 
 </head>
 
 <body>
-
-    <!-- Háttér videó -->
-    <div class="video-container">
-        <video autoplay muted loop playsinline>
-            <source src="Fooldal/video/hatter.mp4" type="video/mp4">
-            A böngésződ nem támogatja a videót.
-        </video>
-
-    </div>
-
-    <!-- Fejléc / Menü -->
+    <!--Fejléc-->>
     <header>
         <div class="logo">
             <img src="Fooldal/img/logo.jpg" alt="Musztáng SE">
         </div>
-
+        <!--navigácios sáv-->>
         <nav class="nav-center">
-            <a href="#">Kezdőlap</a>
-            <a href="#">Rólunk</a>
-            <a href="#">Helyszínek</a>
-            <a href="#">Edzőink</a>
-            <a href="#">Események</a>
+            <a href="#home">Kezdőlap</a>
+            <a href="#rolunk">Rólunk</a>
+            <a href="#helyszinek">Helyszínek</a>
+            <a href="#edzok">Edzőink</a>
+            <a href="#esemenyek">Események</a>
             <a href="../Bejelentkezes/bejelentkezes.html" class="active">Tagoknak</a>
         </nav>
     </header>
 
 
-    <!-- Középső szöveg -->
-    <main>
-        <div class="tartalom">
-            <h1 id="cim"></h1>  <!--Musztáng SE-->
+    <!--A weboldalon található informáciok egy oldalon legyenek section okat használtam igy elválasztva egymás alat vannak az oldalak -->>
+
+    <!-- Kezdőlap -->
+    <section id="home" class="section hero">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="Fooldal/video/hatter.mp4" type="video/mp4">
+            </video>
         </div>
-    </main>
+
+        <div class="tartalom">
+            <h1 id="cim"></h1>
+        </div>
+    </section>
+
+    <!-- Rólunk -->
+    <section id="rolunk" class="section rolunk-section">
+        <h2>Rólunk</h2>
+
+        <div class="rolunk-tartalom">
+
+            <div class="rolunk-kep">
+                <img src="" alt="Musztáng SE csapat">
+            </div>
+
+            <div class="rolunk-szoveg">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
+                </p>
+
+                <button href="#" class="rolunk-gomb">További képek </button>
+                
+            </div>
+
+        </div>
+    </section>
+
+    <section id="helyszinek" class="section dark">
+        <h2>Helyszínek</h2>
+    </section>
+
+    <section id="edzok" class="section light">
+        <h2>Edzőink</h2>
+    </section>
+
+    <section id="esemenyek" class="section dark">
+        <h2>Események</h2>
+    </section>
 
     <script src="Fooldal/fooldal.js"></script>
-
 </body>
 </html>

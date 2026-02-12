@@ -8,13 +8,170 @@
 </head>
 <body>
 
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(53, 53, 53);
+            color: white;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Doboz*/
+        .doboz {
+            max-width: 580px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: black;
+            border-radius: 10px;
+        }
+
+        /* Cím */
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        /* Leírás */
+        p {
+            text-align: center;
+            color: white;
+        }
+
+        /* Form */
+        form {
+            margin-top: 25px;
+        }
+
+        /* Label */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        /* Input mezők itt lehet be irni a felhasználó nevet és a jelszót */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 6px;
+            background-color: white;
+            color: black;
+        }
+
+        /* Gomb */
+        .gomb {
+            display: block;
+            background-color: #FF272C;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+
+        /* Szerepválasztó */
+        .szerep-valaszto {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        /*Szerep opcio */
+        .szerep-opcio {
+            padding: 8px 16px;
+            border: 2px solid white;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #FF272C;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+            .szerep-opcio.kivalasztva {
+                background-color: black;
+            }
+
+        /* Fejléc */
+        .fejlec {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .tagok {
+            color: #FF272C;
+            text-decoration: underline white;
+        }
+
+        /* Logo */
+        .logo {
+            width: 45px;
+            height: 45px;
+            position: absolute;
+            left: 25px;
+            border-radius: 50px;
+        }
+
+        /* Navigációs sáv */
+        nav {
+            background-color: rgb(126, 125, 125);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            color: white;
+        }
+
+            nav a {
+                color: #ffffff;
+                text-decoration: none;
+                margin: 5px 15px;
+                font-weight: bold;
+            }
+
+        /*Reszponziv */
+        @media (max-width: 768px) {
+            .fejlec {
+                flex-direction: column;
+            }
+
+            .logo {
+                position: static;
+                margin-bottom: 10px;
+            }
+
+            nav {
+                width: 90%;
+            }
+
+                nav a {
+                    margin: 8px;
+                    display: block;
+                }
+        }
+    </style>
+
+
+
     <div class="fejlec">
         <!--Logó kép formátumban -->
         <<img src="/Fooldal/img/logo.jpg" alt="logo" class="logo">
 
         <!--Navigácios sáv-->
         <nav>
-            <a href="../Fooldal/fooldal.html">Kezdőlap</a>
+            <a href="/Fooldal/fooldal.html">Kezdőlap</a>
             <a href="rolunk.html">Rólunk</a>
             <a href="#">Helyszínek</a>
             <a href="#">Edzőink</a>
@@ -53,7 +210,18 @@
 
     </div>
 
-    <script src="/Bejelentkezes/bejelentkezes.js"></script>
+    <script>
+        const opciok = document.querySelectorAll('.szerep-opcio');
+        const rejtettSzerepInput = document.getElementById('szerep');
+
+        opciok.forEach(opcio => {
+            opcio.addEventListener('click', () => {
+                opciok.forEach(o => o.classList.remove('kivalasztva'));
+                opcio.classList.add('kivalasztva');
+                rejtettSzerepInput.value = opcio.dataset.szerep;
+            });
+        });
+    </script>
 
 
 </html>

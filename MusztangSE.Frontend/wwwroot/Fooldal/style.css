@@ -5,70 +5,47 @@
     font-family: "Segoe UI", sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+/*Fö oldal */
 body {
-    height: 100vh;
-    overflow: hidden;
+    margin: 0;
+    overflow-x: hidden;
     color: white;
 }
 
-/* Videó háttér */
-.video-container {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-}
+/* fejléc */
 
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* SÖTÉTÍTÉS – EZ A LÉNYEG */
-.video-container::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-}
-
-
-/* Fejléc */
 header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
     height: 100px;
+    z-index: 1000;
 }
 
-/* Logo bal felül */
+/* Logo */
 .logo {
     position: absolute;
     left: 40px;
     top: 20px;
 }
 
-/* NAV KÖZÉP FELÜL */
+    .logo img {
+        height: 60px;
+        border-radius: 30px;
+    }
+
+/* navigácios sáv */
 .nav-center {
     position: absolute;
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
-    
     background: rgba(50, 50, 50, 0.6);
     border-radius: 30px;
     padding: 10px 30px;
-}
-
-
-.logo img {
-    height: 60px;
-    border-radius: 30px;
-}
-
-/* Menü */
-nav {
-    background: rgba(50, 50, 50, 0.6);
-    border-radius: 30px;
-    padding: 10px 25px;
 }
 
 nav a {
@@ -76,48 +53,66 @@ nav a {
     text-decoration: none;
     margin: 0 15px;
     font-weight: 500;
-    transition: color 0.3s;
 }
 
-nav a:hover {
-    color: #ff3b3b;
+    nav a:hover {
+        color: #ff3b3b;
+    }
+
+/* Section alap beálitásai */
+
+.section {
+    padding: 120px 80px;
+    position: relative;
 }
 
-nav a.active {
-    color: red;
-}
-
-/* Középső cím */
-main {
-    height: calc(100vh - 120px);
+/* Föoldal és teljes képernyö (hero) tartalom */
+.hero {
+    height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-
-main h1 {
-    font-size: 64px;
-    letter-spacing: 2px;
-}
-
-main h1 span {
-    color: red;
-}
-
-
-.tartalom {
-    flex: 1;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    color: white;
 }
 
-/*tartalom osztály h1 es cimsora*/
-.tartalom h1 {
-      font-size: 40px;
-      color: #a00000;
-      font-weight: bold;
+
+.hero .tartalom {
+        margin-top: 100px;
 }
+
+/* Világos / sötét */
+.light {
+    background: #f5f5f5;
+    color: #111;
+}
+
+.dark {
+    background: #111;
+    color: white;
+}
+
+/* Video rész  */
+
+.video-container {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+
+.video-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+}
+
+/* szöveg rész*/
 
 #cim {
     font-size: 40px;
@@ -132,10 +127,43 @@ main h1 span {
     color: red;
 }
 
+/* Rólunk section rész img,tartalom,gomb*/
+
+.rolunk-section {
+    background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+    color: #ddd;
+}
+
+.rolunk-tartalom {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.rolunk-kep img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.rolunk-szoveg p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.rolunk-gomb {
+    background: red; 
+    color: white; 
+    border-radius: 10px; 
+    padding: 10px 20px; 
+    text-decoration: none;
+}
 
 
-/*Lábléc*/
-.lablec {
-    background: #111;
-    height: 20px;
+
+/* Reszponzív */
+@media (max-width: 900px) {
+    .rolunk-tartalom {
+        grid-template-columns: 1fr;
+    }
 }
