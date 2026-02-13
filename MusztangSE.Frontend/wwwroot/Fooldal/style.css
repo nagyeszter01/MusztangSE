@@ -77,8 +77,6 @@ nav a {
     justify-content: center;
     color: white;
 }
-
-
 .hero .tartalom {
         margin-top: 100px;
 }
@@ -95,7 +93,6 @@ nav a {
 }
 
 /* Video rész  */
-
 .video-container {
     position: absolute;
     inset: 0;
@@ -116,7 +113,6 @@ nav a {
 }
 
 /* szöveg rész*/
-
 #cim {
     font-size: 40px;
     font-weight: bold;
@@ -131,7 +127,6 @@ nav a {
 }
 
 /* Rólunk section rész img,tartalom,gomb*/
-
 .rolunk-section {
     position: relative;
     background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
@@ -146,7 +141,7 @@ nav a {
 }
 
 .rolunk-kep img {
-    width: 100%;
+    width: 80%;
     border-radius: 4px;
 }
 
@@ -162,15 +157,106 @@ nav a {
     padding: 10px 20px; 
     text-decoration: none;
 }
-
 .rolunkcim {
     font-size: 50px;
     margin-left: auto 0;
     font-family: Arial, sans-serif;
 }
-    /* Reszponzív */
-    @media (max-width: 900px) {
-        .rolunk-tartalom {
-            grid-template-columns: 1fr;
-        }
+
+/* Edzök szekció */
+
+.edzok-section {
+    background: #0f0f0f;
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.edzok-cim {
+    font-size: 40px;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+}
+
+/* Kártyák elrendezése */
+
+.edzok-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+}
+
+/* Egy kártya */
+
+.edzo-kartya {
+    background: #9c9c9c; 
+    padding: 30px;
+    border-radius: 6px;
+    width: 330px;
+    transition: 0.3s;
+}
+
+
+.edzo-kartya img {
+    width: 100%;
+    height: 380px; 
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+
+.edzo-kartya h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+.edzo-kartya p {
+    font-size: 15px;
+    color: #333;
+}
+
+
+/* Hover effekt ez emeli ki a képet */
+
+.edzo-kartya:hover {
+    transform: translateY(-5px);
+}
+
+/* Alsó sáv */
+
+.edzok-footer {
+    background: #9c9c9c;
+    color: #111;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 80px;
+    flex-wrap: wrap;
+}
+
+.edzok-footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Reszponzív */
+
+@media (max-width: 900px) {
+    .edzok-container {
+        flex-direction: column;
+        align-items: center;
     }
+
+    .edzok-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+@media (max-width: 900px) {
+    .rolunk-tartalom {
+        grid-template-columns: 1fr;
+    }
+}
