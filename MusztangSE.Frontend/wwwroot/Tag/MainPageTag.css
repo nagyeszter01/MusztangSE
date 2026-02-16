@@ -1,0 +1,256 @@
+﻿/*Betutipus import*/
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+body {
+    background-color: rgba(0, 0, 0, 0.925);
+}
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+}
+
+/* Logo */
+.logo {
+    position: absolute;
+    left: 40px;
+    top: 20px;
+}
+
+    .logo img {
+        height: 60px;
+        border-radius: 30px;
+    }
+
+/* NAV */
+.nav-center {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(50, 50, 50, 0.6);
+    border-radius: 30px;
+    padding: 10px 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+    nav a:hover {
+        color: #ff3b3b;
+    }
+
+    nav a.active {
+        color: red;
+        border-bottom: 2px solid #fff; /* aláhúzás */
+        padding-bottom: 4px; /* ne legyen túl szorosan */
+    }
+
+#adatok-link {
+    color: red;
+}
+
+/* KEZDŐLAP HÁTTÉRKÉPES SZEKCIÓ */
+.kezdolap-section {
+    width: 100%;
+    height: 100vh;
+    background-image: url("/Fooldal/img/TagokKezdolap.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+    .kezdolap-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+/* ÜDVÖZLŐ SZÖVEG */
+.kezdolap-text {
+    position: absolute;
+    left: 5%;
+    bottom: 15%;
+    color: white;
+    font-size: 3.7vw;
+    font-weight: bold;
+    line-height: 1.2;
+    z-index: 2;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    font-family: 'Goldman', cursive;
+}
+/* Reszponzív finomhangolás mobilokra */
+@media (max-width: 768px) {
+    .kezdolap-text {
+        font-size: 5vw; /* kisebb képernyőn nagyobb arány */
+    }
+}
+
+@media (max-width: 480px) {
+    .kezdolap-text {
+        font-size: 6vw; /* nagyon kicsi képernyőn olvasható maradjon */
+        left: 4%;
+        bottom: 4%;
+    }
+}
+
+/* VÉKONY FEHÉR VONAL */
+.divider {
+    width: 100%;
+    height: 1.5px;
+    background: white;
+    margin: 0;
+}
+
+.content-section {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 90vh; /* biztosítja, hogy a hero alatt az oldal kitöltse a képernyőt */
+    background: #1a1a1a; /* opcionális háttér a dobozoknak */
+}
+
+.section-title {
+    align-self: flex-start; /* balra igazítás */
+    font-size: 2.5vw;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5); /* hogy kiemelkedjen a háttérből */
+    font-family: 'Goldman', cursive;
+    margin-left: 5%;
+}
+
+/* TARTALMI DOBOZOK */
+.content-boxes {
+    display: flex;
+    flex-direction: column; /* egymás alatt */
+    align-items: center;
+    gap: 20px; /* távolság a dobozok között */
+    width: 100%;
+}
+/* DOBOZOK - Verseny */
+.box {
+    width: 80%; /* rugalmas szélesség, középre igazítva */
+    max-width: 60vw; /* ne legyen túl széles nagy képernyőn */
+    height: 120px;
+    background: #9f9f9f;
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* balra a tartalom */
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+/* Reszponzív */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .box {
+        width: 90%;
+        height: 100px;
+        font-size: 1.3rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .box {
+        width: 95%;
+        height: auto;
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+}
+
+/* FOOTER */
+.site-footer {
+    width: 100%;
+    background-color: #0f0f0f;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+/* Tartalom középre */
+.footer-content {
+    text-align: center;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+
+
+/* Név */
+.footer-title {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Alcím */
+.footer-subtitle {
+    color: #9a9a9a;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .footer-logo {
+        width: 45px;
+    }
+
+    .footer-title {
+        font-size: 0.9rem;
+    }
+
+    .footer-subtitle {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 15px 10px;
+    }
+
+    .footer-logo {
+        width: 40px;
+    }
+
+    .footer-title {
+        font-size: 0.85rem;
+    }
+
+    .footer-subtitle {
+        font-size: 0.75rem;
+    }
+}
