@@ -1,8 +1,14 @@
+
+/* Betűtípus import */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 html {
@@ -49,6 +55,7 @@ header {
     background: rgba(50, 50, 50, 0.6);
     border-radius: 30px;
     padding: 10px 30px;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 nav a {
@@ -116,6 +123,7 @@ nav a {
 #cim {
     font-size: 40px;
     font-weight: bold;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 .feher {
@@ -148,6 +156,7 @@ nav a {
 .rolunk-szoveg p {
     margin-bottom: 20px;
     line-height: 1.6;
+    font-family: 'IBM Plex Serif', serif;
 }
 
 .rolunk-gomb {
@@ -160,7 +169,7 @@ nav a {
 .rolunkcim {
     font-size: 50px;
     margin-left: auto 0;
-    font-family: Arial, sans-serif;
+    font-family: GOLDMAN;
 }
 
 /* Edzök szekció */
@@ -175,6 +184,7 @@ nav a {
     font-size: 40px;
     margin-bottom: 60px;
     letter-spacing: 2px;
+    font-family: GOLDMAN;
 }
 
 /* Kártyák elrendezése */
@@ -207,16 +217,18 @@ nav a {
 }
 
 
-.edzo-kartya h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: #111;
-}
+    .edzo-kartya h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+        color: white;
+        font-family: 'IBM Plex Serif', serif;
+    }
 
-.edzo-kartya p {
-    font-size: 15px;
-    color: #333;
-}
+    .edzo-kartya p {
+        font-size: 15px;
+        color: white;
+        font-family: 'IBM Plex Serif', serif;
+    }
 
 
 /* Hover effekt ez emeli ki a képet */
@@ -236,10 +248,125 @@ nav a {
     flex-wrap: wrap;
 }
 
-.edzok-footer p {
-    margin: 5px 0;
-    font-size: 14px;
+    .edzok-footer p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: white;
+        font-family: 'IBM Plex Serif', serif;
+    }
+/* Középső rész */
+.footer-kozep {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+/* Elérhetőségek cím */
+#eler {
+    font-family: 'Goldman', sans-serif;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+/* Ikonok */
+.ikonok {
+    display: flex;
+    gap: 15px;
+}
+#fb {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 35px;
+    margin-top:15px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#insta {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 35px;
+    margin-top: 22px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .icon:hover {
+        transform: scale(1.1);
+    }
+
+
+/* Lábléc */
+.site-footer {
+    width: 100%;
+    background-color: #0f0f0f;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+/* Tartalom középre */
+.footer-content {
+    text-align: center;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+
+
+/* Név */
+.footer-title {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Alcím */
+.footer-subtitle {
+    color: #9a9a9a;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .footer-logo {
+        width: 45px;
+    }
+
+    .footer-title {
+        font-size: 0.9rem;
+    }
+
+    .footer-subtitle {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 15px 10px;
+    }
+
+    .footer-logo {
+        width: 40px;
+    }
+
+    .footer-title {
+        font-size: 0.85rem;
+    }
+
+    .footer-subtitle {
+        font-size: 0.75rem;
+    }
+}
+
 
 /* Reszponzív */
 

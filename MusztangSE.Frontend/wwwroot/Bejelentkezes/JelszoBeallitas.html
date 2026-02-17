@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MustangSE/Bejelentkezes</title>
+    <link rel="stylesheet" href="/Bejelentkezes/bejelentkezes.css">
+</head>
+<body>
+    <div class="fejlec">
+        <!--Logó kép formátumban -->
+        <img src="/Fooldal/img/logo.jpg" alt="logo" class="logo">
+
+        <!--Navigácios sáv-->
+        <nav>
+            <a href="/Fooldal/fooldal.html">Kezdőlap</a>
+            <a href="">Rólunk</a>
+            <a href="#">Helyszínek</a>
+            <a href="#">Edzőink</a>
+            <a href="#">Eredmények</a>
+            <a href="bejelentkezes.html" class="tagok">Tagoknak</a>
+        </nav>
+    </div>
+
+    <div class="doboz">
+        <h1>Jelszó Beállitás</h1>
+        <!--Input mezők itt lehet be irni a felhasználó nevet és a jelszót-->
+        <label for="azonosito">Azonosító</label>
+        <input id="azonosito" name="azonosito" required>
+
+        <label for="jelszo">Jelszó</label>
+        <input type="password" id="jelszo" name="jelszo" required>
+
+        <label for="jelszo">Jelszó Megerősítés</label>
+        <input type="password" id="jelszo" name="jelszo" required>
+        <!--Bejelentkezés gomb-->
+        <button type="submit" class="gomb">Megerősítés</button>
+    </div>
+
+</html>

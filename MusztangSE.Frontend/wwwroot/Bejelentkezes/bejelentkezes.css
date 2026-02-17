@@ -1,3 +1,8 @@
+/* Betűtípus import */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(53, 53, 53); 
@@ -13,6 +18,7 @@ body {
   padding: 30px;
   background-color: black;
   border-radius: 10px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.7);
 }
 
 /* Cím */
@@ -34,10 +40,11 @@ form {
 
 /* Label */
 label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: white;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+    padding-left: 20px;
 }
 
 /* Input mezők itt lehet be irni a felhasználó nevet és a jelszót */
@@ -89,6 +96,17 @@ input {
   background-color: black;
 }
 
+#azonosito {
+    width: 90%;
+    display: block;
+    margin: 0 auto 15px auto;
+}
+#jelszo {
+    width: 90%;
+    display: block;
+    margin: 0 auto 15px auto;
+}
+
 /* Fejléc */
 .fejlec {
   display: flex;
@@ -130,6 +148,33 @@ nav a {
   margin: 5px 15px;
   font-weight: bold;
 }
+
+#kezdolap {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 auto;
+    float: right;
+}
+
+
+/*Jelszó beállítás*/
+#jelszo-beallitas {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+}
+
 
 /*Reszponziv */
 @media (max-width: 768px) {
