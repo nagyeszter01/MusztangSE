@@ -270,7 +270,7 @@ nav a {
     color: white;
 }
 
-/* Ikonok */
+/* ikonok */
 .ikonok {
     display: flex;
     gap: 15px;
@@ -332,6 +332,83 @@ nav a {
     font-size: 0.85rem;
     margin-top: 4px;
 }
+
+
+
+/* HELYSZÍNEK */
+
+.helyszinek-section {
+    background: #111;
+    color: white;
+    padding: 120px 80px;
+}
+
+.helyszin-blokk {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    padding: 60px 0;
+}
+
+.helyszin-szoveg {
+    flex: 1;
+    text-align: center;
+}
+
+    .helyszin-szoveg h3 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        font-family: 'Goldman', sans-serif;
+    }
+
+    .helyszin-szoveg p {
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+.helyszin-terkep {
+    flex: 1;
+}
+
+    .helyszin-terkep iframe {
+        width: 100%;
+        border-radius: 6px;
+    }
+
+.helyszinek-section hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+}
+
+.forditott {
+    flex-direction: row-reverse;
+}
+
+.hely-cim {
+    font-size: 40px;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    font-family: GOLDMAN;
+}
+
+/* Reszponzív */
+@media (max-width: 900px) {
+    .helyszin-blokk {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .forditott {
+        flex-direction: column;
+    }
+}
+
+
+
+
+
 
 /* Tablet */
 @media (max-width: 768px) {
