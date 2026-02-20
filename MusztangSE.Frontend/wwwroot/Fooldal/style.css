@@ -393,7 +393,105 @@ nav a {
     font-family: GOLDMAN;
 }
 
+
+
+/* Eredmények */
+
+.eredmenyek-section {
+    background: linear-gradient(90deg, #0f0f0f, #1a1a1a);
+    text-align: left;
+}
+
+.eredmenyek-cim {
+    font-size: 40px;
+    margin-bottom: 60px;
+    font-family: 'Goldman', sans-serif;
+    letter-spacing: 2px;
+}
+
+
+.eredmenyek-grid {
+    max-width: 900px; 
+    margin: 0 auto; 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.eredmeny-kartya {
+    background: #9c9c9c;
+    padding: 35px;
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s ease;
+    height: 170px; /* fix magasság mint a képen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .eredmeny-kartya:hover {
+        transform: translateY(-4px);
+        background: #b3b3b3;
+    }
+
+.kartya-kicsi {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.eredmeny-kartya h3 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.kartya-nyil {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+
+.kartya-gomb {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+    .kartya-gomb:hover {
+        background: #ff3b3b;
+        transform: scale(1.1);
+    }
+
 /* Reszponzív */
+@media (max-width: 900px) {
+    .eredmenyek-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 900px) {
     .helyszin-blokk {
         flex-direction: column;
@@ -404,11 +502,6 @@ nav a {
         flex-direction: column;
     }
 }
-
-
-
-
-
 
 /* Tablet */
 @media (max-width: 768px) {
@@ -443,10 +536,6 @@ nav a {
         font-size: 0.75rem;
     }
 }
-
-
-/* Reszponzív */
-
 @media (max-width: 900px) {
     .edzok-container {
         flex-direction: column;
