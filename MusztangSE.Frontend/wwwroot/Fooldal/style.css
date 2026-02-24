@@ -425,7 +425,7 @@ nav a {
     position: relative;
     cursor: pointer;
     transition: 0.3s ease;
-    height: 170px; /* fix magasság mint a képen */
+    height: 170px;
     display: flex;
     flex-direction: column;
     justify-content: center;

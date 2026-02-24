@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Musztáng SE Galéria</title>
+    <link rel="stylesheet" href="/Fooldal/style.css">
+    <style>
+        .galeria-section {
+            position: relative;
+            min-height: 100vh;
+            padding: 120px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #ddd;
+            background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+        }
+
+        .galeria-title {
+            font-family: 'Goldman', sans-serif;
+            font-size: 60px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .galeria-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 30px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .galeria-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 300px; 
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            margin-top: 50px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-family: 'IBM Plex Serif', serif;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #ff3b3b;
+            transform: scale(1.05);
+        }
+
+        /* Reszponzív */
+        @media (max-width: 1200px) {
+            .galeria-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .galeria-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .galeria-item img {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .galeria-container {
+                grid-template-columns: 1fr;
+            }
+
+            .galeria-item img {
+                height: 200px;
+            }
+
+            .galeria-title {
+                font-size: 40px;
+            }
+
+            .back-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="galeria-section">
+        <h1 class="galeria-title">Galéria</h1>
+
+        <div class="galeria-container">
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 1"></div>
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 2"></div>
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 3"></div>
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 4"></div>
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 5"></div>
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 6"></div>
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 7"></div>
+            <div class="galeria-item"><img src="/Fooldal/img/rolunk2.jpg" alt="Kép 8"></div>
+        </div>
+
+        <a href="/Fooldal/fooldal.html" class="back-btn">Vissza a főoldalra</a>
+    </section>
+
+</body>
+</html>
