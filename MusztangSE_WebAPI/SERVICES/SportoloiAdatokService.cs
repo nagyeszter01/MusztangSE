@@ -8,9 +8,9 @@ namespace MusztangSE_WebAPI.SERVICES
 {
     public class SportoloiAdatokService : ISportoloiAdatokService
     {
-        private readonly TagDbContext _datacontext;
+        private readonly ApplicationDbContext _datacontext;
 
-        public SportoloiAdatokService(TagDbContext datacontext)
+        public SportoloiAdatokService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }

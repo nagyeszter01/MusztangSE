@@ -7,9 +7,9 @@ namespace MusztangSE_WebAPI.SERVICES
 {
     public class EdzoService : IEdzoService
     {
-        private readonly TagDbContext _datacontext;
+        private readonly ApplicationDbContext _datacontext;
 
-        public EdzoService(TagDbContext datacontext)
+        public EdzoService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }

@@ -7,9 +7,9 @@ namespace MusztangSE_WebAPI.SERVICES
 {
     public class TagCsapatService : ITagCsapatService
     {
-        private readonly TagDbContext _datacontext;
+        private readonly ApplicationDbContext _datacontext;
 
-        public TagCsapatService(TagDbContext datacontext)
+        public TagCsapatService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }

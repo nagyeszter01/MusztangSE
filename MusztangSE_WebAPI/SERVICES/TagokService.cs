@@ -7,8 +7,8 @@ namespace MusztangSE_WebAPI.SERVICES
 {
     public class TagokService : ITagokService
     {
-        private readonly TagDbContext _datacontext;
-        public TagokService(TagDbContext datacontext)
+        private readonly ApplicationDbContext _datacontext;
+        public TagokService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }

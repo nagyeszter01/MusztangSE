@@ -7,8 +7,8 @@ namespace MusztangSE_WebAPI.SERVICES
 {
     public class VersenyService : IVersenyService
     {
-        private readonly TagDbContext _datacontext;
-        public VersenyService(TagDbContext datacontext)
+        private readonly ApplicationDbContext _datacontext;
+        public VersenyService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }

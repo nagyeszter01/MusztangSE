@@ -7,8 +7,8 @@ namespace MusztangSE_WebAPI.SERVICES
 {
     public class EredmenyService : IEredmenyService
     {
-        private readonly TagDbContext _datacontext;
-        public EredmenyService(TagDbContext datacontext)
+        private readonly ApplicationDbContext _datacontext;
+        public EredmenyService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }
