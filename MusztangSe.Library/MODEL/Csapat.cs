@@ -10,7 +10,10 @@ namespace MusztangSE.Library.MODEL
         public string Nev { get; set; }
         public string Kategoria { get; set; }
         public bool Paros { get; set; }
-        [ForeignKey("Edzo")]
-        public int  EdzoId { get; set; } 
+        public int? EdzoId { get; set; }
+        public Edzo? Edzo { get; set; }
+
+        public ICollection<TagCsapat> TagCsapatok { get; set; }
+        public ICollection<Eredmeny> Eredmenyek { get; set; }
     }
 }

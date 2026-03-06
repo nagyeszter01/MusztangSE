@@ -5,15 +5,15 @@ namespace MusztangSE.Library.MODEL
 {
     public class Eredmeny
     {
-        [Key]
         public int Id { get; set; }
-
-        [ForeignKey("Verseny")]
+        
         public int VersenyId { get; set; }
+        public Verseny Verseny { get; set; }
 
-        [ForeignKey("Csapat")]
         public int CsapatId { get; set; }
+        public Csapat Csapat { get; set; }
 
-        public int Helyezes { get; set; }
+
+        public int? Helyezes { get; set; }
     }
 }

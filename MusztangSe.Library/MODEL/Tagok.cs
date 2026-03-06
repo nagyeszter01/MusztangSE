@@ -4,10 +4,7 @@ namespace MusztangSE.Library.MODEL
 {
     public class Tagok
     {
-        [Key]
         public int Id { get; set; }
-
-        [Required]
         public string Nev { get; set; }
 
         public DateTime Szuletes { get; set; }
@@ -16,8 +13,13 @@ namespace MusztangSE.Library.MODEL
 
         public string Lakcim { get; set; }
 
-        public string Telefonszam { get; set; }
+        public string? Telefonszam { get; set; }
 
-        public string Email { get; set; }
+        public string? Email { get; set; }
+        
+        public Felhasznalo? Felhasznalo { get; set; }
+        public SportoloiAdatok? SportoloiAdatok { get; set; }
+
+        public ICollection<TagCsapat> TagCsapatok { get; set; }
     }
 }

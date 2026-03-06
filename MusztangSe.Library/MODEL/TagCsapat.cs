@@ -7,9 +7,10 @@ namespace MusztangSE.Library.MODEL
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("Tag")]
         public int TagId { get; set; }
-        [ForeignKey("Csapat")]
+        public Tagok Tag { get; set; }
         public int CsapatId { get; set; }
+        public Csapat Csapat { get; set; }
+
     }
 }
