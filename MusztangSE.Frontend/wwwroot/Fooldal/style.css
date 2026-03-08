@@ -1,4 +1,3 @@
-
 /* Betűtípus import */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
@@ -11,12 +10,17 @@
     font-family: 'IBM Plex Serif', serif;
 }
 
-html {
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #0f0f0f;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    color: white;
 }
+
 /*Fö oldal */
 body {
-    margin: 0;
     overflow-x: hidden;
     color: white;
 }
@@ -32,6 +36,7 @@ header {
     width: 100%;
     height: 100px;
     z-index: 1000;
+    background: transparent;
 }
 
 /* Logo */
