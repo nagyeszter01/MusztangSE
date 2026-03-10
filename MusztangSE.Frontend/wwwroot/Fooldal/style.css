@@ -88,10 +88,16 @@ nav a {
     align-items: center;
     justify-content: center;
     color: white;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
-.hero .tartalom {
+
+    .hero .tartalom {
         margin-top: 100px;
-}
+        position: relative;
+        z-index: 2;
+    }
 
 /* Világos / sötét */
 .light {
@@ -108,21 +114,21 @@ nav a {
 .video-container {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
 }
 
-.video-container video {
+    .video-container video {
         width: 100%;
         height: 100%;
         object-fit: cover;
-}
+    }
 
-.video-container::after {
+    .video-container::after {
         content: "";
         position: absolute;
         inset: 0;
         background: rgba(0, 0, 0, 0.7);
-}
+    }
 
 /* szöveg rész*/
 #cim {
@@ -165,12 +171,13 @@ nav a {
 }
 
 .rolunk-gomb {
-    background: red; 
-    color: white; 
-    border-radius: 10px; 
-    padding: 10px 20px; 
+    background: red;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
     text-decoration: none;
 }
+
 .rolunkcim {
     font-size: 50px;
     margin-left: auto 0;
@@ -205,7 +212,7 @@ nav a {
 /* Egy kártya */
 
 .edzo-kartya {
-    background: #9c9c9c; 
+    background: #9c9c9c;
     padding: 30px;
     border-radius: 6px;
     width: 330px;
@@ -213,13 +220,13 @@ nav a {
 }
 
 
-.edzo-kartya img {
-    width: 100%;
-    height: 380px; 
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
+    .edzo-kartya img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
 
 
     .edzo-kartya h3 {
@@ -236,11 +243,11 @@ nav a {
     }
 
 
-/* Hover effekt ez emeli ki a képet */
+    /* Hover effekt ez emeli ki a képet */
 
-.edzo-kartya:hover {
-    transform: translateY(-5px);
-}
+    .edzo-kartya:hover {
+        transform: translateY(-5px);
+    }
 
 /* Alsó sáv */
 
@@ -280,15 +287,17 @@ nav a {
     display: flex;
     gap: 15px;
 }
+
 #fb {
     width: 45px;
     height: 45px;
     margin-bottom: 35px;
-    margin-top:15px;
+    margin-top: 15px;
     object-fit: contain;
     cursor: pointer;
     transition: 0.3s;
 }
+
 #insta {
     width: 28px;
     height: 28px;
@@ -299,9 +308,9 @@ nav a {
     transition: 0.3s;
 }
 
-    .icon:hover {
-        transform: scale(1.1);
-    }
+.icon:hover {
+    transform: scale(1.1);
+}
 
 
 /* Lábléc */
@@ -416,8 +425,8 @@ nav a {
 
 
 .eredmenyek-grid {
-    max-width: 900px; 
-    margin: 0 auto; 
+    max-width: 900px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
@@ -541,6 +550,7 @@ nav a {
         font-size: 0.75rem;
     }
 }
+
 @media (max-width: 900px) {
     .edzok-container {
         flex-direction: column;
@@ -553,8 +563,12 @@ nav a {
         gap: 20px;
     }
 }
+
 @media (max-width: 900px) {
     .rolunk-tartalom {
         grid-template-columns: 1fr;
     }
 }
+
+
+

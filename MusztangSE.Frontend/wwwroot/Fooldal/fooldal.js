@@ -1,5 +1,4 @@
-﻿// Ki irja a MusztángSE szöveget karakterenként
-const szoveg = "MusztángSE";
+﻿const szoveg = "MusztángSE";
 const cim = document.getElementById("cim");
 
 let index = 0;
@@ -10,7 +9,7 @@ function kiir() {
 
     const karakter = szoveg[index];
 
-    
+
     if (karakter === " ") {
         cim.innerHTML += " ";
         index++;
@@ -29,3 +28,4 @@ function kiir() {
 
 // Oldal betöltése után indul
 window.addEventListener("load", kiir);
+
