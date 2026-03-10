@@ -2,43 +2,57 @@
 using MusztangSE_WebAPI.INTERFACE;
 using MusztangSE.Library.MODEL;
 using MusztangSE.Library.DATA;
+using MusztangSe.Library.DTOs.Verseny;
 
 namespace MusztangSE_WebAPI.SERVICES
 {
-    public class VersenyService : IVersenyService
+    public class VersenyService
     {
         private readonly ApplicationDbContext _datacontext;
         public VersenyService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }
-        public async Task<bool> CreateVersenyAsync(Verseny newVerseny)
+        public async Task<List<VersenyDto>> GetAllAsync()
         {
-            await _datacontext.Verseny.AddAsync(newVerseny);
-            return await _datacontext.SaveChangesAsync() > 0;
+            return await _datacontext.Versenyek
+                .Select(v => new VersenyDto
+                {
+                    Id = v.Id,
+                    Nev = v.Nev ?? "",
+                    Datum = v.Datum,
+                    Hely = v.Hely ?? ""
+                })
+                .ToListAsync();
         }
 
-        public async Task<bool> DeleteVersenyAsync(int id)
+        public async Task<List<VersenyDto>> GetUpcomingAsync()
         {
-            var entity = await _datacontext.Verseny.FindAsync(id);
-            _datacontext.Verseny.Remove(entity);
-            return await _datacontext.SaveChangesAsync() > 0;
+            var today = DateTime.UtcNow;
+            return await _datacontext.Versenyek
+                .Where(v => v.Datum >= today)
+                .OrderBy(v => v.Datum)
+                .Select(v => new VersenyDto
+                {
+                    Id = v.Id,
+                    Nev = v.Nev ?? "",
+                    Datum = v.Datum,
+                    Hely = v.Hely ?? ""
+                })
+                .ToListAsync();
         }
 
-        public async Task<IEnumerable<Verseny>> GetAllVersenyAsync()
+        public async Task<Verseny> CreateAsync(VersenyCreateDto dto)
         {
-            return await _datacontext.Verseny.AsNoTracking().ToListAsync();
-        }
-
-        public async Task<Verseny> GetVersenyByIdAsync(int id)
-        {
-            return await _datacontext.Verseny.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
-        }
-
-        public async Task<bool> UpdateVersenyAsync(Verseny modifiedVerseny)
-        {
-            _datacontext.Verseny.Update(modifiedVerseny);
-            return await _datacontext.SaveChangesAsync() > 0;
+            var v = new Verseny
+            {
+                Nev = dto.Nev,
+                Datum = dto.Datum,
+                Hely = dto.Hely
+            };
+            _datacontext.Versenyek.Add(v);
+            await _datacontext.SaveChangesAsync();
+            return v;
         }
     }
 }

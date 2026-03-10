@@ -12,12 +12,14 @@ namespace MusztangSE.Library.DATA
         public DbSet<Edzo> Edzo { get; set; }
         public DbSet<Csapat> Csapat { get; set; }
         public DbSet<TagCsapat> TagCsapat { get; set; }
-        public DbSet<Verseny> Verseny { get; set; }
+        public DbSet<Verseny> Versenyek { get; set; }
         public DbSet<Eredmeny> Eredmeny { get; set; }
         public DbSet<Szerepkor> Szerepkor { get; set; }
         public DbSet<Felhasznalo> Felhasznalo { get; set; }
         
         // VIEW-K
+        public DbSet<VwTagTeljes> TagokView { get; set; }
+
         public DbSet<VwEredmeny> EredmenyekView { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

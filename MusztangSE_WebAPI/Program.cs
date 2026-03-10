@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MusztangSE.Library.DATA;
 using MusztangSE_WebAPI.INTERFACE;
 using MusztangSE_WebAPI.SERVICES;
+using MusztangSE_WebAPI.SERVICES.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-builder.Services.AddScoped<ITagokService, TagokService>();
-builder.Services.AddScoped<IEredmenyService, EredmenyService>();
-builder.Services.AddScoped<IVersenyService, VersenyService>();
-builder.Services.AddScoped<ITagCsapatService, TagCsapatService>();
-builder.Services.AddScoped<IEdzoService, EdzoService>();
-builder.Services.AddScoped<ICsapatService, CsapatService>();
-builder.Services.AddScoped<ISportoloiAdatokService, SportoloiAdatokService>();
+builder.Services.AddScoped<EredmenyService>();
+builder.Services.AddScoped<TagService>();
+builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<VersenyService>(); 
 
 builder.Services.AddCors(options =>
 {

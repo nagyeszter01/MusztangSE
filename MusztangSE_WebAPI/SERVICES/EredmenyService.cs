@@ -2,44 +2,33 @@
 using MusztangSE_WebAPI.INTERFACE;
 using MusztangSE.Library.MODEL;
 using MusztangSE.Library.DATA;
+using MusztangSE.Library.MODEL.ViewModel;
 
 namespace MusztangSE_WebAPI.SERVICES
 {
-    public class EredmenyService : IEredmenyService
+    public class EredmenyService 
     {
         private readonly ApplicationDbContext _datacontext;
         public EredmenyService(ApplicationDbContext datacontext)
         {
             _datacontext = datacontext;
         }
-        public async Task<bool> CreateEredmenyAsync(Eredmeny newEredmeny)
+        // Minden eredmény
+        public async Task<List<VwEredmeny>> GetAllAsync()
         {
-            await _datacontext.Eredmeny.AddAsync(newEredmeny);
-            return await _datacontext.SaveChangesAsync() > 0;
+            return await _datacontext.EredmenyekView
+                .OrderBy(e => e.Datum)
+                .ToListAsync();
         }
 
-        public async Task<bool> DeleteEredmenyAsync(int Id)
+        // Közelgő eredmények
+        public async Task<List<VwEredmeny>> GetUpcomingAsync()
         {
-            var entity = await _datacontext.Eredmeny.FindAsync(Id);
-            if (entity == null) return false;
-            _datacontext.Eredmeny.Remove(entity);
-            return await _datacontext.SaveChangesAsync() > 0;
-        }
-
-        public async Task<IEnumerable<Eredmeny>> GetAllEredmenyAsync()
-        {
-            return await _datacontext.Eredmeny.AsNoTracking().ToListAsync();
-        }
-
-        public async Task<Eredmeny> GetEredmenyByIdAsync(int id)
-        {
-            return await _datacontext.Eredmeny.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
-        }
-
-        public async Task<bool> UpdateEredmenyAsync(Eredmeny modifiedEredmeny)
-        {
-            _datacontext.Eredmeny.Update(modifiedEredmeny);
-            return await _datacontext.SaveChangesAsync() > 0;
+            var today = DateTime.UtcNow;
+            return await _datacontext.EredmenyekView
+                .Where(e => e.Datum >= today)
+                .OrderBy(e => e.Datum)
+                .ToListAsync();
         }
     }
 }
