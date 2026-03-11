@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MusztangSE.Library.DATA;
 using MusztangSE.Library.MODEL;
-using MusztangSE_WebAPI.INTERFACE;
 using MusztangSE.Library.MODEL.ViewModel;
 
 namespace MusztangSE_WebAPI.SERVICES

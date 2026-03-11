@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MusztangSE_WebAPI.INTERFACE;
 using MusztangSE.Library.MODEL;
 using MusztangSE.Library.DATA;
 using MusztangSe.Library.DTOs.Verseny;
