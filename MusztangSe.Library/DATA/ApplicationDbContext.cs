@@ -13,7 +13,7 @@ namespace MusztangSE.Library.DATA
         public DbSet<Csapat> Csapat { get; set; }
         public DbSet<TagCsapat> TagCsapat { get; set; }
         public DbSet<Verseny> Versenyek { get; set; }
-        public DbSet<Eredmeny> Eredmeny { get; set; }
+        public DbSet<Eredmeny> Eredmenyek { get; set; }
         public DbSet<Szerepkor> Szerepkor { get; set; }
         public DbSet<Felhasznalo> Felhasznalo { get; set; }
         
