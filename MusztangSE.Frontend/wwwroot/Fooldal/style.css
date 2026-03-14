@@ -50,6 +50,10 @@ header {
         height: 60px;
         border-radius: 30px;
     }
+    .logo a {
+        display: block;
+        line-height: 0;
+    }
 
 /* navigácios sáv */
 .nav-center {
