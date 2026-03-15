@@ -33,7 +33,6 @@
     <Folder Include="Controllers\Auth\" />
     <Folder Include="Controllers\Edzo\" />
     <Folder Include="Controllers\Kozos\" />
-    <Folder Include="Controllers\Public\" />
     <Folder Include="Controllers\Tag\" />
   </ItemGroup>
 
