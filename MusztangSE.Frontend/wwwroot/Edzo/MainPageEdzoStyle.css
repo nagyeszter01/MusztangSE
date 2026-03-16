@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'IBM Plex Serif', serif;
+    background-color: #0a0a0a;
+    color: white;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 100;
+    background: rgba(10,10,10,0.4);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    position: absolute;
+    left: 40px;
+    top: 20px;
+}
+
+.logo img {
+    height: 60px;
+    border-radius: 30px;
+}
+
+.nav-center {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(50,50,50,0.6);
+    border-radius: 30px;
+    padding: 10px 30px;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: 500;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+nav a:hover { color: #ff3b3b; }
+
+nav a.active {
+    color: #ff3b3b;
+    border-bottom: 2px solid #ff3b3b;
+    padding-bottom: 4px;
+}
+
+.kijelentkezes {
+    position: absolute;
+    right: 40px;
+    top: 32px;
+}
+
+.kijelentkezes button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.6);
+    padding: 8px 20px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.kijelentkezes button:hover {
+    border-color: #ff3b3b;
+    color: #ff3b3b;
+}
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 32px;
+    padding: 8px;
+    z-index: 200;
+}
+
+.hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger.aktiv span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.aktiv span:nth-child(2) { opacity: 0; }
+.hamburger.aktiv span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* MOBIL MENÜ */
+.mobil-menu {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background: rgba(15,15,15,0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-direction: column;
+    padding: 20px;
+    gap: 4px;
+    z-index: 99;
+}
+
+.mobil-menu.nyitva { display: flex; }
+
+.mobil-menu a {
+    color: white;
+    text-decoration: none;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1rem;
+    padding: 14px 16px;
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+
+.mobil-menu a:hover { background: rgba(255,255,255,0.06); }
+.mobil-menu a.active { color: #ff3b3b; }
+
+.mobil-menu button {
+    background: rgba(255,39,44,0.1);
+    border: 1px solid rgba(255,39,44,0.3);
+    color: #ff4d4d;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.mobil-menu button:hover { background: rgba(255,39,44,0.2); }
+
+/* KEZDŐLAP SECTION */
+.kezdolap-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background: url('/img/TagokKezdolap.jpg') center center / cover no-repeat;
+    position: relative;
+    padding-top: 100px;
+}
+
+.kezdolap-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+}
+
+.kezdolap-text {
+    position: relative;
+    z-index: 1;
+    font-family: 'Goldman', cursive;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: white;
+    line-height: 1.5;
+    padding: 0 60px 60px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+    max-width: 800px;
+}
+
+.divider {
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #ff3b3b, transparent);
+}
+
+/* CONTENT SECTION */
+.content-section {
+    padding: 80px 5% 60px;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-family: 'Goldman', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    align-self: flex-start;
+    margin-left: 5%;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+/* BOXES */
+.content-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    max-width: 700px;
+}
+
+.box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.box:hover { background: rgba(255,255,255,0.07); }
+
+.box-nev {
+    font-family: 'Goldman', cursive;
+    font-size: 1rem;
+    color: white;
+    flex: 1;
+    min-width: 140px;
+}
+
+.box-datum { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+.box-hely { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+
+.tobbi-gomb {
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.6);
+    padding: 10px 24px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    align-self: center;
+}
+
+.tobbi-gomb:hover { border-color: #ff3b3b; color: #ff3b3b; }
+
+/* VERSENY FORM */
+.verseny-form {
+    flex-direction: column;
+    gap: 14px;
+    width: 80%;
+    max-width: 700px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+}
+
+.verseny-form input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+}
+
+.verseny-form input:focus { outline: none; border-color: rgba(255,59,59,0.4); }
+.verseny-form input::placeholder { color: rgba(255,255,255,0.25); }
+
+.form-gombok { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.add-competition-wrapper {
+    width: 80%;
+    max-width: 700px;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 16px;
+}
+
+.add-competition-btn {
+    background: #ff3b3b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 24px;
+    font-family: 'Goldman', cursive;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-competition-btn:hover { background: #e60000; transform: translateY(-1px); }
+
+.add-competition-btn.megse {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+}
+
+.add-competition-btn.megse:hover { background: rgba(255,255,255,0.08); transform: none; }
+
+/* ÜZENET */
+.uzenet {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: none;
+    text-align: center;
+}
+
+.uzenet.hiba { color: #ff4d4d; background: rgba(255,77,77,0.1); border: 1px solid rgba(255,77,77,0.3); display: block; }
+.uzenet.siker { color: #4dff91; background: rgba(77,255,145,0.1); border: 1px solid rgba(77,255,145,0.3); display: block; }
+
+/* FOOTER */
+.site-footer { background: #111; padding: 30px 20px; text-align: center; color: white; font-family: 'IBM Plex Serif', serif; }
+.footer-title { font-weight: bold; }
+.footer-subtitle { font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
+
+/* RESZPONZÍV */
+@media (max-width: 900px) {
+    .nav-center { display: none; }
+    .kijelentkezes { display: none; }
+    .hamburger { display: flex; }
+    .content-boxes, .verseny-form, .add-competition-wrapper { width: 95%; }
+    .add-competition-wrapper { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+    .logo { left: 20px; }
+    .kezdolap-text { font-size: 1.2rem; padding: 0 24px 40px; }
+    .section-title { font-size: 1.6rem; margin-left: 2%; }
+    .box { padding: 16px; }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Edzo/Edzo-CsapatokStyle.css">
+    <title>Edző - Csapatok</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Edzo/MainPageEdzo.html" class="active">Kezdőlap</a>
+        <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
+        <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
+        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mobil-menu" id="mobil-menu">
+        <a href="/Edzo/MainPageEdzo.html">Kezdőlap</a>
+        <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
+        <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
+        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
+        <button onclick="localStorage.clear(); window.location.href='/Bejelentkezes/bejelentkezes.html'">Kijelentkezés</button>
+    </div>
+</header>
+
+<section class="content-section">
+    <div class="lista-fejlec">
+        <h2 class="section-title" style="margin:0">Csapatok</h2>
+        <div class="fejlec-gombok">
+            <button id="uj-csapat-gomb" type="button" class="add-btn">+ Új csapat</button>
+        </div>
+    </div>
+
+    <div id="fo-uzenet" class="uzenet"></div>
+
+    <!-- ÚJ CSAPAT FORM -->
+    <div id="uj-csapat-form" class="uj-csapat-form" style="display:none">
+        <h3 class="edit-title">Új csapat létrehozása</h3>
+        <div class="csapat-form-grid">
+            <div class="edit-mezo">
+                <label>Csapat neve *</label>
+                <input id="csapat-nev" type="text" placeholder="Csapat neve">
+            </div>
+            <div class="edit-mezo">
+                <label>Kategória *</label>
+                <input id="csapat-kategoria" type="text" placeholder="pl. U18, Felnőtt">
+            </div>
+            <div class="edit-mezo checkbox-mezo">
+                <label>
+                    <input type="checkbox" id="csapat-paros">
+                    Páros
+                </label>
+            </div>
+        </div>
+        <div id="uj-csapat-uzenet" class="uzenet"></div>
+        <div class="form-gombok">
+            <button id="csapat-mentes" type="button" class="add-btn">Mentés</button>
+            <button id="csapat-megse" type="button" class="add-btn megse-btn">Mégse</button>
+        </div>
+    </div>
+
+    <div id="csapatok-container"></div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-title">Musztáng SE – edzői felület</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </div>
+</footer>
+
+<script src="/Edzo/Edzo-Csapatok.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Edzo/MainPageEdzoStyle.css?v=3">
+    <title>Edző Felület</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Edzo/MainPageEdzo.html" class="active">Kezdőlap</a>
+        <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
+        <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
+        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mobil-menu" id="mobil-menu">
+        <a href="/Edzo/MainPageEdzo.html" class="active">Kezdőlap</a>
+        <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
+        <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
+        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
+        <button onclick="localStorage.clear(); window.location.href='/Bejelentkezes/bejelentkezes.html'">Kijelentkezés</button>
+    </div>
+</header>
+
+<section class="kezdolap-section" id="kezdolap">
+    <div class="kezdolap-text">
+        Szia, <span id="username"></span>!<br>
+        Üdvözlünk a Musztáng SE edzői felületén.
+    </div>
+</section>
+<div class="divider"></div>
+
+<section class="content-section" id="versenyek">
+    <h2 class="section-title">Közelgő<br>versenyek</h2>
+
+    <div class="content-boxes"></div>
+
+    <div id="verseny-form" class="verseny-form" style="display:none">
+        <input id="verseny-nev" type="text" placeholder="Verseny neve">
+        <input id="verseny-datum" type="date">
+        <input id="verseny-hely" type="text" placeholder="Helyszín">
+        <div id="verseny-uzenet" class="uzenet"></div>
+        <div class="form-gombok">
+            <button id="verseny-mentes" class="add-competition-btn">Mentés</button>
+            <button id="verseny-megse" class="add-competition-btn megse">Mégse</button>
+        </div>
+    </div>
+
+    <div class="add-competition-wrapper">
+        <button id="hozzaadas-gomb" class="add-competition-btn">+ Verseny hozzáadása</button>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-title">Musztáng SE – edzői felület</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </div>
+</footer>
+
+<script src="/Edzo/MainPageEdzo.js?v=3"></script>
+</body>
+</html>
