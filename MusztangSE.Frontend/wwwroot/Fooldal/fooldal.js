@@ -29,3 +29,5 @@ function kiir() {
 // Oldal betöltése után indul
 window.addEventListener("load", kiir);
 
+
+

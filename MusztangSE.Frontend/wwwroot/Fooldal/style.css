@@ -149,6 +149,25 @@ nav a {
     color: red;
 }
 
+
+
+
+.wave-divider {
+    position: relative;
+    margin-top: -2px;
+    line-height: 0;
+    background: #000;
+}
+
+    .wave-divider svg {
+        display: block;
+        width: 100%;
+        height: 80px;
+    }
+
+
+
+
 /* Rólunk section rész img,tartalom,gomb*/
 .rolunk-section {
     position: relative;
@@ -502,6 +521,9 @@ nav a {
         background: #ff3b3b;
         transform: scale(1.1);
     }
+
+
+
 
 /* Reszponzív */
 @media (max-width: 900px) {
