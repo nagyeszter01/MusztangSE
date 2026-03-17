@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Tag/TagAdatokStyle.css?v=2">
+    <title>Tagok</title>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Tag/MainPageTag.html">Kezdőlap</a>
+        <a href="/Tag/MainPageTag.html#versenyek">Versenyek</a>
+        <a href="#" class="active">Adatok</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mobil-menu" id="mobil-menu">
+        <a href="/Tag/MainPageTag.html">Kezdőlap</a>
+        <a href="/Tag/MainPageTag.html#versenyek">Versenyek</a>
+        <a href="#" class="active">Adatok</a>
+        <button onclick="localStorage.clear(); window.location.href='/Bejelentkezes/bejelentkezes.html'">Kijelentkezés</button>
+    </div>
+</header>
+
+<main class="main-section">
+    <div class="main-title">
+        <h1>Adatok</h1>
+        <p>Kezeld és ellenőrizd a személyes és sporttal kapcsolatos adataidat</p>
+    </div>
+
+    <div class="data-boxes">
+        <!-- Személyes adatok -->
+        <div class="data-box">
+            <h2 class="box-title">Személyes adatok</h2>
+            <ul class="box-list">
+                <li>
+                    <span class="label">Név</span>
+                    <span class="value" id="nev"></span>
+                </li>
+                <li>
+                    <span class="label">Születési dátum</span>
+                    <span class="value" id="szuletes"></span>
+                </li>
+                <li>
+                    <span class="label">Anyja neve</span>
+                    <span class="value" id="anyjaneve"></span>
+                </li>
+                <li>
+                    <span class="label">Lakcím</span>
+                    <span class="value view-mode" id="lakcim"></span>
+                    <input id="lakcim-input" class="edit-mode" style="display:none">
+                </li>
+                <li>
+                    <span class="label">Telefonszám</span>
+                    <span class="value view-mode" id="telefonszam"></span>
+                    <input id="telefonszam-input" class="edit-mode" style="display:none">
+                </li>
+                <li>
+                    <span class="label">Email</span>
+                    <span class="value view-mode" id="email"></span>
+                    <input id="email-input" class="edit-mode" style="display:none">
+                </li>
+            </ul>
+            <div class="button-group">
+                <button id="modosit-gomb" class="box-button view-mode">Módosítás</button>
+                <button id="mentes-gomb" class="box-button edit-mode" style="display:none">Mentés</button>
+                <button id="megse-gomb" class="box-button edit-mode" style="display:none">Mégse</button>
+            </div>
+            <div id="szemelyes-uzenet" class="uzenet"></div>
+        </div>
+
+
+        <!-- Sportolói adatok -->
+        <div class="data-box">
+            <h2 class="box-title">Sportolói adatok</h2>
+            <ul class="box-list">
+                <li>
+                    <span class="label">Tagsági státusz</span>
+                    <span class="value" id="statusz"></span>
+                </li>
+                <li>
+                    <span class="label">Versenyengedély szám</span>
+                    <span class="value" id="versenyengedely"></span>
+                </li>
+                <li>
+                    <span class="label">Sportorvosi engedély</span>
+                    <span class="value" id="sportorvosi"></span>
+                </li>
+                <li>
+                    <span class="label">Tagság kezdete</span>
+                    <span class="value" id="tagsagKezdete"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<script src="/Tag/TagAdatok.js"></script>
+</body>
+</html>

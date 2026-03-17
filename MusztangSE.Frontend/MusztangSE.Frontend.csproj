@@ -7,13 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Tag\img\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\Fooldal\video\hatter.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\Ancsa (2).jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\BpKmo.PNG" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\DunakesziFazekasM.PNG" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\DunakesziSzentI.PNG" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\Eszti.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\facebook-icon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\ideiglenes.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\logo.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\PikPng.com_instagram-png-white_3133163.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\rolunk2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\TagokKezdolap.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Fooldal\img\Veronika.jpg" />
   </ItemGroup>
 
 </Project>
