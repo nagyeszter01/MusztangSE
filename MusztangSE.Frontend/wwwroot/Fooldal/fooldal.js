@@ -29,5 +29,8 @@ function kiir() {
 // Oldal betöltése után indul
 window.addEventListener("load", kiir);
 
-
+document.getElementById('hamburger').addEventListener('click', function () {
+    this.classList.toggle('aktiv');
+    document.getElementById('mobil-menu').classList.toggle('nyitva');
+});
 
