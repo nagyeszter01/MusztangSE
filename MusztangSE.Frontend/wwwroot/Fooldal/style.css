@@ -27,56 +27,150 @@ body {
 
 
 
-
-/* fejléc */
-
+/* HEADER */
 header {
     position: fixed;
     top: 0;
     width: 100%;
     height: 100px;
     z-index: 1000;
-    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Menüt középre */
+    background: rgba(15,15,15,0.85);
+    backdrop-filter: blur(12px);
+    padding: 0 20px;
 }
 
-/* Logo */
+/* LOGO */
 .logo {
     position: absolute;
-    left: 40px;
+    left: 20px; /* Bal felső sarok */
     top: 20px;
+    transform: none; /* Nincs középre igazítás */
+    z-index: 1100;
 }
 
     .logo img {
         height: 60px;
         border-radius: 30px;
-    }
-    .logo a {
-        display: block;
-        line-height: 0;
+        transition: transform 0.3s;
     }
 
-/* navigácios sáv */
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+/* DESKTOP NAV */
 .nav-center {
+    display: flex;
+    gap: 20px;
+    background: rgba(50,50,50,0.6);
+    padding: 10px 30px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1001;
+    justify-content: center; /* Menüpontok középre */
+}
+
+    .nav-center a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: all 0.3s;
+    }
+
+        .nav-center a:hover,
+        .nav-center a.active {
+            color: #ff3b3b;
+            background: rgba(255, 59, 59, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255,59,59,0.3);
+        }
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1102;
     position: absolute;
-    top: 30px;
+    right: 20px;
+    top: 32px;
+}
+
+    .hamburger span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+
+    .hamburger.aktiv span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.aktiv span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.aktiv span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+/* MOBIL MENÜ */
+.mobil-menu {
+    display: none;
+    position: fixed;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(50, 50, 50, 0.6);
-    border-radius: 30px;
-    padding: 10px 30px;
-    font-family: 'IBM Plex Serif', serif;
+    background: rgba(15,15,15,0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 20px;
+    gap: 8px;
+    z-index: 999;
+    border-radius: 15px;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 500;
-}
-
-    nav a:hover {
-        color: #ff3b3b;
+    .mobil-menu.nyitva {
+        display: flex;
     }
+
+    .mobil-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 12px 16px;
+        border-radius: 10px;
+        transition: all 0.3s;
+        text-align: center;
+    }
+
+        .mobil-menu a:hover {
+            background: rgba(255,59,59,0.1);
+        }
+
+/* RESZPONZÍV */
+@media (max-width: 900px) {
+    .nav-center {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
 
 /* Section alap beálitásai */
 
@@ -519,48 +613,6 @@ nav a {
     }
 
 
-
-.hamburger {
-    display: none;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 30px;
-    z-index: 1100;
-}
-
-@media (max-width: 768px) {
-    .nav-center {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: rgba(15, 15, 15, 0.97);
-        padding: 20px 0;
-        border-radius: 0;
-        text-align: center;
-    }
-
-        .nav-center.aktiv {
-            display: flex;
-        }
-
-        .nav-center a {
-            display: block;
-            padding: 12px 0;
-            font-size: 18px;
-        }
-
-    .hamburger {
-        display: block;
-    }
-}
 
 
 /* Reszponzív */
