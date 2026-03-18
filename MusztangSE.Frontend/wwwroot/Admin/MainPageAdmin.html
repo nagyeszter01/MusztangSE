@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Admin/AdminStyle.css">
+    <title>Admin – Musztáng SE</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Admin/MainPageAdmin.html" class="active">Dashboard</a>
+        <a href="/Admin/Admin-Tagok.html">Felhasználók</a>
+        <a href="/Admin/Admin-Edzok.html">Edzők</a>
+        <a href="/Admin/Admin-Csapatok.html">Csapatok</a>
+        <a href="/Admin/Admin-Versenyek.html">Versenyek</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+</header>
+
+<section class="content-section">
+    <h2 class="section-title">Admin Dashboard</h2>
+    <p class="section-sub" id="admin-nev"></p>
+
+    <div class="stat-grid">
+        <div class="stat-box">
+            <span class="stat-szam" id="stat-tagok">—</span>
+            <span class="stat-label">Tagok</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-szam" id="stat-edzok">—</span>
+            <span class="stat-label">Edzők</span>
+        </div>
+        <div class="stat-box">
+            <span class="stat-szam" id="stat-csapatok">—</span>
+            <span class="stat-label">Csapatok</span>
+        </div>
+        <div class="stat-box accent">
+            <span class="stat-szam" id="stat-versenyek">—</span>
+            <span class="stat-label">Közelgő versenyek</span>
+        </div>
+    </div>
+
+    <div class="gyors-linkek">
+        <h3 class="gyors-cim">Gyors elérés</h3>
+        <div class="gyors-grid">
+            <a href="/Admin/Admin-Tagok.html" class="gyors-box">
+                <span class="gyors-ikon">👤</span>
+                <span class="gyors-nev">Felhasználók kezelése</span>
+                <span class="gyors-leiras">Tag és edző hozzáadása, módosítása, törlése</span>
+            </a>
+            <a href="/Admin/Admin-Edzok.html" class="gyors-box">
+                <span class="gyors-ikon">🏋️</span>
+                <span class="gyors-nev">Edzők felügyelete</span>
+                <span class="gyors-leiras">Edzők és csapataik megtekintése</span>
+            </a>
+            <a href="/Admin/Admin-Csapatok.html" class="gyors-box">
+                <span class="gyors-ikon">👥</span>
+                <span class="gyors-nev">Csapatkezelés</span>
+                <span class="gyors-leiras">Csapatok létrehozása, módosítása, törlése</span>
+            </a>
+            <a href="/Admin/Admin-Versenyek.html" class="gyors-box">
+                <span class="gyors-ikon">🏆</span>
+                <span class="gyors-nev">Versenyek kezelése</span>
+                <span class="gyors-leiras">Versenyek hozzáadása, módosítása, törlése</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-title">Musztáng SE – admin felület</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </div>
+</footer>
+
+<script src="/Admin/MainPageAdmin.js"></script>
+</body>
+</html>

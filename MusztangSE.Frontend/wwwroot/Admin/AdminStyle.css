@@ -1,0 +1,738 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    position: absolute;
+    left: 40px;
+    top: 20px;
+}
+
+.logo img {
+    height: 60px;
+    border-radius: 30px;
+}
+
+.nav-center {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(50,50,50,0.6);
+    border-radius: 30px;
+    padding: 10px 30px;
+    backdrop-filter: blur(10px);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    font-family: 'IBM Plex Serif', serif;
+    transition: color 0.2s;
+}
+
+nav a:hover { color: #ff3b3b; }
+
+nav a.active {
+    color: #ff3b3b;
+    border-bottom: 2px solid #ff3b3b;
+    padding-bottom: 4px;
+}
+
+.kijelentkezes {
+    position: absolute;
+    right: 40px;
+    top: 32px;
+}
+
+.kijelentkezes button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.6);
+    padding: 8px 20px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.kijelentkezes button:hover {
+    border-color: #ff3b3b;
+    color: #ff3b3b;
+}
+
+/* CONTENT */
+.content-section {
+    padding: 140px 5% 60px;
+    min-height: 90vh;
+    background: #0f0f0f;
+}
+
+.section-title {
+    font-family: 'Goldman', cursive;
+    font-size: 2.2vw;
+    color: white;
+    margin-bottom: 6px;
+}
+
+.section-sub {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+/* STAT GRID */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.stat-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.stat-box:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.15);
+}
+
+.stat-box.accent {
+    background: rgba(255,39,44,0.08);
+    border-color: rgba(255,39,44,0.25);
+}
+
+.stat-box.accent:hover {
+    background: rgba(255,39,44,0.12);
+}
+
+.stat-szam {
+    font-family: 'Goldman', cursive;
+    font-size: 3rem;
+    color: white;
+    line-height: 1;
+}
+
+.stat-box.accent .stat-szam {
+    color: #ff4d4d;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+    font-family: 'IBM Plex Serif', serif;
+}
+
+/* GYORS LINKEK */
+.gyors-cim {
+    font-family: 'Goldman', cursive;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.gyors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.gyors-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.gyors-box:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,59,59,0.3);
+    transform: translateY(-2px);
+}
+
+.gyors-ikon {
+    font-size: 1.8rem;
+}
+
+.gyors-nev {
+    font-family: 'Goldman', cursive;
+    font-size: 0.95rem;
+    color: white;
+}
+
+.gyors-leiras {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+}
+
+/* ÜZENET */
+.uzenet {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: none;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.uzenet.hiba {
+    color: #ff4d4d;
+    background: rgba(255,77,77,0.1);
+    border: 1px solid rgba(255,77,77,0.3);
+    display: block;
+}
+
+.uzenet.siker {
+    color: #4dff91;
+    background: rgba(77,255,145,0.1);
+    border: 1px solid rgba(77,255,145,0.3);
+    display: block;
+}
+
+/* FOOTER */
+.site-footer {
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-title {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.footer-subtitle {
+    color: rgba(255,255,255,0.35);
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+/* RESZPONZÍV */
+@media (max-width: 1024px) {
+    .stat-grid, .gyors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .stat-grid, .gyors-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .nav-center {
+        padding: 8px 12px;
+    }
+    nav a {
+        margin: 0 8px;
+        font-size: 0.85rem;
+    }
+    .kijelentkezes {
+        right: 15px;
+    }
+}
+/* ADMIN-TAGOK HTML */
+/* FILTERS */
+.admin-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.admin-search {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+}
+
+.admin-search:focus {
+    outline: none;
+    border-color: rgba(255,59,59,0.4);
+}
+
+.admin-search::placeholder {
+    color: rgba(255,255,255,0.25);
+}
+
+.admin-select {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.admin-select option {
+    background: #1a1a1a;
+}
+
+/* TABLE */
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+.admin-table thead tr {
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.admin-table th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+
+.admin-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.95rem;
+    color: white;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.ures-sor {
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    padding: 30px !important;
+}
+
+/* BADGES */
+.szerepkor-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.szerepkor-admin {
+    background: rgba(255,39,44,0.15);
+    color: #ff4d4d;
+    border: 1px solid rgba(255,39,44,0.3);
+}
+
+.szerepkor-edzo {
+    background: rgba(77,145,255,0.15);
+    color: #6ab0ff;
+    border: 1px solid rgba(77,145,255,0.3);
+}
+
+.szerepkor-tag {
+    background: rgba(77,255,145,0.1);
+    color: #4dff91;
+    border: 1px solid rgba(77,255,145,0.2);
+}
+
+.aktiv-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.aktiv-badge.aktiv {
+    background: rgba(77,255,145,0.1);
+    color: #4dff91;
+    border: 1px solid rgba(77,255,145,0.2);
+}
+
+.aktiv-badge.inaktiv {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ACTION BUTTONS */
+.td-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid;
+}
+
+.toggle-btn {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.15);
+    color: white;
+}
+
+.toggle-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.delete-btn {
+    background: rgba(255,39,44,0.1);
+    border-color: rgba(255,39,44,0.3);
+    color: #ff4d4d;
+}
+
+.delete-btn:hover {
+    background: rgba(255,39,44,0.2);
+}
+
+/* ADMIN FORM */
+.lista-fejlec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.fejlec-gombok {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-btn {
+    background: #ff3b3b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 24px;
+    font-family: 'Goldman', cursive;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.admin-btn:hover {
+    background: #e60000;
+    transform: translateY(-1px);
+}
+
+.megse-btn {
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: white !important;
+}
+
+.megse-btn:hover {
+    background: rgba(255,255,255,0.08) !important;
+    transform: none !important;
+}
+
+.admin-form {
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 30px 35px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.form-title {
+    font-family: 'Goldman', cursive;
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-mezo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-mezo label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.form-mezo input[type="text"],
+.form-mezo input[type="email"],
+.form-mezo input[type="date"] {
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-mezo input:focus {
+    outline: none;
+    border-color: rgba(255,59,59,0.4);
+}
+
+.form-mezo input::placeholder {
+    color: rgba(255,255,255,0.2);
+}
+
+.azonosito-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.azonosito-input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.03);
+    color: #c8ff00;
+    font-family: 'Goldman', cursive;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.form-gombok {
+    display: flex;
+    gap: 12px;
+}
+
+
+/* ADMIN-EDZO HTML */
+/* EDZŐ BOX */
+.edzo-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.edzo-fejlec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+}
+
+.edzo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.edzo-nev {
+    font-family: 'Goldman', cursive;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.edzo-azonosito {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+}
+
+.edzo-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* NÉV SZERKESZTÉS */
+.nev-edit-form {
+    padding: 0 25px 16px;
+    gap: 10px;
+    align-items: center;
+}
+
+.megse-btn-small {
+    background: transparent;
+    border-color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+}
+
+/* CSAPATOK */
+.edzo-csapatok {
+    padding: 16px 25px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.02);
+}
+
+.csapatok-cim {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+}
+
+.csapat-sor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.csapat-sor:last-child {
+    border-bottom: none;
+}
+
+.csapat-nev-kis {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    color: white;
+}
+
+.csapat-meta-kis {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 36px 40px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-title {
+    font-family: 'Goldman', cursive;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.modal-szoveg {
+    color: rgba(255,255,255,0.7);
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.modal-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.modal-gombok {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.torol-piros {
+    background: #c0392b !important;
+}
+
+.torol-piros:hover {
+    background: #a93226 !important;
+}
+
+.torol-btn-piros {
+    background: rgba(255,39,44,0.1);
+    border-color: rgba(255,39,44,0.3);
+    color: #ff4d4d;
+}
+
+.torol-btn-piros:hover {
+    background: rgba(255,39,44,0.2);
+}

@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #0a0a0a;
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 100;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+}
+
+.logo { position: absolute; left: 40px; top: 20px; }
+.logo img { height: 60px; border-radius: 30px; }
+
+.nav-center {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(50,50,50,0.6);
+    border-radius: 30px;
+    padding: 10px 30px;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: 500;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+nav a:hover { color: #ff3b3b; }
+nav a.active {
+    color: #ff3b3b;
+    border-bottom: 2px solid #ff3b3b;
+    padding-bottom: 4px;
+}
+
+.kijelentkezes { position: absolute; right: 40px; top: 32px; }
+.kijelentkezes button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.6);
+    padding: 8px 20px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.kijelentkezes button:hover { border-color: #ff3b3b; color: #ff3b3b; }
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 32px;
+    padding: 8px;
+    z-index: 200;
+}
+.hamburger span {
+    display: block; width: 26px; height: 2px;
+    background: white; border-radius: 2px; transition: all 0.3s;
+}
+.hamburger.aktiv span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.aktiv span:nth-child(2) { opacity: 0; }
+.hamburger.aktiv span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobil-menu {
+    display: none;
+    position: fixed;
+    top: 100px; left: 0; right: 0;
+    background: rgba(15,15,15,0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-direction: column;
+    padding: 20px; gap: 4px; z-index: 99;
+}
+.mobil-menu.nyitva { display: flex; }
+.mobil-menu a {
+    color: white; text-decoration: none;
+    font-family: 'IBM Plex Serif', serif; font-size: 1rem;
+    padding: 14px 16px; border-radius: 10px; transition: background 0.2s;
+}
+.mobil-menu a:hover { background: rgba(255,255,255,0.06); }
+.mobil-menu a.active { color: #ff3b3b; }
+.mobil-menu button {
+    background: rgba(255,39,44,0.1);
+    border: 1px solid rgba(255,39,44,0.3);
+    color: #ff4d4d; border-radius: 10px;
+    padding: 14px 16px; font-family: 'IBM Plex Serif', serif;
+    font-size: 1rem; cursor: pointer; text-align: left;
+    margin-top: 8px; transition: background 0.2s;
+}
+.mobil-menu button:hover { background: rgba(255,39,44,0.2); }
+
+/* CONTENT */
+.content-section {
+    padding: 140px 5% 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 90vh;
+    background: #1a1a1a;
+}
+
+.section-title {
+    align-self: flex-start;
+    font-size: clamp(1.6rem, 3vw, 2.5vw);
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    font-family: 'Goldman', cursive;
+    margin-left: 5%;
+}
+
+/* FILTERS */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    width: 80%;
+    max-width: 60vw;
+    margin-bottom: 20px;
+}
+
+.kereses-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+.kereses-input:focus { outline: none; border-color: rgba(255,59,59,0.4); }
+.kereses-input::placeholder { color: rgba(255,255,255,0.25); }
+
+.filters label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* BOXES */
+.content-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 80%;
+    max-width: 60vw;
+}
+
+.box {
+    background: #1e1e1e;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    transition: background 0.2s;
+}
+.box:hover { background: rgba(255,255,255,0.05); }
+
+.member-info { display: flex; flex-direction: column; gap: 4px; }
+.member-name { font-family: 'Goldman', cursive; font-size: 1rem; color: white; }
+.member-azonosito { font-size: 0.82rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+
+.member-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.edit-btn, .delete-btn {
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+}
+.edit-btn:hover { background: rgba(255,255,255,0.12); }
+
+.delete-btn {
+    background: rgba(255,39,44,0.1);
+    border: 1px solid rgba(255,39,44,0.3);
+    color: #ff4d4d;
+}
+.delete-btn:hover { background: rgba(255,39,44,0.2); }
+
+/* PAGINATION */
+.tobbi-gomb {
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    color: rgba(255,255,255,0.6);
+    padding: 10px 24px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    align-self: center;
+}
+.tobbi-gomb:hover { border-color: #ff3b3b; color: #ff3b3b; }
+
+/* EDIT/NEW FORM */
+.edit-form {
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+    max-width: 60vw;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 30px 35px;
+    margin-bottom: 20px;
+}
+
+.edit-title {
+    font-family: 'Goldman', cursive;
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    width: 100%;
+}
+
+.edit-mezo { display: flex; flex-direction: column; gap: 6px; }
+.edit-mezo label {
+    color: rgba(255,255,255,0.5);
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.edit-mezo input[type="text"],
+.edit-mezo input[type="email"],
+.edit-mezo input[type="date"] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.edit-mezo input:focus { outline: none; border-color: rgba(255,255,255,0.45); }
+.edit-mezo input::placeholder { color: rgba(255,255,255,0.25); }
+
+.edit-szekció-cim {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: 100%;
+}
+
+.checkbox-mezo label {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; color: white; font-size: 0.95rem;
+    margin-top: 18px;
+}
+.checkbox-mezo input[type="checkbox"] { width: 18px; height: 18px; accent-color: #ff3b3b; }
+
+.azonosito-wrapper {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center; width: 100%;
+}
+
+.azonosito-input {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.03);
+    color: #c8ff00;
+    font-family: 'Goldman', cursive;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.add-member-btn, .general-btn {
+    background: #ff3b3b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-family: 'Goldman', cursive;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.add-member-btn:hover { background: #e60000; }
+.add-member-btn.megse {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.add-member-btn.megse:hover { background: rgba(255,255,255,0.08); }
+
+.form-gombok { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* CSAPAT VÁLASZTÓ */
+.csapat-valaszto-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+#uj-csapat-lista { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; width: 100%; }
+
+.csapat-select {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    color: white;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.csapat-select option { background: #2a2a2a; color: white; }
+
+.csapat-kivalasztottak { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.csapat-tag {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px; padding: 6px 14px;
+    color: white; font-family: 'IBM Plex Serif', serif; font-size: 0.9rem;
+}
+.csapat-tag-torol {
+    background: none; border: none; color: rgba(255,255,255,0.5);
+    cursor: pointer; font-size: 0.85rem; padding: 0; transition: color 0.2s;
+}
+.csapat-tag-torol:hover { color: #ff4d4d; }
+
+/* ADD MEMBER */
+.add-member-wrapper { width: 80%; max-width: 60vw; margin-top: 16px; }
+
+/* ÜZENET */
+.uzenet {
+    font-family: 'IBM Plex Serif', serif; font-size: 0.9rem;
+    padding: 10px 15px; border-radius: 8px;
+    display: none; text-align: center; width: 100%;
+}
+.uzenet.hiba {
+    color: #ff4d4d; background: rgba(255,77,77,0.1);
+    border: 1px solid rgba(255,77,77,0.3); display: block;
+}
+.uzenet.siker {
+    color: #4dff91; background: rgba(77,255,145,0.1);
+    border: 1px solid rgba(77,255,145,0.3); display: block;
+}
+
+/* FOOTER */
+.site-footer { background: #111; padding: 30px 20px; text-align: center; color: white; font-family: 'IBM Plex Serif', serif; }
+.footer-title { font-weight: bold; }
+.footer-subtitle { font-size: 0.9rem; opacity: 0.7; }
+
+/* RESZPONZÍV */
+@media (max-width: 900px) {
+    .nav-center { display: none; }
+    .kijelentkezes { display: none; }
+    .hamburger { display: flex; }
+    .filters, .content-boxes, .edit-form, .add-member-wrapper { width: 95%; max-width: 95%; }
+    .edit-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .logo { left: 20px; }
+    .content-section { padding: 120px 3% 40px; }
+    .box { padding: 14px; }
+    .member-actions { width: 100%; }
+}

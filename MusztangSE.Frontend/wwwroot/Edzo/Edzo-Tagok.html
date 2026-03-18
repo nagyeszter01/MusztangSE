@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Edzo/Edzo-TagokStyle.css?v=6">
+    <title>Edző - Tagok</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Edzo/MainPageEdzo.html" class="active">Kezdőlap</a>
+        <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
+        <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
+        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mobil-menu" id="mobil-menu">
+        <a href="/Edzo/MainPageEdzo.html">Kezdőlap</a>
+        <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
+        <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
+        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
+        <button onclick="localStorage.clear(); window.location.href='/Bejelentkezes/bejelentkezes.html'">Kijelentkezés</button>
+    </div>
+</header>
+
+<section class="content-section">
+    <h2 class="section-title">Tagok</h2>
+
+    <div id="fo-uzenet" class="uzenet"></div>
+
+    <div class="filters">
+        <input type="text" id="kereses-input" class="kereses-input" placeholder="Keresés név alapján...">
+        <label>
+            <input type="checkbox" id="csak-aktiv">
+            Csak aktív tagok
+        </label>
+    </div>
+
+    <div class="content-boxes"></div>
+
+    <button id="tovabb-gomb" type="button" class="tobbi-gomb">További tagok betöltése</button>
+    <button id="kevesebb-gomb" type="button" class="tobbi-gomb">Kevesebb mutatása</button>
+
+    <!-- MÓDOSÍTÁS FORM -->
+    <div id="edit-form" class="edit-form" style="display:none">
+        <h3 class="edit-title">Tag módosítása</h3>
+        <input type="hidden" id="edit-id">
+
+        <p class="edit-szekció-cim">Személyes adatok</p>
+        <div class="edit-grid">
+            <div class="edit-mezo">
+                <label>Név</label>
+                <input id="edit-nev" type="text" placeholder="Név">
+            </div>
+            <div class="edit-mezo">
+                <label>Lakcím</label>
+                <input id="edit-lakcim" type="text" placeholder="Lakcím">
+            </div>
+            <div class="edit-mezo">
+                <label>Telefonszám</label>
+                <input id="edit-telefon" type="text" placeholder="Telefonszám">
+            </div>
+            <div class="edit-mezo">
+                <label>Email</label>
+                <input id="edit-email" type="email" placeholder="Email">
+            </div>
+        </div>
+
+        <p class="edit-szekció-cim">Sportolói adatok</p>
+        <div class="edit-grid">
+            <div class="edit-mezo">
+                <label>Versenyengedély szám</label>
+                <input id="edit-versenyengedely" type="text" placeholder="Versenyengedély szám">
+            </div>
+            <div class="edit-mezo">
+                <label>Tagság kezdete</label>
+                <input id="edit-tagsagkezdete" type="date">
+            </div>
+            <div class="edit-mezo">
+                <label>Sportorvosi engedély</label>
+                <input id="edit-sportorvosi" type="date">
+            </div>
+            <div class="edit-mezo checkbox-mezo">
+                <label>
+                    <input type="checkbox" id="edit-statusz">
+                    Aktív tag
+                </label>
+            </div>
+        </div>
+
+        <p class="edit-szekció-cim">Felhasználói azonosító</p>
+        <div class="azonosito-wrapper">
+            <input id="edit-azonosito" type="text" readonly class="azonosito-input" placeholder="Nincs azonosító">
+            <div id="edit-azonosito-wrapper" style="display:none; width:100%">
+                <button id="edit-azonosito-general" type="button" class="add-member-btn general-btn">Azonosító generálása</button>
+            </div>
+        </div>
+
+        <div id="edit-uzenet" class="uzenet"></div>
+        <div class="form-gombok">
+            <button id="edit-mentes" type="button" class="add-member-btn">Mentés</button>
+            <button id="edit-megse" type="button" class="add-member-btn megse">Mégse</button>
+        </div>
+    </div>
+
+    <!-- ÚJ TAG FORM -->
+    <div id="uj-tag-form" class="edit-form" style="display:none">
+        <h3 class="edit-title">Új tag felvétele</h3>
+
+        <p class="edit-szekció-cim">Személyes adatok</p>
+        <div class="edit-grid">
+            <div class="edit-mezo">
+                <label>Név *</label>
+                <input id="uj-nev" type="text" placeholder="Teljes név">
+            </div>
+            <div class="edit-mezo">
+                <label>Születési dátum *</label>
+                <input id="uj-szuletes" type="date">
+            </div>
+            <div class="edit-mezo">
+                <label>Anyja neve *</label>
+                <input id="uj-anyjaneve" type="text" placeholder="Anyja neve">
+            </div>
+            <div class="edit-mezo">
+                <label>Lakcím *</label>
+                <input id="uj-lakcim" type="text" placeholder="Lakcím">
+            </div>
+            <div class="edit-mezo">
+                <label>Telefonszám</label>
+                <input id="uj-telefon" type="text" placeholder="Telefonszám">
+            </div>
+            <div class="edit-mezo">
+                <label>Email</label>
+                <input id="uj-email" type="email" placeholder="Email">
+            </div>
+        </div>
+
+        <p class="edit-szekció-cim">Sportolói adatok</p>
+        <div class="edit-grid">
+            <div class="edit-mezo">
+                <label>Versenyengedély szám</label>
+                <input id="uj-versenyengedely" type="text" placeholder="Versenyengedély szám">
+            </div>
+            <div class="edit-mezo">
+                <label>Tagság kezdete</label>
+                <input id="uj-tagsagkezdete" type="date">
+            </div>
+            <div class="edit-mezo">
+                <label>Sportorvosi engedély</label>
+                <input id="uj-sportorvosi" type="date">
+            </div>
+            <div class="edit-mezo checkbox-mezo">
+                <label>
+                    <input type="checkbox" id="uj-statusz">
+                    Aktív tag
+                </label>
+            </div>
+        </div>
+
+        <p class="edit-szekció-cim">Felhasználói azonosító</p>
+        <div class="azonosito-wrapper">
+            <input id="uj-azonosito" type="text" placeholder="Kattints a generálás gombra..." readonly class="azonosito-input">
+            <button id="azonosito-general" type="button" class="add-member-btn general-btn">Azonosító generálása</button>
+        </div>
+
+        <div id="uj-tag-uzenet" class="uzenet"></div>
+        <div class="form-gombok">
+            <button id="uj-tag-mentes" type="button" class="add-member-btn">Mentés</button>
+            <button id="uj-tag-megse" type="button" class="add-member-btn megse">Mégse</button>
+        </div>
+    </div>
+
+    <div class="add-member-wrapper">
+        <button id="uj-tag-gomb" type="button" class="add-member-btn">+ Új tag felvétel</button>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-title">Musztáng SE – edzői felület</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </div>
+</footer>
+
+<script src="/Edzo/Edzo-Tagok.js?v=2"></script>
+</body>
+</html>
