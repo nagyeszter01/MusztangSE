@@ -1,54 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MusztangSE/Bejelentkezes</title>
-    <link rel="stylesheet" href="/Bejelentkezes/bejelentkezes.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Bejelentkezes/bejelentkezes.css?v=2">
+    <title>Bejelentkezés – Musztáng SE</title>
 </head>
 <body>
-    <div class="fejlec">
-        <!--Logó kép formátumban -->
+
+    <header>
         <div class="logo">
-            <a href="/Fooldal/fooldal.html"><img src="/Fooldal/img/logo.jpg" alt="Musztáng SE"></a>
+            <img src="/img/logo.jpg" alt="Musztáng SE">
         </div>
+        <nav class="nav-center">
+            <a href="/Fooldal/fooldal.html">Kezdőlap</a>
+            <a href="#">Rólunk</a>
+            <a href="#">Helyszínek</a>
+            <a href="#">Eredmények</a>
+            <a href="#">Edzőink</a>
+            <a href="#" class="tagok">Tagoknak</a>
+        </nav>
+    </header>
 
-        <!--Navigácios sáv-->
-        <a href="/Fooldal/fooldal.html" id="kezdolap">Kezdőlap</a>
+    <div class="oldal">
+        <div class="doboz">
+            <h1>Bejelentkezés</h1>
+            <p class="alcim">Üdvözlünk a Musztáng SE rendszerében</p>
+
+            <!-- Szerepválasztó -->
+            <div class="szerep-valaszto">
+                <div class="szerep-opcio kivalasztva" data-szerep="edzo">Edző</div>
+                <div class="szerep-opcio" data-szerep="sportolo">Sportoló</div>
+            </div>
+
+            <div class="mezo-csoport">
+                <label for="azonosito">Felhasználói azonosító</label>
+                <input type="text" id="azonosito" placeholder="Add meg az azonosítód">
+            </div>
+
+            <div class="mezo-csoport">
+                <label for="jelszo">Jelszó</label>
+                <input type="password" id="jelszo" placeholder="Add meg a jelszavad">
+            </div>
+
+            <button class="gomb" id="bejelentkezes-gomb">Bejelentkezés</button>
+
+            <div id="uzenet" class="uzenet"></div>
+
+            <div class="link-sor">
+                <a href="/Bejelentkezes/JelszoBeallitas.html" id="jelszo-beallitas">
+                    Első bejelentkezés? Állítsd be a jelszavad →
+                </a>
+            </div>
+        </div>
     </div>
 
+    <footer class="site-footer">
+        <p class="footer-title">Musztáng SE</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </footer>
 
-
-
-
-    <div class="doboz">
-        <h1>Bejelentkezés</h1>
-        <p>Válaszd ki a szereped és töltsd ki az űrlapot!</p>
-
-        <!--Kiválszthatjuk hogy edzöként vagy sportoloként lépünk be -->
-        <div class="szerep-valaszto">
-            <div class="szerep-opcio kivalasztva" data-szerep="edzo">Edző</div>
-            <div class="szerep-opcio" data-szerep="sportolo">Sportoló</div>
-        </div>
-
-        <!--A bekért adatokat elüldi az adabásisnak-->
-        <form action="" method="post" enctype="text/plain">
-            <input type="hidden" id="szerep" name="szerep" value="edzo">
-
-            <!--Input mezők itt lehet be irni a felhasználó nevet és a jelszót-->
-            <label for="azonosito">Azonosító</label>
-            <input id="azonosito" name="azonosito" required>
-
-            <label for="jelszo">Jelszó</label>
-            <input type="password" id="jelszo" name="jelszo" required>
-            <!--Bejelentkezés gomb-->
-            <button type="submit" class="gomb">Bejelentkezés</button>
-            <a href="/Bejelentkezes/JelszoBeallitas.html" id="jelszo-beallitas">Jelszó beállitás</a>
-        </form>
-
-    </div>
-
-<script src="/Bejelentkezes/bejeletkezes.js"></script>
-
-
+    <script src="/Bejelentkezes/bejelentkezes.js?v=5"></script>
+</body>
 </html>

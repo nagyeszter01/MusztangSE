@@ -1,41 +1,62 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MustangSE/Bejelentkezes</title>
-    <link rel="stylesheet" href="/Bejelentkezes/bejelentkezes.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Bejelentkezes/bejelentkezes.css?v=4">
+    <title>Jelszó beállítás – Musztáng SE</title>
 </head>
 <body>
-    <div class="fejlec">
-        <!--Logó kép formátumban -->
-        <img src="/Fooldal/img/logo.jpg" alt="logo" class="logo">
 
-        <!--Navigácios sáv-->
-        <nav>
+    <header>
+        <div class="logo">
+            <img src="/img/logo.jpg" alt="Musztáng SE">
+        </div>
+        <nav class="nav-center">
             <a href="/Fooldal/fooldal.html">Kezdőlap</a>
-            <a href="">Rólunk</a>
+            <a href="#">Rólunk</a>
             <a href="#">Helyszínek</a>
             <a href="#">Eredmények</a>
             <a href="#">Edzőink</a>
-            <a href="bejelentkezes.html" class="tagok">Tagoknak</a>
+            <a href="/Bejelentkezes/bejelentkezes.html" class="tagok">Tagoknak</a>
         </nav>
+    </header>
+
+    <div class="oldal">
+        <div class="doboz">
+            <h1>Jelszó beállítás</h1>
+            <p class="alcim">Add meg az azonosítód és az új jelszavad</p>
+
+            <div class="mezo-csoport">
+                <label for="azonosito">Felhasználói azonosító</label>
+                <input type="text" id="azonosito" placeholder="Add meg az azonosítód">
+            </div>
+
+            <div class="mezo-csoport">
+                <label for="password">Jelszó</label>
+                <input type="password" id="password" placeholder="Add meg az új jelszavad">
+            </div>
+
+            <div class="mezo-csoport">
+                <label for="confirmPassword">Jelszó megerősítés</label>
+                <input type="password" id="confirmPassword" placeholder="Írd be újra a jelszavad">
+            </div>
+
+            <button type="button" class="gomb">Megerősítés</button>
+
+            <div id="uzenet" class="uzenet"></div>
+
+            <div class="link-sor">
+                <a href="/Bejelentkezes/bejelentkezes.html" id="jelszo-beallitas">← Vissza a bejelentkezéshez</a>
+            </div>
+        </div>
     </div>
 
-    <div class="doboz">
-        <h1>Jelszó Beállitás</h1>
-        <!--Input mezők itt lehet be irni a felhasználó nevet és a jelszót-->
-        <label for="azonosito">Azonosító</label>
-        <input id="azonosito" name="azonosito" required>
+    <footer class="site-footer">
+        <p class="footer-title">Musztáng SE</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </footer>
 
-        <label for="jelszo">Jelszó</label>
-        <input type="password" id="jelszo" name="jelszo" required>
-
-        <label for="jelszo">Jelszó Megerősítés</label>
-        <input type="password" id="jelszo" name="jelszo" required>
-        <!--Bejelentkezés gomb-->
-        <button type="submit" class="gomb">Megerősítés</button>
-       <a href="/Bejelentkezes/bejelentkezes.html" id="jelszo-beallitas">Vissza</a>
-    </div>
-   </body>
+    <script src="/Bejelentkezes/bejeletkezes.js"></script>
+</body>
 </html>

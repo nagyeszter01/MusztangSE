@@ -27,7 +27,7 @@ body {
 
 
 
-/* HEADER */
+/* Fejléc */
 header {
     position: fixed;
     top: 0;
@@ -36,7 +36,7 @@ header {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center; /* Menüt középre */
+    justify-content: center;
     background: rgba(15,15,15,0.85);
     backdrop-filter: blur(12px);
     padding: 0 20px;
@@ -45,9 +45,9 @@ header {
 /* LOGO */
 .logo {
     position: absolute;
-    left: 20px; /* Bal felső sarok */
+    left: 20px;
     top: 20px;
-    transform: none; /* Nincs középre igazítás */
+    transform: none;
     z-index: 1100;
 }
 
@@ -61,7 +61,7 @@ header {
             transform: scale(1.05);
         }
 
-/* DESKTOP NAV */
+
 .nav-center {
     display: flex;
     gap: 20px;
@@ -72,7 +72,7 @@ header {
     transition: all 0.3s;
     position: relative;
     z-index: 1001;
-    justify-content: center; /* Menüpontok középre */
+    justify-content: center;
 }
 
     .nav-center a {
@@ -93,7 +93,7 @@ header {
             box-shadow: 0 4px 10px rgba(255,59,59,0.3);
         }
 
-/* HAMBURGER */
+/* hamburger nézet */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -127,7 +127,7 @@ header {
         transform: rotate(-45deg) translate(6px, -6px);
     }
 
-/* MOBIL MENÜ */
+/* Mobil menü */
 .mobil-menu {
     display: none;
     position: fixed;
@@ -161,7 +161,7 @@ header {
             background: rgba(255,59,59,0.1);
         }
 
-/* RESZPONZÍV */
+/* Reszponzív */
 @media (max-width: 900px) {
     .nav-center {
         display: none;
@@ -462,7 +462,7 @@ header {
 
 
 
-/* HELYSZÍNEK */
+/* Helyszinek szekció */
 
 .helyszinek-section {
     background: #111;
@@ -522,7 +522,7 @@ header {
 
 
 
-/* Eredmények */
+/* Eredmények szekció */
 
 .eredmenyek-section {
     background: linear-gradient(90deg, #0f0f0f, #1a1a1a);
