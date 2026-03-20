@@ -33,7 +33,7 @@ function loadUserName() {
 
 async function loadVersenyek() {
     try {
-        const response = await fetch('http://localhost:5217/api/shared/versenyek/kozelgo', {
+        const response = await fetch('http://localhost:7104/api/shared/versenyek/kozelgo', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) return;
@@ -89,7 +89,7 @@ async function addVerseny() {
     }
 
     try {
-        const response = await fetch('http://localhost:5217/api/coach/versenyek', {
+        const response = await fetch('http://localhost:7104/api/coach/versenyek', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

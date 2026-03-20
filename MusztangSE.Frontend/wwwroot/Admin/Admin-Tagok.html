@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Admin/AdminStyle.css">
+    <title>Admin – Felhasználók</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Admin/MainPageAdmin.html">Dashboard</a>
+        <a href="/Admin/Admin-Tagok.html" class="active">Felhasználók</a>
+        <a href="/Admin/Admin-Edzo.html">Edzők</a>
+        <a href="/Admin/Admin-Csapatok.html">Csapatok</a>
+        <a href="/Admin/Admin-Versenyek.html">Versenyek</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+</header>
+
+<section class="content-section">
+    <div class="lista-fejlec">
+        <h2 class="section-title" style="margin:0">Felhasználók</h2>
+        <div class="fejlec-gombok">
+            <button id="uj-edzo-gomb" type="button" class="admin-btn">+ Új edző</button>
+        </div>
+    </div>
+
+    <div id="fo-uzenet" class="uzenet"></div>
+
+    <!-- SZŰRŐK -->
+    <div class="admin-filters">
+        <input type="text" id="kereses-input" class="admin-search" placeholder="Keresés név vagy azonosító alapján...">
+        <select id="szerepkor-filter" class="admin-select">
+            <option value="">Összes szerepkör</option>
+            <option value="admin">Admin</option>
+            <option value="edzo">Edző</option>
+            <option value="tag">Tag</option>
+        </select>
+    </div>
+
+    <!-- ÚJ EDZŐ FORM -->
+    <div id="uj-edzo-form" class="admin-form" style="display:none">
+        <h3 class="form-title">Új edző hozzáadása</h3>
+        <div class="form-grid">
+            <div class="form-mezo">
+                <label>Edző neve *</label>
+                <input id="edzo-nev" type="text" placeholder="Teljes név">
+            </div>
+            <div class="form-mezo">
+                <label>Felhasználói azonosító *</label>
+                <div class="azonosito-wrapper">
+                    <input id="edzo-azonosito" type="text" readonly class="azonosito-input" placeholder="Kattints a generálásra...">
+                    <button type="button" id="edzo-azonosito-general" class="admin-btn">Generálás</button>
+                </div>
+            </div>
+        </div>
+        <div id="uj-edzo-uzenet" class="uzenet"></div>
+        <div class="form-gombok">
+            <button id="edzo-mentes" type="button" class="admin-btn">Mentés</button>
+            <button id="edzo-megse" type="button" class="admin-btn megse-btn">Mégse</button>
+        </div>
+    </div>
+
+    <!-- FELHASZNÁLÓK LISTA -->
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
+            <thead>
+            <tr>
+                <th>Név</th>
+                <th>Azonosító</th>
+                <th>Szerepkör</th>
+                <th>Jelszó beállítva</th>
+                <th>Státusz</th>
+                <th>Műveletek</th>
+            </tr>
+            </thead>
+            <tbody id="felhasznalok-tbody"></tbody>
+        </table>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-title">Musztáng SE – admin felület</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </div>
+</footer>
+
+<script src="/Admin/Admin-Tagok.js"></script>
+</body>
+</html>

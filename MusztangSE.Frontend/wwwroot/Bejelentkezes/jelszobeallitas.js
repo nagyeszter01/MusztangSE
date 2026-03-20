@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5217/api/auth/setpassword', {
+            const response = await fetch('https://localhost:7104/api/auth/setpassword', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

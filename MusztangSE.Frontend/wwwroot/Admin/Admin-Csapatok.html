@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Admin/AdminStyle.css">
+    <title>Admin – Csapatok</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Admin/MainPageAdmin.html">Dashboard</a>
+        <a href="/Admin/Admin-Tagok.html">Felhasználók</a>
+        <a href="/Admin/Admin-Edzo.html">Edzők</a>
+        <a href="/Admin/Admin-Csapatok.html" class="active">Csapatok</a>
+        <a href="/Admin/Admin-Versenyek.html">Versenyek</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+</header>
+
+<section class="content-section">
+    <div class="lista-fejlec">
+        <h2 class="section-title" style="margin:0">Csapatok</h2>
+        <div class="fejlec-gombok">
+            <button id="uj-csapat-gomb" type="button" class="admin-btn">+ Új csapat</button>
+        </div>
+    </div>
+
+    <div id="fo-uzenet" class="uzenet"></div>
+
+    <!-- ÚJ CSAPAT FORM -->
+    <div id="uj-csapat-form" class="admin-form" style="display:none">
+        <h3 class="form-title">Új csapat létrehozása</h3>
+        <div class="form-grid">
+            <div class="form-mezo">
+                <label>Csapat neve *</label>
+                <input id="csapat-nev" type="text" placeholder="Csapat neve">
+            </div>
+            <div class="form-mezo">
+                <label>Kategória *</label>
+                <input id="csapat-kategoria" type="text" placeholder="pl. Ladies Dance kisformáció">
+            </div>
+            <div class="form-mezo">
+                <label>Edző</label>
+                <select id="csapat-edzo" class="admin-select" style="border-radius:10px; padding:12px 16px">
+                    <option value="">-- Válassz edzőt --</option>
+                </select>
+            </div>
+            <div class="form-mezo" style="justify-content:flex-end">
+                <label style="display:flex; align-items:center; gap:10px; cursor:pointer; margin-top:auto">
+                    <input type="checkbox" id="csapat-paros" style="width:18px; height:18px; accent-color:#ff3b3b">
+                    Páros
+                </label>
+            </div>
+        </div>
+        <div id="uj-csapat-uzenet" class="uzenet"></div>
+        <div class="form-gombok">
+            <button id="csapat-mentes" type="button" class="admin-btn">Mentés</button>
+            <button id="csapat-megse" type="button" class="admin-btn megse-btn">Mégse</button>
+        </div>
+    </div>
+
+    <!-- SZŰRŐ -->
+    <div class="admin-filters">
+        <input type="text" id="kereses-input" class="admin-search" placeholder="Keresés csapat neve alapján...">
+    </div>
+
+    <div id="csapatok-container"></div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-title">Musztáng SE – admin felület</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </div>
+</footer>
+
+<script src="/Admin/Admin-Csapatok.js"></script>
+</body>
+</html>

@@ -29,7 +29,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowWeb", policy =>
     {
-        policy.WithOrigins("https://localhost:7089/")
+        policy.WithOrigins(
+                "https://localhost:7089",
+                "http://localhost:7089",
+                "http://localhost:5089"
+            )            
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -109,7 +113,6 @@ app.UseSwaggerUI();
 
 // --- CORS (UseRouting előtt kell lennie!)
 app.UseCors("AllowWeb");
-
 // --- Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();

@@ -46,7 +46,7 @@ function generalEditAzonosito() {
 
 async function loadTagok() {
     try {
-        const response = await fetch('http://localhost:5217/api/coach/tagok', {
+        const response = await fetch('https://localhost:7104/api/coach/tagok', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -159,7 +159,7 @@ async function deleteTag(id, nev) {
     if (!confirm(`Biztosan törlöd: ${nev}?`)) return;
 
     try {
-        const response = await fetch(`http://localhost:5217/api/coach/tagok/${id}`, {
+        const response = await fetch(`https://localhost:7104/api/coach/tagok/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -224,7 +224,7 @@ async function saveEdit() {
     };
 
     try {
-        const response = await fetch(`http://localhost:5217/api/coach/tagok/${id}`, {
+        const response = await fetch(`https://localhost:7104/api/coach/tagok/${id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -295,7 +295,7 @@ async function saveUjTag() {
     }
 
     try {
-        const response = await fetch('http://localhost:5217/api/coach/tagok', {
+        const response = await fetch('https://localhost:7104/api/coach/tagok', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -309,7 +309,7 @@ async function saveUjTag() {
             const csapatIds = getKivalasztottCsapatok('uj-csapat-lista');
 
             for (const csapatId of csapatIds) {
-                const csapatResponse = await fetch('http://localhost:5217/api/coach/csapatok/tag-hozzaadas', {
+                const csapatResponse = await fetch('https://localhost:7104/api/coach/csapatok/tag-hozzaadas', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,

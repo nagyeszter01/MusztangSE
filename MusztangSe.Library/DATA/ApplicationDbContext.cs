@@ -27,6 +27,7 @@ namespace MusztangSE.Library.DATA
             base.OnModelCreating(modelBuilder);
             
             // VIEW konfiguráció
+            modelBuilder.Entity<VwTagTeljes>().HasNoKey().ToView("vw_TagokTeljes");
             modelBuilder.Entity<VwEredmeny>().HasNoKey().ToView("vw_Eredmenyek");
             
             // Táblanevek explicit megadása

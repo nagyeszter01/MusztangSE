@@ -1,14 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-
-
-
-app.UseDefaultFiles(new DefaultFilesOptions
-{
-
-    DefaultFileNames = new List<string> { "/Fooldal/fooldal.html"}
-});
-
 app.UseStaticFiles();
+
+// Gyökér URL átirányítása a főoldalra
+app.MapGet("/", () => Results.Redirect("/Fooldal/fooldal.html"));
+
 app.Run();

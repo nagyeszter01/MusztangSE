@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Admin/AdminStyle.css">
+    <title>Admin – Edzők</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.jpg" alt="Musztáng SE">
+    </div>
+    <nav class="nav-center">
+        <a href="/Admin/MainPageAdmin.html">Dashboard</a>
+        <a href="/Admin/Admin-Tagok.html">Felhasználók</a>
+        <a href="/Admin/Admin-Edzok.html" class="active">Edzők</a>
+        <a href="/Admin/Admin-Csapatok.html">Csapatok</a>
+        <a href="/Admin/Admin-Versenyek.html">Versenyek</a>
+    </nav>
+    <div class="kijelentkezes">
+        <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+</header>
+
+<section class="content-section">
+    <div class="lista-fejlec">
+        <h2 class="section-title" style="margin:0">Edzők</h2>
+    </div>
+
+    <div id="fo-uzenet" class="uzenet"></div>
+
+    <!-- SZŰRŐ -->
+    <div class="admin-filters">
+        <input type="text" id="kereses-input" class="admin-search" placeholder="Keresés edző neve alapján...">
+    </div>
+
+    <div id="edzok-container"></div>
+</section>
+
+<!-- TÖRLÉS MODAL -->
+<div id="torles-modal" class="modal" style="display:none">
+    <div class="modal-box">
+        <h3 class="modal-title">Edző törlése</h3>
+        <p class="modal-szoveg" id="modal-szoveg"></p>
+        <div id="uj-edzo-wrapper" style="display:none">
+            <label class="modal-label">Csapatok átrendelése edzőhöz:</label>
+            <select id="uj-edzo-select" class="admin-select" style="width:100%; margin-top:8px">
+                <option value="">-- Válassz edzőt --</option>
+            </select>
+        </div>
+        <div id="modal-uzenet" class="uzenet"></div>
+        <div class="modal-gombok">
+            <button id="modal-torol" type="button" class="admin-btn torol-piros">Törlés</button>
+            <button id="modal-megse" type="button" class="admin-btn megse-btn">Mégse</button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-title">Musztáng SE – admin felület</p>
+        <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+    </div>
+</footer>
+
+<script src="/Admin/Admin-Edzo.js"></script>
+</body>
+</html>

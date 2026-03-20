@@ -37,7 +37,7 @@ function feltoltEvSelect() {
 
 async function loadVersenyekByEv(ev) {
     try {
-        const response = await fetch(`http://localhost:5217/api/shared/versenyek/ev/${ev}`, {
+        const response = await fetch(`https://localhost:7104/api/shared/versenyek/ev/${ev}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) return [];
@@ -50,10 +50,10 @@ async function loadVersenyekByEv(ev) {
 async function loadAll() {
     try {
         const [eredmenyRes, csapatRes] = await Promise.all([
-            fetch('http://localhost:5217/api/coach/eredmenyek', {
+            fetch('https://localhost:7104/api/coach/eredmenyek', {
                 headers: { 'Authorization': `Bearer ${token}` }
             }),
-            fetch('http://localhost:5217/api/coach/csapatok/sajat', {
+            fetch('https://localhost:7104/api/coach/csapatok/sajat', {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
         ]);
@@ -167,7 +167,7 @@ async function saveEdit() {
     }
 
     try {
-        const response = await fetch(`http://localhost:5217/api/coach/eredmenyek/${id}`, {
+        const response = await fetch(`https://localhost:7104/api/coach/eredmenyek/${id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -195,7 +195,7 @@ async function saveEdit() {
 async function deleteEredmeny(id) {
     if (!confirm('Biztosan törlöd az eredményt?')) return;
     try {
-        const response = await fetch(`http://localhost:5217/api/coach/eredmenyek/${id}`, {
+        const response = await fetch(`https://localhost:7104/api/coach/eredmenyek/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -232,7 +232,7 @@ async function saveUjEredmeny() {
     }
 
     try {
-        const response = await fetch('http://localhost:5217/api/coach/eredmenyek', {
+        const response = await fetch('https://localhost:7104/api/coach/eredmenyek', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
