@@ -60,25 +60,24 @@ function renderFelhasznalok() {
     szurt.forEach(f => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td class="td-nev">${f.nev}</td>
-            <td class="td-azonosito">${f.felhasznaloAzonosito}</td>
-            <td><span class="szerepkor-badge szerepkor-${f.szerepkor}">${f.szerepkor}</span></td>
-            <td>${f.passwordSetAt ? new Date(f.passwordSetAt).toLocaleDateString('hu-HU') : '—'}</td>
-            <td>
-                <span class="aktiv-badge ${f.aktiv ? 'aktiv' : 'inaktiv'}">
-                    ${f.aktiv ? 'Aktív' : 'Inaktív'}
-                </span>
-            </td>
-            <td class="td-actions">
-                <button type="button" class="action-btn toggle-btn" data-id="${f.id}" data-aktiv="${f.aktiv}">
-                    ${f.aktiv ? 'Deaktiválás' : 'Aktiválás'}
-                </button>
-                <button type="button" class="action-btn delete-btn" data-id="${f.id}" data-nev="${f.nev}">
-                    Törlés
-                </button>
-            </td>
-        `;
-
+    <td data-label="Név" class="td-nev">${f.nev}</td>
+    <td data-label="Azonosító" class="td-azonosito">${f.felhasznaloAzonosito}</td>
+    <td data-label="Szerepkör"><span class="szerepkor-badge szerepkor-${f.szerepkor}">${f.szerepkor}</span></td>
+    <td data-label="Jelszó beállítva">${f.passwordSetAt ? new Date(f.passwordSetAt).toLocaleDateString('hu-HU') : '—'}</td>
+    <td data-label="Státusz">
+        <span class="aktiv-badge ${f.aktiv ? 'aktiv' : 'inaktiv'}">
+            ${f.aktiv ? 'Aktív' : 'Inaktív'}
+        </span>
+    </td>
+    <td class="td-actions">
+        <button type="button" class="action-btn toggle-btn" data-id="${f.id}">
+            ${f.aktiv ? 'Deaktiválás' : 'Aktiválás'}
+        </button>
+        <button type="button" class="action-btn delete-btn" data-id="${f.id}">
+            Törlés
+        </button>
+    </td>
+`;
         tr.querySelector('.toggle-btn').addEventListener('click', () => toggleAktiv(f.id));
         tr.querySelector('.delete-btn').addEventListener('click', () => deleteFelhasznalo(f.id, f.nev));
 
@@ -119,51 +118,27 @@ async function deleteFelhasznalo(id, nev) {
     }
 }
 
-function openUjEdzo() {
-    document.getElementById('uj-edzo-form').style.display = 'flex';
-    document.getElementById('uj-edzo-gomb').style.display = 'none';
-}
 
-function closeUjEdzo() {
-    document.getElementById('uj-edzo-form').style.display = 'none';
-    document.getElementById('uj-edzo-gomb').style.display = 'block';
-    document.getElementById('edzo-nev').value = '';
-    document.getElementById('edzo-azonosito').value = '';
-}
 
-async function saveUjEdzo() {
-    const nev = document.getElementById('edzo-nev').value.trim();
-    const azonosito = document.getElementById('edzo-azonosito').value;
-
-    if (!nev || !azonosito) {
-        showMessage('uj-edzo-uzenet', 'Minden mező kötelező!', true);
-        return;
-    }
-
-    try {
-        const response = await fetch('https://localhost:7104/api/admin/felhasznalok/edzo', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ nev, felhasznaloAzonosito: azonosito })
-        });
-
-        if (response.ok) {
-            showMessage('fo-uzenet', 'Edző sikeresen hozzáadva!', false);
-            closeUjEdzo();
-            loadFelhasznalok();
-        } else {
-            const hiba = await response.text();
-            showMessage('uj-edzo-uzenet', hiba, true);
-        }
-    } catch (err) {
-        showMessage('uj-edzo-uzenet', 'Kapcsolódási hiba.', true);
-    }
-}
 
 document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const mobilMenu = document.getElementById('mobil-menu');
+
+    if (hamburger && mobilMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('aktiv');
+            mobilMenu.classList.toggle('nyitva');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
+                hamburger.classList.remove('aktiv');
+                mobilMenu.classList.remove('nyitva');
+            }
+        });
+    }
+
     document.getElementById('kijelentkezes-gomb').addEventListener('click', () => {
         localStorage.clear();
         window.location.href = '/Bejelentkezes/bejelentkezes.html';
@@ -179,10 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFelhasznalok();
     });
 
-    document.getElementById('uj-edzo-gomb').addEventListener('click', openUjEdzo);
-    document.getElementById('edzo-megse').addEventListener('click', closeUjEdzo);
-    document.getElementById('edzo-mentes').addEventListener('click', saveUjEdzo);
-    document.getElementById('edzo-azonosito-general').addEventListener('click', () => generalAzonosito('edzo-azonosito'));
-
     loadFelhasznalok();
 });
+

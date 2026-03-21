@@ -12,6 +12,8 @@ namespace MusztangSE.Library.MODEL
         public bool Paros { get; set; }
         public int? EdzoId { get; set; }
         public Edzo? Edzo { get; set; }
+        public bool Archivalt { get; set; } = false;
+
 
         public ICollection<TagCsapat> TagCsapatok { get; set; }
         public ICollection<Eredmeny> Eredmenyek { get; set; }

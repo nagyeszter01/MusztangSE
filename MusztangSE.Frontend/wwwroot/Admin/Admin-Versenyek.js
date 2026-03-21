@@ -62,18 +62,18 @@ function renderVersenyek() {
         const kozelgo = datum >= ma;
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td class="td-nev">${v.nev}</td>
-            <td>
-                <span class="aktiv-badge ${kozelgo ? 'aktiv' : 'inaktiv'}">
-                    ${datum.toLocaleDateString('hu-HU')}
-                </span>
-            </td>
-            <td>${v.hely}</td>
-            <td class="td-actions">
-                <button type="button" class="action-btn toggle-btn edit-btn" data-id="${v.id}">Szerkesztés</button>
-                <button type="button" class="action-btn torol-btn-piros delete-btn" data-id="${v.id}" data-nev="${v.nev}">Törlés</button>
-            </td>
-        `;
+    <td data-label="Verseny neve" class="td-nev">${v.nev}</td>
+    <td data-label="Dátum">
+        <span class="aktiv-badge ${kozelgo ? 'aktiv' : 'inaktiv'}">
+            ${datum.toLocaleDateString('hu-HU')}
+        </span>
+    </td>
+    <td data-label="Helyszín">${v.hely}</td>
+    <td class="td-actions">
+        <button type="button" class="action-btn toggle-btn edit-btn" data-id="${v.id}">Szerkesztés</button>
+        <button type="button" class="action-btn torol-btn-piros delete-btn" data-id="${v.id}">Törlés</button>
+    </td>
+`;
 
         tr.querySelector('.edit-btn').addEventListener('click', () => openEdit(v));
         tr.querySelector('.delete-btn').addEventListener('click', () => deleteVerseny(v.id, v.nev));
@@ -208,7 +208,22 @@ document.addEventListener('DOMContentLoaded', () => {
         idoFilter = e.target.value;
         renderVersenyek();
     });
+    const hamburger = document.getElementById('hamburger');
+    const mobilMenu = document.getElementById('mobil-menu');
 
+    if (hamburger && mobilMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('aktiv');
+            mobilMenu.classList.toggle('nyitva');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
+                hamburger.classList.remove('aktiv');
+                mobilMenu.classList.remove('nyitva');
+            }
+        });
+    }
     document.getElementById('uj-verseny-gomb').addEventListener('click', openUjVerseny);
     document.getElementById('uj-verseny-mentes').addEventListener('click', saveUjVerseny);
     document.getElementById('uj-verseny-megse').addEventListener('click', closeUjVerseny);

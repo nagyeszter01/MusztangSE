@@ -46,6 +46,22 @@ async function loadStats() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const mobilMenu = document.getElementById('mobil-menu');
+
+    if (hamburger && mobilMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('aktiv');
+            mobilMenu.classList.toggle('nyitva');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
+                hamburger.classList.remove('aktiv');
+                mobilMenu.classList.remove('nyitva');
+            }
+        });
+    }
     document.getElementById('kijelentkezes-gomb').addEventListener('click', () => {
         localStorage.removeItem('token');
         localStorage.removeItem('szerep');

@@ -252,6 +252,107 @@ nav a.active {
     margin-top: 4px;
 }
 
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 32px;
+    padding: 8px;
+    z-index: 200;
+}
+
+.hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger.aktiv span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.aktiv span:nth-child(2) { opacity: 0; }
+.hamburger.aktiv span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobil-menu {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background: rgba(15,15,15,0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-direction: column;
+    padding: 20px;
+    gap: 4px;
+    z-index: 99;
+}
+
+.mobil-menu.nyitva { display: flex; }
+
+.mobil-menu a {
+    color: white;
+    text-decoration: none;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1rem;
+    padding: 14px 16px;
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+
+.mobil-menu a:hover { background: rgba(255,255,255,0.06); }
+.mobil-menu a.active { color: #ff3b3b; }
+
+.mobil-menu button {
+    background: rgba(255,39,44,0.1);
+    border: 1px solid rgba(255,39,44,0.3);
+    color: #ff4d4d;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.mobil-menu button:hover { background: rgba(255,39,44,0.2); }
+
+/* RESZPONZÍV */
+@media (max-width: 1024px) {
+    .stat-grid, .gyors-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-grid { grid-template-columns: 1fr; }
+    .admin-filters { flex-direction: column; }
+    .edzo-fejlec { flex-wrap: wrap; gap: 12px; }
+    .edzo-actions { flex-wrap: wrap; }
+    .modal-box { margin: 20px; padding: 28px 24px; }
+}
+
+@media (max-width: 900px) {
+    .nav-center { display: none; }
+    .kijelentkezes { display: none; }
+    .hamburger { display: flex; }
+    .section-title { font-size: 1.6rem; }
+    .td-actions { flex-wrap: wrap; }
+    .lista-fejlec { flex-wrap: wrap; gap: 12px; }
+}
+
+@media (max-width: 600px) {
+    .stat-grid, .gyors-grid { grid-template-columns: 1fr; }
+    .content-section { padding: 120px 4% 40px; }
+    .logo { left: 20px; }
+    .stat-szam { font-size: 2rem; }
+    .admin-table th, .admin-table td { padding: 10px 12px; font-size: 0.85rem; }
+    .modal-box { padding: 24px 18px; }
+    .nev-edit-form { flex-direction: column; }
+}
+
 /* RESZPONZÍV */
 @media (max-width: 1024px) {
     .stat-grid, .gyors-grid {
@@ -735,4 +836,86 @@ nav a.active {
 
 .torol-btn-piros:hover {
     background: rgba(255,39,44,0.2);
+}
+.toggle-btn-aktiv {
+    background: rgba(77,255,145,0.1);
+    border-color: rgba(77,255,145,0.3);
+    color: #4dff91;
+    border: 1px solid;
+}
+
+.toggle-btn-aktiv:hover {
+    background: rgba(77,255,145,0.2);
+}
+
+
+.logo a {
+    display: block;
+    line-height: 0;
+}
+
+/* RESZPONZÍV TÁBLÁZAT */
+@media (max-width: 768px) {
+    .admin-table-wrapper {
+        border: none;
+        border-radius: 0;
+    }
+
+    .admin-table thead {
+        display: none;
+    }
+
+    .admin-table tbody tr {
+        display: flex;
+        flex-direction: column;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 14px;
+        margin-bottom: 12px;
+        padding: 16px;
+        gap: 10px;
+    }
+
+    .admin-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .admin-table td:last-child {
+        border-bottom: none;
+    }
+
+    .admin-table td::before {
+        content: attr(data-label);
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    .td-actions {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .td-actions::before {
+        display: none;
+    }
+
+    .admin-filters {
+        flex-direction: column;
+    }
+
+    .admin-select {
+        width: 100%;
+    }
 }

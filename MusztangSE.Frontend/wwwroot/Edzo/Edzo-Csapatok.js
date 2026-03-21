@@ -61,17 +61,37 @@ function renderCsapatok(csapatok, osszesTago) {
         return;
     }
 
+    const aktiv = csapatok.filter(c => !c.archivalt);
+    const archivalt = csapatok.filter(c => c.archivalt);
+
+    if (aktiv.length > 0) {
+        renderCsapatCsoport(aktiv, osszesTago, container, false);
+    }
+
+    if (archivalt.length > 0) {
+        const archivCim = document.createElement('p');
+        archivCim.className = 'archiv-cim';
+        archivCim.textContent = 'Archivált csapatok';
+        container.appendChild(archivCim);
+        renderCsapatCsoport(archivalt, osszesTago, container, true);
+    }
+}
+
+function renderCsapatCsoport(csapatok, osszesTago, container, archivalt) {
     csapatok.forEach(c => {
         const csapatBox = document.createElement('div');
-        csapatBox.className = 'csapat-box';
+        csapatBox.className = `csapat-box ${archivalt ? 'archivalt-box' : ''}`;
         csapatBox.innerHTML = `
             <div class="csapat-fejlec" data-id="${c.id}">
                 <div class="csapat-info">
                     <span class="csapat-nev">${c.nev}</span>
-                    <span class="csapat-meta">${c.kategoria} · ${c.paros ? 'Páros' : 'Formáció'}</span>
+                    <span class="csapat-meta">${c.kategoria} · ${c.paros ? 'Páros' : 'Formáció'} ${archivalt ? '· Archivált' : ''}</span>
                 </div>
                 <div class="csapat-fejlec-jobb">
-                    <button type="button" class="torol-btn csapat-torol" data-id="${c.id}">Törlés</button>
+                    <button type="button" class="archiv-btn ${archivalt ? 'archiv-vissza-btn' : ''}" data-id="${c.id}">
+                        ${archivalt ? 'Visszaállítás' : 'Archiválás'}
+                    </button>
+                    ${!archivalt ? `<button type="button" class="torol-btn csapat-torol" data-id="${c.id}">Törlés</button>` : ''}
                     <span class="csapat-nyil">▼</span>
                 </div>
             </div>
@@ -82,15 +102,16 @@ function renderCsapatok(csapatok, osszesTago) {
             : c.tagok.map(t => `
                             <div class="tag-sor" id="tag-sor-${c.id}-${t.id}">
                                 <span class="tag-nev">${t.nev}</span>
-                                <button type="button" class="tag-torol-btn"
+                                ${!archivalt ? `<button type="button" class="tag-torol-btn"
                                     data-csapat-id="${c.id}"
                                     data-tag-id="${t.id}">
                                     Eltávolítás
-                                </button>
+                                </button>` : ''}
                             </div>
                         `).join('')
         }
                 </div>
+                ${!archivalt ? `
                 <div class="tag-hozzaadas-wrapper">
                     <select class="csapat-select" id="select-${c.id}">
                         <option value="">-- Válassz tagot --</option>
@@ -101,15 +122,14 @@ function renderCsapatok(csapatok, osszesTago) {
         }
                     </select>
                     <button type="button" class="add-btn" data-csapat-id="${c.id}">+ Tag hozzáadása</button>
-                </div>
+                </div>` : ''}
                 <div id="csapat-uzenet-${c.id}" class="uzenet"></div>
             </div>
         `;
         container.appendChild(csapatBox);
 
-        // Lenyitás/becsukás — csak a fejlécre, nem a törlés gombra
         csapatBox.querySelector('.csapat-fejlec').addEventListener('click', (e) => {
-            if (e.target.closest('.csapat-torol')) return;
+            if (e.target.closest('.csapat-torol') || e.target.closest('.archiv-btn')) return;
             const tartalom = document.getElementById(`csapat-tartalom-${c.id}`);
             const nyil = csapatBox.querySelector('.csapat-nyil');
             const nyitva = tartalom.style.display !== 'none';
@@ -117,37 +137,54 @@ function renderCsapatok(csapatok, osszesTago) {
             nyil.textContent = nyitva ? '▼' : '▲';
         });
 
-        // Csapat törlése
-        csapatBox.querySelector('.csapat-torol').addEventListener('click', (e) => {
+        csapatBox.querySelector('.archiv-btn').addEventListener('click', (e) => {
             e.stopPropagation();
-            deleteCsapat(c.id, c.nev);
+            archivalCsapat(c.id);
         });
 
-        // Tag eltávolítás gombok
-        csapatBox.querySelectorAll('.tag-torol-btn').forEach(btn => {
-            btn.addEventListener('click', async (e) => {
+        if (!archivalt) {
+            csapatBox.querySelector('.csapat-torol').addEventListener('click', (e) => {
                 e.stopPropagation();
-                await tagEltavolitas(btn.dataset.csapatId, btn.dataset.tagId, c.nev);
+                deleteCsapat(c.id, c.nev);
             });
-        });
 
-        // Tag hozzáadása gomb
-        csapatBox.querySelector('.add-btn').addEventListener('click', async (e) => {
-            e.stopPropagation();
-            const csapatId = e.target.dataset.csapatId;
-            const select = document.getElementById(`select-${csapatId}`);
-            const tagId = select.value;
+            csapatBox.querySelectorAll('.tag-torol-btn').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    await tagEltavolitas(btn.dataset.csapatId, btn.dataset.tagId, c.nev);
+                });
+            });
 
-            if (!tagId) {
-                showMessage(`csapat-uzenet-${csapatId}`, 'Válassz tagot!', true);
-                return;
-            }
-
-            await tagHozzaadas(parseInt(csapatId), parseInt(tagId));
-        });
+            csapatBox.querySelector('.add-btn').addEventListener('click', async (e) => {
+                e.stopPropagation();
+                const csapatId = e.target.dataset.csapatId;
+                const select = document.getElementById(`select-${csapatId}`);
+                const tagId = select.value;
+                if (!tagId) {
+                    showMessage(`csapat-uzenet-${csapatId}`, 'Válassz tagot!', true);
+                    return;
+                }
+                await tagHozzaadas(parseInt(csapatId), parseInt(tagId));
+            });
+        }
     });
 }
-
+async function archivalCsapat(id) {
+    try {
+        const response = await fetch(`https://localhost:7104/api/coach/csapatok/${id}/archival`, {
+            method: 'PATCH',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+            showMessage('fo-uzenet', 'Csapat státusza módosítva!', false);
+            loadCsapatok();
+        } else {
+            showMessage('fo-uzenet', 'Hiba az archiválásnál.', true);
+        }
+    } catch (err) {
+        showMessage('fo-uzenet', 'Kapcsolódási hiba.', true);
+    }
+}
 async function tagHozzaadas(csapatId, tagId) {
     try {
         const response = await fetch('https://localhost:7104/api/coach/csapatok/tag-hozzaadas', {

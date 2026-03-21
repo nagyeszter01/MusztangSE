@@ -10,7 +10,10 @@ body {
     margin: 0;
     line-height: 1.6;
 }
-
+.logo a {
+    display: block;
+    line-height: 0;
+}
 /* HEADER */
 header {
     position: fixed;

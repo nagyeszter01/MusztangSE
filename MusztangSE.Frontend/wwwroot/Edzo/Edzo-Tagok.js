@@ -26,9 +26,7 @@ function showMessage(id, message, isError) {
 function generalAzonosito() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let result = '';
-    for (let i = 0; i < 8; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
+    for (let i = 0; i < 8; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
     document.getElementById('uj-azonosito').value = result;
     showMessage('uj-tag-uzenet', `Azonosító generálva: ${result}`, false);
 }
@@ -36,13 +34,17 @@ function generalAzonosito() {
 function generalEditAzonosito() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let result = '';
-    for (let i = 0; i < 8; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
+    for (let i = 0; i < 8; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
     document.getElementById('edit-azonosito').value = result;
     showMessage('edit-uzenet', `Azonosító generálva: ${result}`, false);
 }
 
+function generalEdzoAzonosito() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 8; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+    document.getElementById('uj-edzo-azonosito').value = result;
+}
 
 async function loadTagok() {
     try {
@@ -68,9 +70,7 @@ async function loadTagok() {
 function getSzurtTagok() {
     let szurt = csakAktiv ? osszesTago.filter(t => t.tagsagiStatusz) : osszesTago;
     if (kereses.trim() !== '') {
-        szurt = szurt.filter(t =>
-            t.nev?.toLowerCase().includes(kereses.toLowerCase())
-        );
+        szurt = szurt.filter(t => t.nev?.toLowerCase().includes(kereses.toLowerCase()));
     }
     return szurt;
 }
@@ -85,7 +85,6 @@ function renderTagok() {
     megjelenitve = megjelenito.length;
 
     megjelenito.forEach(t => container.appendChild(createBox(t)));
-
     updateTovabbGomb(szurt);
 }
 
@@ -93,30 +92,22 @@ function updateTovabbGomb(szurt) {
     const tovabbi = document.getElementById('tovabb-gomb');
     const kevesebb = document.getElementById('kevesebb-gomb');
 
-    tovabbi.style.cssText = szurt.length > megjelenitve
-        ? 'display: block !important'
-        : 'display: none !important';
-
+    tovabbi.style.cssText = szurt.length > megjelenitve ? 'display: block !important' : 'display: none !important';
     tovabbi.textContent = szurt.length > megjelenitve
-        ? `További ${Math.min(TOVABB_MERET, szurt.length - megjelenitve)} tag betöltése`
-        : '';
+        ? `További ${Math.min(TOVABB_MERET, szurt.length - megjelenitve)} tag betöltése` : '';
 
-    kevesebb.style.cssText = megjelenitve > OLDAL_MERET
-        ? 'display: block !important'
-        : 'display: none !important';
+    kevesebb.style.cssText = megjelenitve > OLDAL_MERET ? 'display: block !important' : 'display: none !important';
 }
 
 function loadTovabb() {
     const szurt = getSzurtTagok();
     const container = document.querySelector('.content-boxes');
-
     const start = megjelenitve;
     const end = Math.min(start + TOVABB_MERET, szurt.length);
 
     for (let i = start; i < end; i++) {
         try {
-            const box = createBox(szurt[i]);
-            container.appendChild(box);
+            container.appendChild(createBox(szurt[i]));
         } catch (err) {
             console.error('Hiba a boxnál:', szurt[i], err);
         }
@@ -199,12 +190,16 @@ function openEdit(t) {
 
     document.getElementById('edit-form').style.display = 'flex';
     document.getElementById('uj-tag-form').style.display = 'none';
+    document.getElementById('uj-edzo-form').style.display = 'none';
     document.getElementById('uj-tag-gomb').style.display = 'none';
+    document.getElementById('uj-edzo-gomb').style.display = 'none';
 }
 
 function closeEdit() {
     document.getElementById('edit-form').style.display = 'none';
     document.getElementById('uj-tag-gomb').style.display = 'block';
+    const edzoGomb = document.getElementById('uj-edzo-gomb');
+    if (edzoGomb.dataset.elnok === 'true') edzoGomb.style.display = 'block';
 }
 
 async function saveEdit() {
@@ -249,22 +244,22 @@ async function saveEdit() {
 async function openUjTag() {
     document.getElementById('uj-tag-form').style.display = 'flex';
     document.getElementById('uj-tag-gomb').style.display = 'none';
+    document.getElementById('uj-edzo-gomb').style.display = 'none';
     document.getElementById('edit-form').style.display = 'none';
-
-    const csapatok = await loadCsapatok();
-    renderCsapatValaszto(csapatok, 'uj-csapat-lista');
+    document.getElementById('uj-edzo-form').style.display = 'none';
 }
 
 function closeUjTag() {
     document.getElementById('uj-tag-form').style.display = 'none';
     document.getElementById('uj-tag-gomb').style.display = 'block';
+    const edzoGomb = document.getElementById('uj-edzo-gomb');
+    if (edzoGomb.dataset.elnok === 'true') edzoGomb.style.display = 'block';
+
     document.getElementById('uj-tag-form')
         .querySelectorAll('input[type="text"], input[type="email"], input[type="date"]')
         .forEach(i => i.value = '');
     document.getElementById('uj-statusz').checked = false;
     document.getElementById('uj-azonosito').value = '';
-    const kivalasztottak = document.getElementById('uj-csapat-lista-kivalasztottak');
-    if (kivalasztottak) kivalasztottak.innerHTML = '';
 }
 
 async function saveUjTag() {
@@ -305,26 +300,6 @@ async function saveUjTag() {
         });
 
         if (response.ok) {
-            const ujTag = await response.json();
-            const csapatIds = getKivalasztottCsapatok('uj-csapat-lista');
-
-            for (const csapatId of csapatIds) {
-                const csapatResponse = await fetch('https://localhost:7104/api/coach/csapatok/tag-hozzaadas', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ tagId: ujTag.tagId, csapatId })
-                });
-
-                if (!csapatResponse.ok) {
-                    const hiba = await csapatResponse.text();
-                    showMessage('uj-tag-uzenet', `Csapat hiba: ${hiba}`, true);
-                    return;
-                }
-            }
-
             showMessage('fo-uzenet', 'Új tag sikeresen felvéve!', false);
             closeUjTag();
             loadTagok();
@@ -337,20 +312,72 @@ async function saveUjTag() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const checkbox = document.getElementById('csak-aktiv');
-    checkbox.checked = true;
-    checkbox.addEventListener('change', () => {
-        csakAktiv = checkbox.checked;
-        megjelenitve = 0;
-        renderTagok();
-    });
+function openUjEdzo() {
+    document.getElementById('uj-edzo-form').style.display = 'flex';
+    document.getElementById('uj-edzo-gomb').style.display = 'none';
+    document.getElementById('uj-tag-form').style.display = 'none';
+    document.getElementById('uj-tag-gomb').style.display = 'none';
+    document.getElementById('edit-form').style.display = 'none';
+}
 
-    document.getElementById('kereses-input').addEventListener('input', (e) => {
-        kereses = e.target.value;
-        megjelenitve = 0;
-        renderTagok();
-    });
+function closeUjEdzo() {
+    document.getElementById('uj-edzo-form').style.display = 'none';
+    document.getElementById('uj-tag-gomb').style.display = 'block';
+    document.getElementById('uj-edzo-gomb').style.display = 'block';
+    document.getElementById('uj-edzo-nev').value = '';
+    document.getElementById('uj-edzo-azonosito').value = '';
+}
+
+async function saveUjEdzo() {
+    const nev = document.getElementById('uj-edzo-nev').value.trim();
+    const azonosito = document.getElementById('uj-edzo-azonosito').value;
+
+    if (!nev || !azonosito) {
+        showMessage('uj-edzo-uzenet', 'Minden mező kötelező!', true);
+        return;
+    }
+
+    try {
+        const response = await fetch('https://localhost:7104/api/admin/felhasznalok/edzo', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nev, felhasznaloAzonosito: azonosito })
+        });
+
+        if (response.ok) {
+            showMessage('fo-uzenet', 'Edző sikeresen felvéve!', false);
+            closeUjEdzo();
+        } else {
+            const hiba = await response.text();
+            showMessage('uj-edzo-uzenet', hiba, true);
+        }
+    } catch (err) {
+        showMessage('uj-edzo-uzenet', 'Kapcsolódási hiba.', true);
+    }
+}
+
+async function ellenorizElnok() {
+    try {
+        const response = await fetch('https://localhost:7104/api/coach/tagok/ellenorzes/elnok', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            const edzoGomb = document.getElementById('uj-edzo-gomb');
+            if (data.mindenTagotLat === true) {
+                edzoGomb.style.display = 'block';
+                edzoGomb.dataset.elnok = 'true';
+            }
+        }
+    } catch (err) {
+        console.error('Hiba:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const mobilMenu = document.getElementById('mobil-menu');
 
@@ -365,6 +392,26 @@ document.addEventListener('DOMContentLoaded', () => {
             mobilMenu.classList.remove('nyitva');
         }
     });
+
+    document.getElementById('kijelentkezes-gomb').addEventListener('click', () => {
+        localStorage.clear();
+        window.location.href = '/Bejelentkezes/bejelentkezes.html';
+    });
+
+    const checkbox = document.getElementById('csak-aktiv');
+    checkbox.checked = true;
+    checkbox.addEventListener('change', () => {
+        csakAktiv = checkbox.checked;
+        megjelenitve = 0;
+        renderTagok();
+    });
+
+    document.getElementById('kereses-input').addEventListener('input', (e) => {
+        kereses = e.target.value;
+        megjelenitve = 0;
+        renderTagok();
+    });
+
     document.getElementById('tovabb-gomb').addEventListener('click', loadTovabb);
     document.getElementById('kevesebb-gomb').addEventListener('click', kevesebbet);
     document.getElementById('edit-mentes').addEventListener('click', saveEdit);
@@ -374,6 +421,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('uj-tag-megse').addEventListener('click', closeUjTag);
     document.getElementById('azonosito-general').addEventListener('click', generalAzonosito);
     document.getElementById('edit-azonosito-general').addEventListener('click', generalEditAzonosito);
+    document.getElementById('uj-edzo-gomb').addEventListener('click', openUjEdzo);
+    document.getElementById('uj-edzo-mentes').addEventListener('click', saveUjEdzo);
+    document.getElementById('uj-edzo-megse').addEventListener('click', closeUjEdzo);
+    document.getElementById('edzo-azonosito-general').addEventListener('click', generalEdzoAzonosito);
 
+    ellenorizElnok();
     loadTagok();
 });

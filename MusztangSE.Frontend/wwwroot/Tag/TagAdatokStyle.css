@@ -8,7 +8,10 @@ body {
     font-family: 'IBM Plex Serif', serif;
     color: white;
 }
-
+.logo a {
+    display: block;
+    line-height: 0;
+}
 /* HEADER */
 header {
     position: fixed;

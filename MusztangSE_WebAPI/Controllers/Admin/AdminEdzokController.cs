@@ -30,6 +30,7 @@ public class AdminEdzokController : ControllerBase
             {
                 e.Id,
                 e.Nev,
+                e.MindenTagotLat,
                 FelhasznaloAzonosito = e.Felhasznalok.Select(f => f.FelhasznaloAzonosito).FirstOrDefault(),
                 Csapatok = e.Csapatok.Select(c => new
                 {
@@ -95,6 +96,15 @@ public class AdminEdzokController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok("Edző neve módosítva.");
     }
+    [HttpPatch("{id}/minden-tagot-lat")]
+    public async Task<IActionResult> ToggleMindenTagotLat(int id)
+    {
+        var edzo = await _context.Edzo.FindAsync(id);
+        if (edzo == null) return NotFound();
 
+        edzo.MindenTagotLat = !edzo.MindenTagotLat;
+        await _context.SaveChangesAsync();
+        return Ok(new { mindenTagotLat = edzo.MindenTagotLat });
+    }
 }
 }

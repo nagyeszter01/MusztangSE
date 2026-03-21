@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -71,12 +72,87 @@ public class TagokController : ControllerBase
 
     // READ
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetTagok()
     {
-        var tagok = await _context.TagokView.ToListAsync();
-        return Ok(tagok);
-    }
+        var edzoIdStr = User.FindFirstValue("edzoId");
+        if (string.IsNullOrEmpty(edzoIdStr) || !int.TryParse(edzoIdStr, out int edzoId))
+            return Unauthorized();
 
+        var edzo = await _context.Edzo.FindAsync(edzoId);
+        if (edzo == null) return Unauthorized();
+
+        if (edzo.MindenTagotLat)
+        {
+            var osszes = await _context.TagokView.ToListAsync();
+            return Ok(osszes);
+        }
+
+        var sajatTagok = await _context.TagCsapat
+            .Include(tc => tc.Tag)
+            .ThenInclude(t => t.SportoloiAdatok)
+            .Include(tc => tc.Tag)
+            .ThenInclude(t => t.Felhasznalo)
+            .Include(tc => tc.Csapat)
+            .Where(tc => tc.Csapat.EdzoId == edzoId)
+            .Select(tc => new
+            {
+                tagId = tc.Tag.Id,
+                nev = tc.Tag.Nev,
+                szuletes = tc.Tag.Szuletes,
+                anyjaNeve = tc.Tag.AnyjaNeve,
+                lakcim = tc.Tag.Lakcim,
+                telefonszam = tc.Tag.Telefonszam,
+                email = tc.Tag.Email,
+                tagsagiStatusz = tc.Tag.SportoloiAdatok != null ? tc.Tag.SportoloiAdatok.TagsagiStatusz : false,
+                versenyengedelySzam = tc.Tag.SportoloiAdatok != null ? tc.Tag.SportoloiAdatok.VersenyengedelySzam : null,
+                tagsagKezdete = tc.Tag.SportoloiAdatok != null ? tc.Tag.SportoloiAdatok.TagsagKezdete : null,
+                sportorvosiEngedely = tc.Tag.SportoloiAdatok != null ? tc.Tag.SportoloiAdatok.SportorvosiEngedely : null,
+                felhasznaloAzonosito = tc.Tag.Felhasznalo != null ? tc.Tag.Felhasznalo.FelhasznaloAzonosito : null
+            })
+            .Distinct()
+            .ToListAsync();
+
+        return Ok(sajatTagok);
+    }
+    [HttpGet("ellenorzes/elnok")]
+    public async Task<IActionResult> ElnokE()
+    {
+        var edzoIdStr = User.FindFirstValue("edzoId");
+        if (string.IsNullOrEmpty(edzoIdStr) || !int.TryParse(edzoIdStr, out int edzoId))
+            return Unauthorized();
+
+        var edzo = await _context.Edzo.FindAsync(edzoId);
+        if (edzo == null) return Unauthorized();
+
+        return Ok(new { mindenTagotLat = edzo.MindenTagotLat });
+    }
+// Külön endpoint a csapat dropdown-hoz (szűrt)
+    [HttpGet("sajat")]
+    public async Task<IActionResult> GetSajatTagok()
+    {
+        var edzoIdStr = User.FindFirstValue("edzoId");
+        if (string.IsNullOrEmpty(edzoIdStr) || !int.TryParse(edzoIdStr, out int edzoId))
+            return Unauthorized();
+
+        var edzo = await _context.Edzo.FindAsync(edzoId);
+        if (edzo == null) return Unauthorized();
+
+        if (edzo.MindenTagotLat)
+        {
+            var osszes = await _context.TagokView.ToListAsync();
+            return Ok(osszes);
+        }
+
+        var sajatTagok = await _context.TagCsapat
+            .Include(tc => tc.Tag)
+            .Include(tc => tc.Csapat)
+            .Where(tc => tc.Csapat.EdzoId == edzoId)
+            .Select(tc => tc.Tag)
+            .Distinct()
+            .ToListAsync();
+
+        return Ok(sajatTagok);
+    }
     // UPDATE
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateTag(int id, [FromBody] TagUpdateEdzoDto dto)

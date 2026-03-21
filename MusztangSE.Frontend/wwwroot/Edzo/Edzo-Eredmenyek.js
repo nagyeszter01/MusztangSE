@@ -64,10 +64,12 @@ async function loadAll() {
         }
 
         osszeEredmeny = eredmenyRes.ok ? await eredmenyRes.json() : [];
-        osszeCsapat = csapatRes.ok ? await csapatRes.json() : [];
+        const osszesCsapat = csapatRes.ok ? await csapatRes.json() : [];
+
+        // Csak a nem archivált csapatok kerülnek a dropdownba
+        osszeCsapat = osszesCsapat.filter(c => !c.archivalt);
 
         feltoltEvSelect();
-
         osszeVerseny = await loadVersenyekByEv(mostaniEv);
         feltoltVersenySelect('uj-verseny');
         feltoltVersenySelect('edit-verseny');

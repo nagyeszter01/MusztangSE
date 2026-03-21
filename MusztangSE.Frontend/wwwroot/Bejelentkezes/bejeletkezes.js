@@ -15,6 +15,11 @@ function showMessage(message, isError) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('jelszo').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      document.getElementById('bejelentkezes-gomb').click();
+    }
+  });
   document.getElementById('bejelentkezes-gomb').addEventListener('click', async () => {
     const azonosito = document.getElementById('azonosito').value.trim();
     const jelszo = document.getElementById('jelszo').value;

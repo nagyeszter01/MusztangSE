@@ -19,10 +19,7 @@ function loadUserName() {
     try {
         const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
         const jsonPayload = decodeURIComponent(
-            atob(base64)
-                .split('')
-                .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-                .join('')
+            atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
         );
         const payload = JSON.parse(jsonPayload);
         document.getElementById('username').textContent = payload['fullName'] ?? '';
@@ -33,7 +30,7 @@ function loadUserName() {
 
 async function loadVersenyek() {
     try {
-        const response = await fetch('http://localhost:7104/api/shared/versenyek/kozelgo', {
+        const response = await fetch('https://localhost:7104/api/shared/versenyek/kozelgo', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) return;
@@ -89,7 +86,7 @@ async function addVerseny() {
     }
 
     try {
-        const response = await fetch('http://localhost:7104/api/coach/versenyek', {
+        const response = await fetch('https://localhost:7104/api/coach/versenyek', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -119,61 +116,73 @@ function toggleForm(show) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const headerHeight = document.querySelector('header').offsetHeight;
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 100;
     const kezdolapSection = document.getElementById('kezdolap');
     const versenyekSection = document.getElementById('versenyek');
 
-    const navLinkek = document.querySelectorAll('nav a');
     const hamburger = document.getElementById('hamburger');
     const mobilMenu = document.getElementById('mobil-menu');
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('aktiv');
-        mobilMenu.classList.toggle('nyitva');
-    });
+    if (hamburger && mobilMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('aktiv');
+            mobilMenu.classList.toggle('nyitva');
+        });
 
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
-            hamburger.classList.remove('aktiv');
-            mobilMenu.classList.remove('nyitva');
-        }
-    });
-    navLinkek.forEach(link => {
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
+                hamburger.classList.remove('aktiv');
+                mobilMenu.classList.remove('nyitva');
+            }
+        });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            if (href === '/Edzo/MainPageEdzo.html') {
+            if (href === '/Edzo/MainPageEdzo.html' && kezdolapSection) {
                 if (window.location.pathname.includes('MainPageEdzo')) {
                     e.preventDefault();
                     window.scrollTo({ top: kezdolapSection.offsetTop, behavior: 'smooth' });
                 }
-            } else if (href === '/Edzo/MainPageEdzo.html#versenyek') {
+            } else if (href === '/Edzo/MainPageEdzo.html#versenyek' && versenyekSection) {
                 e.preventDefault();
                 window.scrollTo({ top: versenyekSection.offsetTop, behavior: 'smooth' });
             }
         });
     });
 
-    function setActiveLink() {
-        const scrollPos = window.scrollY + headerHeight / 2;
-        navLinkek.forEach(l => l.classList.remove('active'));
+    // Aktív link scroll figyelő
+    const kezdolapLink = document.querySelector('a[href="/Edzo/MainPageEdzo.html"]');
+    const versenyekLink = document.querySelector('a[href="/Edzo/MainPageEdzo.html#versenyek"]');
 
-        if (kezdolapSection && scrollPos < versenyekSection.offsetTop) {
-            document.querySelector('a[href="/Edzo/MainPageEdzo.html"]')?.classList.add('active');
-        } else if (versenyekSection && scrollPos >= versenyekSection.offsetTop) {
-            document.querySelector('a[href="/Edzo/MainPageEdzo.html#versenyek"]')?.classList.add('active');
+    function setActiveLink() {
+        if (!kezdolapSection || !versenyekSection) return;
+
+        const versenyekRect = versenyekSection.getBoundingClientRect();
+
+        if (versenyekRect.top <= headerHeight + 30) {
+            kezdolapLink?.classList.remove('active');
+            versenyekLink?.classList.add('active');
+        } else {
+            kezdolapLink?.classList.add('active');
+            versenyekLink?.classList.remove('active');
         }
     }
 
-
     window.addEventListener('scroll', setActiveLink);
     setActiveLink();
-    document.getElementById('kijelentkezes-gomb').addEventListener('click', () => {
+
+    document.getElementById('kijelentkezes-gomb')?.addEventListener('click', () => {
         localStorage.clear();
         window.location.href = '/Bejelentkezes/bejelentkezes.html';
     });
-    document.getElementById('hozzaadas-gomb').addEventListener('click', () => toggleForm(true));
-    document.getElementById('verseny-mentes').addEventListener('click', addVerseny);
-    document.getElementById('verseny-megse').addEventListener('click', () => toggleForm(false));
+
+    document.getElementById('hozzaadas-gomb')?.addEventListener('click', () => toggleForm(true));
+    document.getElementById('verseny-mentes')?.addEventListener('click', addVerseny);
+    document.getElementById('verseny-megse')?.addEventListener('click', () => toggleForm(false));
 
     loadUserName();
     loadVersenyek();

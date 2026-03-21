@@ -9,17 +9,32 @@
 <body>
 <header>
     <div class="logo">
-        <img src="/img/logo.jpg" alt="Musztáng SE">
+        <a href="/Admin/MainPageAdmin.html">
+            <img src="/img/logo.jpg" alt="Musztáng SE">
+        </a>
     </div>
     <nav class="nav-center">
         <a href="/Admin/MainPageAdmin.html">Dashboard</a>
         <a href="/Admin/Admin-Tagok.html">Felhasználók</a>
         <a href="/Admin/Admin-Edzo.html">Edzők</a>
-        <a href="/Admin/Admin-Csapatok.html" class="active">Csapatok</a>
+        <a href="/Admin/Admin-Csapatok.html" class="active" >Csapatok</a>
         <a href="/Admin/Admin-Versenyek.html">Versenyek</a>
     </nav>
     <div class="kijelentkezes">
         <button id="kijelentkezes-gomb">Kijelentkezés</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mobil-menu" id="mobil-menu">
+        <a href="/Admin/MainPageAdmin.html">Dashboard</a>
+        <a href="/Admin/Admin-Tagok.html">Felhasználók</a>
+        <a href="/Admin/Admin-Edzo.html">Edzők</a>
+        <a href="/Admin/Admin-Csapatok.html">Csapatok</a>
+        <a href="/Admin/Admin-Versenyek.html">Versenyek</a>
+        <button onclick="localStorage.clear(); window.location.href='/Bejelentkezes/bejelentkezes.html'">Kijelentkezés</button>
     </div>
 </header>
 

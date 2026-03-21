@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
-
+.logo a {
+    display: block;
+    line-height: 0;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -382,8 +385,13 @@ nav a.active {
 .csapat-tag-torol:hover { color: #ff4d4d; }
 
 /* ADD MEMBER */
-.add-member-wrapper { width: 80%; max-width: 60vw; margin-top: 16px; }
-
+.add-member-wrapper {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 16px;
+}
 /* ÜZENET */
 .uzenet {
     font-family: 'IBM Plex Serif', serif; font-size: 0.9rem;

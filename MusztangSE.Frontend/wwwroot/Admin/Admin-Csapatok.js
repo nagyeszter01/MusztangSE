@@ -310,6 +310,22 @@ document.addEventListener('DOMContentLoaded', () => {
         kereses = e.target.value;
         renderCsapatok();
     });
+    const hamburger = document.getElementById('hamburger');
+    const mobilMenu = document.getElementById('mobil-menu');
+
+    if (hamburger && mobilMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('aktiv');
+            mobilMenu.classList.toggle('nyitva');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
+                hamburger.classList.remove('aktiv');
+                mobilMenu.classList.remove('nyitva');
+            }
+        });
+    }
 
     document.getElementById('uj-csapat-gomb').addEventListener('click', openUjCsapat);
     document.getElementById('csapat-mentes').addEventListener('click', saveUjCsapat);

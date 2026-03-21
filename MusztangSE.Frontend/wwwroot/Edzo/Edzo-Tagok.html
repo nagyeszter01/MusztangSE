@@ -9,13 +9,15 @@
 <body>
 <header>
     <div class="logo">
-        <img src="/img/logo.jpg" alt="Musztáng SE">
+        <a href="/Edzo/MainPageEdzo.html">
+            <img src="/img/logo.jpg" alt="Musztáng SE">
+        </a>
     </div>
     <nav class="nav-center">
-        <a href="/Edzo/MainPageEdzo.html" class="active">Kezdőlap</a>
+        <a href="/Edzo/MainPageEdzo.html">Kezdőlap</a>
         <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
         <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
-        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Tagok.html" class="active">Tagok</a>
         <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
     </nav>
     <div class="kijelentkezes">
@@ -30,7 +32,7 @@
         <a href="/Edzo/MainPageEdzo.html">Kezdőlap</a>
         <a href="/Edzo/MainPageEdzo.html#versenyek">Versenyek</a>
         <a href="/Edzo/Edzo-Csapatok.html">Csapatok</a>
-        <a href="/Edzo/Edzo-Tagok.html">Tagok</a>
+        <a href="/Edzo/Edzo-Tagok.html" class="active">Tagok</a>
         <a href="/Edzo/Edzo-Eredmenyek.html">Eredmények</a>
         <button onclick="localStorage.clear(); window.location.href='/Bejelentkezes/bejelentkezes.html'">Kijelentkezés</button>
     </div>
@@ -183,8 +185,32 @@
         </div>
     </div>
 
+    <!-- ÚJ EDZŐ FORM - csak elnöknek -->
+    <div id="uj-edzo-form" class="edit-form" style="display:none">
+        <h3 class="edit-title">Új edző felvétele</h3>
+        <div class="edit-grid">
+            <div class="edit-mezo">
+                <label>Edző neve *</label>
+                <input id="uj-edzo-nev" type="text" placeholder="Teljes név">
+            </div>
+            <div class="edit-mezo">
+                <label>Felhasználói azonosító *</label>
+                <div class="azonosito-wrapper">
+                    <input id="uj-edzo-azonosito" type="text" readonly class="azonosito-input" placeholder="Kattints a generálásra...">
+                    <button id="edzo-azonosito-general" type="button" class="add-member-btn general-btn">Azonosító generálása</button>
+                </div>
+            </div>
+        </div>
+        <div id="uj-edzo-uzenet" class="uzenet"></div>
+        <div class="form-gombok">
+            <button id="uj-edzo-mentes" type="button" class="add-member-btn">Mentés</button>
+            <button id="uj-edzo-megse" type="button" class="add-member-btn megse">Mégse</button>
+        </div>
+    </div>
+
     <div class="add-member-wrapper">
         <button id="uj-tag-gomb" type="button" class="add-member-btn">+ Új tag felvétel</button>
+        <button id="uj-edzo-gomb" type="button" class="add-member-btn" style="display:none">+ Új edző felvétel</button>
     </div>
 </section>
 
@@ -195,6 +221,6 @@
     </div>
 </footer>
 
-<script src="/Edzo/Edzo-Tagok.js?v=2"></script>
+<script src="/Edzo/Edzo-Tagok.js?v=3"></script>
 </body>
 </html>

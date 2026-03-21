@@ -35,27 +35,57 @@ namespace MusztangSE_WebAPI.Controllers.Edzo
     [HttpGet("sajat")]
     public async Task<IActionResult> GetSajat()
     {
+        try
+        {
+            var edzoIdStr = User.FindFirstValue("edzoId");
+            if (string.IsNullOrEmpty(edzoIdStr) || !int.TryParse(edzoIdStr, out int edzoId))
+                return Unauthorized();
+
+            var csapatok = await _context.Csapat
+                .Include(c => c.TagCsapatok)
+                .ThenInclude(tc => tc.Tag)
+                .Where(c => c.EdzoId == edzoId)
+                .ToListAsync();
+
+            var eredmeny = csapatok.Select(c => new
+            {
+                c.Id,
+                Nev = c.Nev ?? "",
+                Kategoria = c.Kategoria ?? "",
+                c.Paros,
+                c.Archivalt,
+                Tagok = (c.TagCsapatok ?? new List<TagCsapat>())
+                    .Where(tc => tc != null && tc.Tag != null)
+                    .Select(tc => new
+                    {
+                        tc.Tag.Id,
+                        Nev = tc.Tag.Nev ?? ""
+                    }).ToList()
+            }).ToList();
+
+            return Ok(eredmeny);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { hiba = ex.Message, belso = ex.InnerException?.Message });
+        }
+    }
+    [HttpPatch("{id}/archival")]
+    public async Task<IActionResult> Archival(int id)
+    {
         var edzoIdStr = User.FindFirstValue("edzoId");
         if (string.IsNullOrEmpty(edzoIdStr) || !int.TryParse(edzoIdStr, out int edzoId))
             return Unauthorized();
 
-        var csapatok = await _context.Csapat
-            .Where(c => c.EdzoId == edzoId)
-            .Select(c => new
-            {
-                c.Id,
-                c.Nev,
-                c.Kategoria,
-                c.Paros,
-                Tagok = c.TagCsapatok.Select(tc => new
-                {
-                    tc.Tag.Id,
-                    tc.Tag.Nev
-                }).ToList()
-            })
-            .ToListAsync();
+        var csapat = await _context.Csapat.FindAsync(id);
+        if (csapat == null) return NotFound();
 
-        return Ok(csapatok);
+        if (csapat.EdzoId != edzoId)
+            return Forbid();
+
+        csapat.Archivalt = !csapat.Archivalt;
+        await _context.SaveChangesAsync();
+        return Ok(new { archivalt = csapat.Archivalt });
     }
 
     // Tag hozzáadása csapathoz

@@ -260,7 +260,96 @@ input::placeholder {
     font-size: 0.8rem;
     margin-top: 4px;
 }
+/* JELSZÓ ERŐSSÉG */
+.jelszo-ero {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
 
+.ero-sor {
+    flex: 1;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.08);
+    transition: background 0.4s ease;
+}
+
+.ero-sor.gyenge  { background: #ff4d4d; }
+.ero-sor.kozepes { background: #ffa500; }
+.ero-sor.eros    { background: #4dff91; }
+
+.ero-felirat {
+    font-size: 0.78rem;
+    margin: 5px 0 10px;
+    font-family: 'IBM Plex Serif', serif;
+    color: rgba(255,255,255,0.4);
+    min-height: 16px;
+    transition: color 0.3s;
+}
+
+.ero-felirat.gyenge  { color: #ff4d4d; }
+.ero-felirat.kozepes { color: #ffa500; }
+.ero-felirat.eros    { color: #4dff91; }
+
+/* KÖVETELMÉNYEK */
+.jelszo-kovetek {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    margin-top: 4px;
+}
+
+.kovetelmeny {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s ease;
+}
+
+.kovetelmeny .kov-ikon {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.kovetelmeny .kov-szoveg {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    font-family: 'IBM Plex Serif', serif;
+    transition: color 0.3s;
+}
+
+.kovetelmeny.teljesult {
+    background: rgba(77,255,145,0.07);
+    border-color: rgba(77,255,145,0.2);
+}
+
+.kovetelmeny.teljesult .kov-ikon {
+    color: #4dff91;
+}
+
+.kovetelmeny.teljesult .kov-szoveg {
+    color: #4dff91;
+}
+
+.kovetelmeny.nem-teljesult.aktiv {
+    background: rgba(255,77,77,0.07);
+    border-color: rgba(255,77,77,0.2);
+}
+
+.kovetelmeny.nem-teljesult.aktiv .kov-ikon {
+    color: #ff4d4d;
+}
+
+.kovetelmeny.nem-teljesult.aktiv .kov-szoveg {
+    color: rgba(255,255,255,0.5);
+}
 /* Reszponziv */
 @media (max-width: 768px) {
     .nav-center {

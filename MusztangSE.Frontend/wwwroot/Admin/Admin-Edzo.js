@@ -12,7 +12,56 @@ function showMessage(id, message, isError) {
     el.className = 'uzenet ' + (isError ? 'hiba' : 'siker');
     setTimeout(() => { el.className = 'uzenet'; el.textContent = ''; }, 4000);
 }
+function generalAzonosito(inputId) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 8; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+    document.getElementById(inputId).value = result;
+}
 
+function openUjEdzo() {
+    document.getElementById('uj-edzo-form').style.display = 'flex';
+    document.getElementById('uj-edzo-gomb').style.display = 'none';
+}
+
+function closeUjEdzo() {
+    document.getElementById('uj-edzo-form').style.display = 'none';
+    document.getElementById('uj-edzo-gomb').style.display = 'block';
+    document.getElementById('edzo-nev').value = '';
+    document.getElementById('edzo-azonosito').value = '';
+}
+
+async function saveUjEdzo() {
+    const nev = document.getElementById('edzo-nev').value.trim();
+    const azonosito = document.getElementById('edzo-azonosito').value;
+
+    if (!nev || !azonosito) {
+        showMessage('uj-edzo-uzenet', 'Minden mező kötelező!', true);
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:5217/api/admin/felhasznalok/edzo', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nev, felhasznaloAzonosito: azonosito })
+        });
+
+        if (response.ok) {
+            showMessage('fo-uzenetedzo', 'Edző sikeresen hozzáadva!', false);
+            closeUjEdzo();
+            loadEdzok();
+        } else {
+            const hiba = await response.text();
+            showMessage('uj-edzo-uzenet', hiba, true);
+        }
+    } catch (err) {
+        showMessage('uj-edzo-uzenet', 'Kapcsolódási hiba.', true);
+    }
+}
 async function loadEdzok() {
     try {
         const response = await fetch('https://localhost:7104/api/admin/edzok', {
@@ -29,7 +78,22 @@ async function loadEdzok() {
         console.error('Hiba:', err);
     }
 }
-
+async function toggleMindenTagotLat(id) {
+    try {
+        const response = await fetch(`https://localhost:7104/api/admin/edzok/${id}/minden-tagot-lat`, {
+            method: 'PATCH',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+            showMessage('fo-uzenet', 'Jogosultság módosítva!', false);
+            loadEdzok();
+        } else {
+            showMessage('fo-uzenet', 'Hiba a módosítás során.', true);
+        }
+    } catch (err) {
+        showMessage('fo-uzenet', 'Kapcsolódási hiba.', true);
+    }
+}
 function getSzurt() {
     return kereses === ''
         ? osszeEdzok
@@ -99,7 +163,13 @@ function renderEdzok() {
         box.querySelector('.nev-megse').addEventListener('click', () => {
             document.getElementById(`nev-form-${e.id}`).style.display = 'none';
         });
+        box.querySelector('.edit-nev-btn').insertAdjacentHTML('afterend', `
+    <button type="button" class="action-btn ${e.mindenTagotLat ? 'toggle-btn-aktiv' : 'toggle-btn'} minden-tag-btn" data-id="${e.id}">
+        ${e.mindenTagotLat ? '👁 Minden tagot lát' : '👁 Csak saját tagok'}
+    </button>
+`);
 
+        box.querySelector('.minden-tag-btn').addEventListener('click', () => toggleMindenTagotLat(e.id));
         container.appendChild(box);
     });
 }
@@ -201,7 +271,26 @@ document.addEventListener('DOMContentLoaded', () => {
         kereses = e.target.value;
         renderEdzok();
     });
+    const hamburger = document.getElementById('hamburger');
+    const mobilMenu = document.getElementById('mobil-menu');
 
+    if (hamburger && mobilMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('aktiv');
+            mobilMenu.classList.toggle('nyitva');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
+                hamburger.classList.remove('aktiv');
+                mobilMenu.classList.remove('nyitva');
+            }
+        });
+    }
+    document.getElementById('uj-edzo-gomb').addEventListener('click', openUjEdzo);
+    document.getElementById('edzo-megse').addEventListener('click', closeUjEdzo);
+    document.getElementById('edzo-mentes').addEventListener('click', saveUjEdzo);
+    document.getElementById('edzo-azonosito-general').addEventListener('click', () => generalAzonosito('edzo-azonosito'));
     document.getElementById('modal-torol').addEventListener('click', deleteEdzo);
     document.getElementById('modal-megse').addEventListener('click', closeTorlesModal);
 
