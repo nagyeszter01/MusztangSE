@@ -4,6 +4,7 @@ const cim = document.getElementById("cim");
 let index = 0;
 
 function kiir() {
+    if (!cim) return;
     if (index >= szoveg.length) return;
 
     const karakter = szoveg[index];

@@ -1,0 +1,369 @@
+﻿/* Betűtípus import */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #0f0f0f;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* ── FEJLÉC ── */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15,15,15,0.85);
+    backdrop-filter: blur(12px);
+    padding: 0 20px;
+}
+
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 1100;
+}
+
+    .logo img {
+        height: 60px;
+        border-radius: 30px;
+        transition: transform 0.3s;
+    }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+.nav-center {
+    display: flex;
+    gap: 20px;
+    background: rgba(50,50,50,0.6);
+    padding: 10px 30px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1001;
+    justify-content: center;
+}
+
+    .nav-center a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: all 0.3s;
+    }
+
+        .nav-center a:hover,
+        .nav-center a.aktiv {
+            color: #ff3b3b;
+            background: rgba(255, 59, 59, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255,59,59,0.3);
+        }
+
+/* ── HAMBURGER ── */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1102;
+    position: absolute;
+    right: 20px;
+    top: 32px;
+}
+
+    .hamburger span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+
+    .hamburger.aktiv span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.aktiv span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.aktiv span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+/* ── MOBIL MENÜ ── */
+.mobil-menu {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15,15,15,0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 20px;
+    gap: 8px;
+    z-index: 999;
+    border-radius: 15px;
+}
+
+    .mobil-menu.nyitva {
+        display: flex;
+    }
+
+    .mobil-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 12px 16px;
+        border-radius: 10px;
+        transition: all 0.3s;
+        text-align: center;
+    }
+
+        .mobil-menu a:hover {
+            background: rgba(255,59,59,0.1);
+        }
+
+@media (max-width: 900px) {
+    .nav-center {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* ── TARTALOM ── */
+.eredmenyek-oldal {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+}
+
+/* ── VISSZA GOMB ── */
+.vissza-gomb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+    transition: color 0.2s;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+    .vissza-gomb::before {
+        content: "←";
+    }
+
+    .vissza-gomb:hover {
+        color: #fff;
+    }
+
+/* ── OLDAL CÍM ── */
+.oldal-cim {
+    font-family: 'Goldman', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 48px;
+    line-height: 1.2;
+}
+
+/* ── BETÖLTÉS / HIBA ── */
+.allapot-uzenet {
+    text-align: center;
+    padding: 60px 0;
+    color: #888;
+    font-size: 1rem;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+/* ── ÉV BLOKK ── */
+.ev-blokk {
+    margin-bottom: 40px;
+}
+
+.ev-cim {
+    text-align: right;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    letter-spacing: 0.06em;
+    font-family: 'Goldman', sans-serif;
+}
+
+/* ── KÁRTYA ── */
+.ev-kartya {
+    background: #1a1a1a;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+}
+
+/* ── DÁTUM CSOPORT ── */
+.datum-csoport {
+    padding: 16px 24px 8px;
+}
+
+.datum-cim {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ff3b3b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+/* ── EREDMÉNY SOR ── */
+.eredmeny-sor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0 8px 14px;
+    border-left: 2px solid #2a2a2a;
+    margin-bottom: 8px;
+    gap: 12px;
+    transition: border-color 0.2s;
+}
+
+    .eredmeny-sor:hover {
+        border-left-color: #ff3b3b;
+    }
+
+.eredmeny-bal {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+}
+
+.versenyzo-nev {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    font-family: 'IBM Plex Serif', serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kategoria {
+    font-size: 0.8rem;
+    color: #888;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+.helyezes {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    min-width: 70px;
+    text-align: right;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+    .helyezes.arany {
+        color: #f1c40f;
+    }
+
+    .helyezes.ezust {
+        color: #bdc3c7;
+    }
+
+    .helyezes.bronz {
+        color: #cd6133;
+    }
+
+/* ── ELVÁLASZTÓ ── */
+.datum-elvalaszto {
+    height: 1px;
+    background: #2a2a2a;
+    margin: 8px 24px;
+}
+
+/* ── LÁBLÉC ── */
+.site-footer {
+    width: 100%;
+    background-color: #0f0f0f;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    text-align: center;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+.footer-title {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.footer-subtitle {
+    color: #9a9a9a;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* ── RESZPONZÍV ── */
+@media (max-width: 600px) {
+    .eredmenyek-oldal {
+        padding: 120px 16px 60px;
+    }
+
+    .ev-cim {
+        font-size: 1.5rem;
+    }
+
+    .oldal-cim {
+        font-size: 1.6rem;
+    }
+
+    .eredmeny-sor {
+        flex-wrap: wrap;
+    }
+
+    .helyezes {
+        text-align: left;
+        min-width: auto;
+    }
+}
