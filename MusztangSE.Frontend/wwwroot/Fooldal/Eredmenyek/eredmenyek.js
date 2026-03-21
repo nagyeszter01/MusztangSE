@@ -1,4 +1,4 @@
-﻿const API_URL = 'https://localhost:44315/api/Eredmenyek';
+﻿const API_URL = 'https://localhost:7104/api/Eredmenyek';
 
 // ── Helyezés CSS osztály ──
 function helyezesClass(h) {
@@ -100,7 +100,7 @@ async function betolt() {
 
     try {
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error(HTTP ${ res.status });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const adatok = await res.json();
 
         let szurt = Array.isArray(adatok) ? adatok : [];
