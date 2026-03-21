@@ -57,7 +57,7 @@ function render(adatok) {
         html += `<div class="ev-cim">${ev}</div>`;
         html += `<div class="ev-kartya">`;
 
-        const datumok = Object.keys(evek[ev]);
+        const datumok = Object.keys(evek[ev]).sort((a, b) => new Date(b) - new Date(a));
         datumok.forEach((datum, i) => {
             html += `<div class="datum-csoport">`;
             html += `<div class="datum-cim">${datum}</div>`;
@@ -89,11 +89,30 @@ function render(adatok) {
 // ── API betöltés ──
 async function betolt() {
     const tartalom = document.getElementById('tartalom');
+    const tipus = tartalom?.dataset.tipus;
+
+    const szuroTerkep = {
+        'teruleti': 'területi',
+        'orszagos': 'országos',
+        'magyar': 'magyar',
+        'vilag': 'világ'
+    };
+
     try {
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) throw new Error(HTTP ${ res.status });
         const adatok = await res.json();
-        render(Array.isArray(adatok) ? adatok : []);
+
+        let szurt = Array.isArray(adatok) ? adatok : [];
+
+        if (tipus && szuroTerkep[tipus]) {
+            const kulcsszo = szuroTerkep[tipus].toLowerCase();
+            szurt = szurt.filter(sor =>
+                sor.versenyNev?.toLowerCase().includes(kulcsszo)
+            );
+        }
+
+        render(szurt);
     } catch (err) {
         console.error('API hiba:', err);
         tartalom.innerHTML = '<p class="allapot-uzenet">Hiba történt az adatok betöltése közben.</p>';
