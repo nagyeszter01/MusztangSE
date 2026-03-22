@@ -14,8 +14,10 @@ using MusztangSE_WebAPI.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 //Database
-builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
+//builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("Default"),
+        npgsqlOptions => npgsqlOptions.EnableRetryOnFailure()));
 // --- Controllers
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

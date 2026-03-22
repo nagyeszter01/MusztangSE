@@ -45,7 +45,7 @@ namespace MusztangSE_WebAPI.Controllers.Auth
             return Ok(token);
         }
 
-       [HttpPost("setpassword")]
+        [HttpPost("setpassword")]
         public async Task<IActionResult> SetPassword(SetPasswordDto dto)
         {
             if (dto.Password != dto.ConfirmPassword)
@@ -57,17 +57,12 @@ namespace MusztangSE_WebAPI.Controllers.Auth
             if (user == null)
                 return NotFound("Felhasználó nem található.");
 
-            if (user.EdzoId == null && user.TagId == null)
-                return BadRequest("A jelszó csak edzőknek vagy tagoknak állítható.");
-
-            // ← PasswordService.Hash-t használunk, nem PasswordHasher-t!
             user.JelszoHash = PasswordService.Hash(dto.Password);
             user.PasswordSetAt = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
             return Ok("Jelszó sikeresen beállítva.");
         }
-       
     
     }
 }

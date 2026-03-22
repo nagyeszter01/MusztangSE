@@ -36,7 +36,7 @@ namespace MusztangSE_WebAPI.Controllers.Admin
             var verseny = new Verseny
             {
                 Nev = dto.Nev,
-                Datum = dto.Datum,
+                Datum = DateTime.SpecifyKind(dto.Datum, DateTimeKind.Utc),
                 Hely = dto.Hely
             };
             _context.Versenyek.Add(verseny);
@@ -51,7 +51,7 @@ namespace MusztangSE_WebAPI.Controllers.Admin
             if (verseny == null) return NotFound();
 
             verseny.Nev = dto.Nev;
-            verseny.Datum = dto.Datum;
+            verseny.Datum = DateTime.SpecifyKind(dto.Datum, DateTimeKind.Utc);
             verseny.Hely = dto.Hely;
 
             await _context.SaveChangesAsync();

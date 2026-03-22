@@ -46,7 +46,7 @@ namespace MusztangSE_WebAPI.SERVICES
             var v = new Verseny
             {
                 Nev = dto.Nev,
-                Datum = dto.Datum,
+                Datum = DateTime.SpecifyKind(dto.Datum, DateTimeKind.Utc),
                 Hely = dto.Hely
             };
             _datacontext.Versenyek.Add(v);
