@@ -101,19 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function setActiveLink() {
-        const scrollPos = window.scrollY + headerHeight / 2;
-        for (const key in sections) {
-            const section = sections[key];
-            if (section && scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-                Object.values(menuLinks).forEach(link => link?.classList.remove('active'));
-                menuLinks[key]?.classList.add('active');
-            }
-        }
-    }
-
-    window.addEventListener('scroll', setActiveLink);
-    setActiveLink();
+  
 
     // Kijelentkezés
     document.getElementById('kijelentkezes-gomb')?.addEventListener('click', () => {

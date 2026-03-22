@@ -47,6 +47,15 @@ function getSzurt() {
     });
 }
 
+function szerepkorNev(szerep) {
+    switch(szerep) {
+        case 'edzo': return 'Edző';
+        case 'admin': return 'Admin';
+        case 'tag': return 'Tag';
+        default: return szerep;
+    }
+}
+
 function renderFelhasznalok() {
     const tbody = document.getElementById('felhasznalok-tbody');
     tbody.innerHTML = '';
@@ -62,7 +71,7 @@ function renderFelhasznalok() {
         tr.innerHTML = `
     <td data-label="Név" class="td-nev">${f.nev}</td>
     <td data-label="Azonosító" class="td-azonosito">${f.felhasznaloAzonosito}</td>
-    <td data-label="Szerepkör"><span class="szerepkor-badge szerepkor-${f.szerepkor}">${f.szerepkor}</span></td>
+    <td data-label="Szerepkör"><span class="szerepkor-badge szerepkor-${f.szerepkor}">${szerepkorNev(f.szerepkor)}</span></td>
     <td data-label="Jelszó beállítva">${f.passwordSetAt ? new Date(f.passwordSetAt).toLocaleDateString('hu-HU') : '—'}</td>
     <td data-label="Státusz">
         <span class="aktiv-badge ${f.aktiv ? 'aktiv' : 'inaktiv'}">
@@ -84,7 +93,6 @@ function renderFelhasznalok() {
         tbody.appendChild(tr);
     });
 }
-
 async function toggleAktiv(id) {
     try {
         const response = await fetch(`https://localhost:7104/api/admin/felhasznalok/${id}/aktiv`, {

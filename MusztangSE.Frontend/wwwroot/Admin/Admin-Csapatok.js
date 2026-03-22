@@ -81,7 +81,7 @@ function renderCsapatok() {
             <div class="edzo-fejlec">
                 <div class="edzo-info">
                     <span class="edzo-nev">${c.nev}</span>
-                    <span class="edzo-azonosito">${c.kategoria} · ${c.paros ? 'Páros' : 'Egyéni'} · Edző: ${c.edzo?.nev ?? '—'}</span>
+                    <span class="edzo-azonosito">${c.kategoria} · ${c.paros ? 'Páros' : 'Formáció'} · Edző: ${c.edzo?.nev ?? '—'}</span>
                 </div>
                 <div class="edzo-actions">
                     <button type="button" class="action-btn toggle-btn edzo-modosit-btn" data-id="${c.id}">Edző módosítása</button>

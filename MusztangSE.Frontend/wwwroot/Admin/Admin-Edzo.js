@@ -41,7 +41,7 @@ async function saveUjEdzo() {
     }
 
     try {
-        const response = await fetch('http://localhost:5217/api/admin/felhasznalok/edzo', {
+        const response = await fetch('https://localhost:7104/api/admin/felhasznalok/edzo', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

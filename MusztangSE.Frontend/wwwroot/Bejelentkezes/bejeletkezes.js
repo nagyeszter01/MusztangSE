@@ -15,6 +15,24 @@ function showMessage(message, isError) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+//Hamburger menü
+  const hamburger = document.getElementById('hamburger');
+  const mobilMenu = document.getElementById('mobil-menu');
+
+  if (hamburger && mobilMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('aktiv');
+      mobilMenu.classList.toggle('nyitva');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobilMenu.contains(e.target)) {
+        hamburger.classList.remove('aktiv');
+        mobilMenu.classList.remove('nyitva');
+      }
+    });
+  }
+  
   document.getElementById('jelszo').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       document.getElementById('bejelentkezes-gomb').click();

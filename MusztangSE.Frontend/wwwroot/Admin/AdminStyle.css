@@ -34,33 +34,119 @@ header {
     height: 60px;
     border-radius: 30px;
 }
-
 .nav-center {
     position: absolute;
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
     background: rgba(50,50,50,0.6);
     border-radius: 30px;
     padding: 10px 30px;
     backdrop-filter: blur(10px);
+    white-space: nowrap;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: 500;
     font-family: 'IBM Plex Serif', serif;
-    transition: color 0.2s;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
 }
 
-nav a:hover { color: #ff3b3b; }
+nav a:hover {
+    color: #ff3b3b;
+    background: rgba(255,59,59,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255,59,59,0.3);
+}
 
 nav a.active {
     color: #ff3b3b;
-    border-bottom: 2px solid #ff3b3b;
-    padding-bottom: 4px;
+    background: rgba(255,59,59,0.1);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 32px;
+    padding: 8px;
+    z-index: 200;
+}
+
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger.aktiv span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.aktiv span:nth-child(2) { opacity: 0; }
+.hamburger.aktiv span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+.mobil-menu {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15,15,15,0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    flex-direction: column;
+    padding: 20px;
+    gap: 8px;
+    z-index: 99;
+    min-width: 220px;
+}
+
+.mobil-menu.nyitva { display: flex; }
+
+.mobil-menu a {
+    color: white;
+    text-decoration: none;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1.1rem;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.mobil-menu a:hover { background: rgba(255,59,59,0.1); color: #ff3b3b; }
+
+.mobil-menu button {
+    background: rgba(255,39,44,0.1);
+    border: 1px solid rgba(255,39,44,0.3);
+    color: #ff4d4d;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.mobil-menu button:hover { background: rgba(255,39,44,0.2); }
+
+@media (max-width: 900px) {
+    .nav-center { display: none; }
+    .kijelentkezes { display: none; }
+    .hamburger { display: flex; }
 }
 
 .kijelentkezes {
@@ -252,77 +338,6 @@ nav a.active {
     margin-top: 4px;
 }
 
-/* HAMBURGER */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 32px;
-    padding: 8px;
-    z-index: 200;
-}
-
-.hamburger span {
-    display: block;
-    width: 26px;
-    height: 2px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.3s;
-}
-
-.hamburger.aktiv span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.hamburger.aktiv span:nth-child(2) { opacity: 0; }
-.hamburger.aktiv span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-.mobil-menu {
-    display: none;
-    position: fixed;
-    top: 100px;
-    left: 0;
-    right: 0;
-    background: rgba(15,15,15,0.98);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    flex-direction: column;
-    padding: 20px;
-    gap: 4px;
-    z-index: 99;
-}
-
-.mobil-menu.nyitva { display: flex; }
-
-.mobil-menu a {
-    color: white;
-    text-decoration: none;
-    font-family: 'IBM Plex Serif', serif;
-    font-size: 1rem;
-    padding: 14px 16px;
-    border-radius: 10px;
-    transition: background 0.2s;
-}
-
-.mobil-menu a:hover { background: rgba(255,255,255,0.06); }
-.mobil-menu a.active { color: #ff3b3b; }
-
-.mobil-menu button {
-    background: rgba(255,39,44,0.1);
-    border: 1px solid rgba(255,39,44,0.3);
-    color: #ff4d4d;
-    border-radius: 10px;
-    padding: 14px 16px;
-    font-family: 'IBM Plex Serif', serif;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: left;
-    margin-top: 8px;
-    transition: background 0.2s;
-}
-
-.mobil-menu button:hover { background: rgba(255,39,44,0.2); }
 
 /* RESZPONZÍV */
 @media (max-width: 1024px) {

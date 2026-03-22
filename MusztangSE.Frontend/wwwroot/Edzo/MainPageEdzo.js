@@ -158,22 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const kezdolapLink = document.querySelector('a[href="/Edzo/MainPageEdzo.html"]');
     const versenyekLink = document.querySelector('a[href="/Edzo/MainPageEdzo.html#versenyek"]');
 
-    function setActiveLink() {
-        if (!kezdolapSection || !versenyekSection) return;
-
-        const versenyekRect = versenyekSection.getBoundingClientRect();
-
-        if (versenyekRect.top <= headerHeight + 30) {
-            kezdolapLink?.classList.remove('active');
-            versenyekLink?.classList.add('active');
-        } else {
-            kezdolapLink?.classList.add('active');
-            versenyekLink?.classList.remove('active');
-        }
-    }
-
-    window.addEventListener('scroll', setActiveLink);
-    setActiveLink();
+  
 
     document.getElementById('kijelentkezes-gomb')?.addEventListener('click', () => {
         localStorage.clear();
