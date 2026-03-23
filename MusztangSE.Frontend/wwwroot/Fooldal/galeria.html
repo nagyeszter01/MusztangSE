@@ -25,7 +25,7 @@
 
         .galeria-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); 
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             width: 100%;
             max-width: 1400px;
@@ -40,22 +40,22 @@
             cursor: pointer;
         }
 
-        .galeria-item img {
-            width: 100%;
-            height: 300px; 
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s;
-        }
+            .galeria-item img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.3s;
+            }
 
-        .galeria-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
-        }
+            .galeria-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+            }
 
-        .galeria-item:hover img {
-            transform: scale(1.05);
-        }
+                .galeria-item:hover img {
+                    transform: scale(1.05);
+                }
 
         .back-btn {
             margin-top: 50px;
@@ -71,9 +71,115 @@
             text-decoration: none;
         }
 
-        .back-btn:hover {
-            background: #ff3b3b;
-            transform: scale(1.05);
+            .back-btn:hover {
+                background: #ff3b3b;
+                transform: scale(1.05);
+            }
+
+        /* ── LIGHTBOX ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.25s ease;
+        }
+
+            .lightbox-overlay.active {
+                display: flex;
+            }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            object-fit: contain;
+            animation: zoomIn 0.25s ease;
+            user-select: none;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.85);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 28px;
+            font-size: 44px;
+            color: #fff;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s, transform 0.2s;
+            z-index: 10000;
+            user-select: none;
+        }
+
+            .lightbox-close:hover {
+                color: red;
+                transform: scale(1.15);
+            }
+
+        .lightbox-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 52px;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            transition: background 0.2s, transform 0.2s;
+            z-index: 10000;
+            user-select: none;
+            line-height: 1;
+        }
+
+            .lightbox-arrow:hover {
+                background: rgba(255, 0, 0, 0.5);
+                transform: translateY(-50%) scale(1.1);
+            }
+
+        .lightbox-prev {
+            left: 16px;
+        }
+
+        .lightbox-next {
+            right: 16px;
+        }
+
+        .lightbox-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #aaa;
+            font-size: 15px;
+            font-family: 'IBM Plex Serif', serif;
+            letter-spacing: 1px;
         }
 
         /* Reszponzív */
@@ -110,6 +216,11 @@
                 font-size: 16px;
                 padding: 10px 20px;
             }
+
+            .lightbox-arrow {
+                font-size: 36px;
+                padding: 8px 13px;
+            }
         }
     </style>
 </head>
@@ -118,7 +229,7 @@
     <section class="galeria-section">
         <h1 class="galeria-title">Galéria</h1>
 
-        <div class="galeria-container">
+        <div class="galeria-container" id="galeriaContainer">
             <div class="galeria-item"><img src="Galeriakep/kep1.jpg" alt="Kép 1"></div>
             <div class="galeria-item"><img src="Galeriakep/kep2.jpg" alt="Kép 2"></div>
             <div class="galeria-item"><img src="Galeriakep/kep3.jpg" alt="Kép 3"></div>
@@ -175,6 +286,81 @@
 
         <a href="/Fooldal/fooldal.html" class="back-btn">Vissza a főoldalra</a>
     </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-arrow lightbox-prev" id="lightboxPrev">&#8249;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <span class="lightbox-arrow lightbox-next" id="lightboxNext">&#8250;</span>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
+    <script>
+        const images   = Array.from(document.querySelectorAll('.galeria-item img'));
+        const overlay  = document.getElementById('lightbox');
+        const lbImg    = document.getElementById('lightboxImg');
+        const lbClose  = document.getElementById('lightboxClose');
+        const lbPrev   = document.getElementById('lightboxPrev');
+        const lbNext   = document.getElementById('lightboxNext');
+        const lbCount  = document.getElementById('lightboxCounter');
+        let current    = 0;
+
+        function openLightbox(index) {
+            current = index;
+            lbImg.src = images[current].src;
+            lbImg.alt = images[current].alt;
+            lbCount.textContent = (current + 1) + ' / ' + images.length;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showPrev() {
+            current = (current - 1 + images.length) % images.length;
+            lbImg.style.animation = 'none';
+            lbImg.offsetHeight; // reflow
+            lbImg.style.animation = '';
+            lbImg.src = images[current].src;
+            lbCount.textContent = (current + 1) + ' / ' + images.length;
+        }
+
+        function showNext() {
+            current = (current + 1) % images.length;
+            lbImg.style.animation = 'none';
+            lbImg.offsetHeight; // reflow
+            lbImg.style.animation = '';
+            lbImg.src = images[current].src;
+            lbCount.textContent = (current + 1) + ' / ' + images.length;
+        }
+
+        // Kép kattintás
+        images.forEach((img, i) => {
+            img.parentElement.addEventListener('click', () => openLightbox(i));
+        });
+
+        // Gombok
+        lbClose.addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', showPrev);
+        lbNext.addEventListener('click', showNext);
+
+        // Háttérre kattintva zárja be
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeLightbox();
+        });
+
+        // Billentyűzet: nyilak + ESC
+        document.addEventListener('keydown', (e) => {
+            if (!overlay.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft')  showPrev();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'Escape')     closeLightbox();
+        });
+    </script>
 
 </body>
 </html>
