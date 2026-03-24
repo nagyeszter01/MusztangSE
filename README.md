@@ -1,7 +1,7 @@
 # Musztangse vizsgaremek
 
-Ez a repository a Musztangse elnevezésű vizsgaremek projektet tartalmazza.
+Ez a repository a MusztangSe elnevezésű vizsgaremek projektet tartalmazza.
 
-# # Csapattagok
+# Csapattagok
 - Nagy Eszter Dóra
 - Zsitva Dániel Béla
