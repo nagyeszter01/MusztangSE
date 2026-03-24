@@ -12,12 +12,52 @@ function showMessage(id, message, isError) {
     el.className = 'uzenet ' + (isError ? 'hiba' : 'siker');
     setTimeout(() => { el.className = 'uzenet'; el.textContent = ''; }, 4000);
 }
+function customConfirm(message) {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('confirm-modal');
+        const text = document.getElementById('confirm-text');
+        const igen = document.getElementById('confirm-igen');
+        const nem = document.getElementById('confirm-nem');
 
+        text.textContent = message;
+        modal.style.display = 'flex';
+
+        function cleanup() {
+            modal.style.display = 'none';
+            igen.removeEventListener('click', onYes);
+            nem.removeEventListener('click', onNo);
+        }
+
+        function onYes() {
+            cleanup();
+            resolve(true);
+        }
+
+        function onNo() {
+            cleanup();
+            resolve(false);
+        }
+
+        igen.addEventListener('click', onYes);
+        nem.addEventListener('click', onNo);
+    });
+}
 function generalAzonosito(inputId) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let result = '';
     for (let i = 0; i < 8; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
     document.getElementById(inputId).value = result;
+}
+function getSajatId() {
+    try {
+        const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+        const payload = JSON.parse(decodeURIComponent(
+            atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
+        ));
+        return parseInt(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
+    } catch {
+        return null;
+    }
 }
 
 async function loadFelhasznalok() {
@@ -78,18 +118,27 @@ function renderFelhasznalok() {
             ${f.aktiv ? 'Aktív' : 'Inaktív'}
         </span>
     </td>
-    <td class="td-actions">
+ <td class="td-actions">
+    ${f.szerepkor !== 'admin' ? `
         <button type="button" class="action-btn toggle-btn" data-id="${f.id}">
             ${f.aktiv ? 'Deaktiválás' : 'Aktiválás'}
         </button>
         <button type="button" class="action-btn delete-btn" data-id="${f.id}">
             Törlés
         </button>
-    </td>
+    ` : f.id === getSajatId() ? `
+        <button type="button" class="action-btn delete-btn" data-id="${f.id}">
+            Saját fiók törlése
+        </button>
+    ` : '<span style="color:rgba(255,255,255,0.3); font-size:0.82rem">—</span>'}
+</td>
 `;
-        tr.querySelector('.toggle-btn').addEventListener('click', () => toggleAktiv(f.id));
-        tr.querySelector('.delete-btn').addEventListener('click', () => deleteFelhasznalo(f.id, f.nev));
-
+        if (f.szerepkor !== 'admin') {
+            tr.querySelector('.toggle-btn').addEventListener('click', () => toggleAktiv(f.id));
+            tr.querySelector('.delete-btn').addEventListener('click', () => deleteFelhasznalo(f.id, f.nev));
+        } else if (f.id === getSajatId()) {
+            tr.querySelector('.delete-btn').addEventListener('click', () => deleteFelhasznalo(f.id, f.nev));
+        }
         tbody.appendChild(tr);
     });
 }
@@ -109,12 +158,15 @@ async function toggleAktiv(id) {
 }
 
 async function deleteFelhasznalo(id, nev) {
-    if (!confirm(`Biztosan törlöd: ${nev}?`)) return;
+    const ok = await customConfirm(`Biztosan törlöd: ${nev}?`);
+    if (!ok) return;
+
     try {
         const response = await fetch(`https://localhost:7104/api/admin/felhasznalok/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
+
         if (response.ok) {
             showMessage('fo-uzenet', 'Felhasználó törölve!', false);
             loadFelhasznalok();

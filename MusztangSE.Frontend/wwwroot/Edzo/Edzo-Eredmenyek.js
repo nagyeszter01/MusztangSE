@@ -15,6 +15,47 @@ function showMessage(id, message, isError) {
     setTimeout(() => { el.className = 'uzenet'; el.textContent = ''; }, 4000);
 }
 
+function customConfirm(message) {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('confirm-modal');
+        const text = document.getElementById('confirm-text');
+        const igen = document.getElementById('confirm-igen');
+        const nem = document.getElementById('confirm-nem');
+
+        text.textContent = message;
+        modal.style.display = 'flex';
+
+        function cleanup() {
+            modal.style.display = 'none';
+            igen.removeEventListener('click', onYes);
+            nem.removeEventListener('click', onNo);
+            document.removeEventListener('keydown', onEsc);
+        }
+
+        function onYes() {
+            cleanup();
+            resolve(true);
+        }
+
+        function onNo() {
+            cleanup();
+            resolve(false);
+        }
+
+        function onEsc(e) {
+            if (e.key === 'Escape') onNo();
+        }
+
+        igen.addEventListener('click', onYes);
+        nem.addEventListener('click', onNo);
+        document.addEventListener('keydown', onEsc);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) onNo();
+        });
+    });
+}
+
 function helyezesJelveny(h) {
     if (!h) return '—';
     if (h === 1) return '🥇 1.';
@@ -195,7 +236,9 @@ async function saveEdit() {
 }
 
 async function deleteEredmeny(id) {
-    if (!confirm('Biztosan törlöd az eredményt?')) return;
+
+    const ok = await customConfirm('Biztosan törlöd az eredményt?');
+    if (!ok) return;
     try {
         const response = await fetch(`https://localhost:7104/api/coach/eredmenyek/${id}`, {
             method: 'DELETE',

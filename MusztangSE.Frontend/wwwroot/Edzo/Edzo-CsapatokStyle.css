@@ -313,6 +313,97 @@ nav a.active {
 
 .archiv-vissza-btn:hover { background: rgba(77,255,145,0.2); }
 
+.csapat-nyil {
+    transition: transform 0.3s;
+}
+
+.csapat-nyil.nyitva {
+    transform: rotate(180deg);
+}
+
+
+/* MODAL */
+.modal {
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-box {
+    animation: scaleIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 36px 40px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-title {
+    font-family: 'Goldman', cursive;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.modal-szoveg {
+    color: rgba(255,255,255,0.7);
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.modal-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.modal-gombok {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+
+.torol-piros {
+    background: #c0392b !important;
+}
+
+.torol-piros:hover {
+    background: #a93226 !important;
+}
+
+.torol-btn-piros {
+    background: rgba(255,39,44,0.1);
+    border-color: rgba(255,39,44,0.3);
+    color: #ff4d4d;
+}
+
 /* FOOTER */
 .site-footer { background: #111; padding: 30px 20px; text-align: center; color: white; font-family: 'IBM Plex Serif', serif; }
 .footer-title { font-weight: bold; }

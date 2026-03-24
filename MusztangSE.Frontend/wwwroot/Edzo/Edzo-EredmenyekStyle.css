@@ -509,6 +509,73 @@ nav a.active {
     overflow-y: auto;
 }
 
+/* MODAL */
+.modal {
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-box {
+    animation: scaleIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 36px 40px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-title {
+    font-family: 'Goldman', cursive;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.modal-szoveg {
+    color: rgba(255,255,255,0.7);
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.modal-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.modal-gombok {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
 /* FOOTER */
 .site-footer {
     background: #0a0a0a;
