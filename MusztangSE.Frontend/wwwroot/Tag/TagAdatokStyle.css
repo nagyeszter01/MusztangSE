@@ -87,21 +87,19 @@ nav a.active {
 .hamburger.aktiv span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.aktiv span:nth-child(2) { opacity: 0; }
 .hamburger.aktiv span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
 .mobil-menu {
     display: none;
     position: fixed;
     top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     background: rgba(15,15,15,0.98);
     backdrop-filter: blur(20px);
-    border-radius: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     flex-direction: column;
     padding: 20px;
-    gap: 8px;
+    gap: 4px;
     z-index: 99;
-    min-width: 220px;
 }
 
 .mobil-menu.nyitva { display: flex; }
@@ -110,25 +108,25 @@ nav a.active {
     color: white;
     text-decoration: none;
     font-family: 'IBM Plex Serif', serif;
-    font-size: 1.1rem;
-    padding: 12px 16px;
+    font-size: 1rem;
+    padding: 14px 16px;
     border-radius: 10px;
-    transition: all 0.3s;
-    text-align: center;
+    transition: background 0.2s;
 }
 
-.mobil-menu a:hover { background: rgba(255,59,59,0.1); color: #ff3b3b; }
+.mobil-menu a:hover { background: rgba(255,255,255,0.06); }
+.mobil-menu a.active { color: #ff3b3b; }
 
 .mobil-menu button {
     background: rgba(255,39,44,0.1);
     border: 1px solid rgba(255,39,44,0.3);
     color: #ff4d4d;
     border-radius: 10px;
-    padding: 12px 16px;
+    padding: 14px 16px;
     font-family: 'IBM Plex Serif', serif;
     font-size: 1rem;
     cursor: pointer;
-    text-align: center;
+    text-align: left;
     margin-top: 8px;
     transition: background 0.2s;
 }
@@ -245,19 +243,23 @@ nav a.active {
 }
 
 /* EDIT MODE */
-.edit-mode input {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.2);
+input.edit-mode {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 8px;
     color: white;
-    padding: 8px 12px;
+    padding: 9px 13px;
     font-family: 'IBM Plex Serif', serif;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     text-align: right;
     width: 100%;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background 0.2s;
 }
-.edit-mode input:focus { outline: none; border-color: rgba(255,255,255,0.5); }
+input.edit-mode:focus {
+    outline: none;
+    border-color: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.09) !important;
+}
 
 /* GOMBOK */
 .button-group {
@@ -277,9 +279,10 @@ nav a.active {
     padding: 13px;
     font-family: 'IBM Plex Serif', serif;
     font-size: 0.95rem;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.01em;
 }
 .box-button:hover { background-color: #e0e0e0; transform: translateY(-1px); }
 .box-button:active { transform: translateY(0); }
@@ -292,8 +295,13 @@ nav a.active {
 }
 #megse-gomb:hover { background-color: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.4); }
 
-#mentes-gomb { background-color: #c8ff00; color: #1e1e1e; }
-#mentes-gomb:hover { background-color: #d4ff33; }
+#mentes-gomb {
+    background-color: white;
+    color: #111;
+}
+#mentes-gomb:hover {
+    background-color: #e8e8e8;
+}
 
 /* ÜZENET */
 .uzenet {
