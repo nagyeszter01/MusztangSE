@@ -288,6 +288,28 @@ nav a.active {
 .footer-title { color: white; font-size: 0.95rem; font-weight: 600; }
 .footer-subtitle { color: #9a9a9a; font-size: 0.85rem; margin-top: 4px; }
 
+
+.footer-emails {
+    margin-top: 10px;
+}
+
+    .footer-emails p {
+        font-size: 0.85rem;
+        color: #9a9a9a;
+        margin: 4px 0;
+    }
+
+    .footer-emails a {
+        color: #ff4d4d;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+        .footer-emails a:hover {
+            color: #ffffff;
+        }
+
+
 /* RESZPONZÍV */
 @media (max-width: 900px) {
     .nav-center { display: none; }
