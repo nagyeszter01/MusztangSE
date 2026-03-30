@@ -204,7 +204,7 @@ async function deleteTag(id, nev) {
         } else {
             showMessage('fo-uzenet', 'Hiba a törlés során.', true);
         }
-    } catch (err) {
+    } catch (err) {!
         showMessage('fo-uzenet', 'Kapcsolódási hiba.', true);
     }
 }

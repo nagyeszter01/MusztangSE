@@ -389,6 +389,13 @@ nav a.active {
 
 .form-gombok { display: flex; gap: 12px; flex-wrap: wrap; }
 
+#uj-tag-form,
+#edit-form,
+#uj-edzo-form {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
 /* CSAPAT VÁLASZTÓ */
 .csapat-valaszto-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 #uj-csapat-lista { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; width: 100%; }
