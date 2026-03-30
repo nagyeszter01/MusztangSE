@@ -84,7 +84,15 @@ header {
         border-radius: 20px;
         transition: all 0.3s;
     }
+        .nav-center a:visited {
+            color: white;
+            background: transparent;
+        }
 
+        .nav-center a:focus {
+            outline: none;
+            background: transparent;
+        }
         .nav-center a:hover,
         .nav-center a.active {
             color: #ff3b3b;
@@ -103,7 +111,8 @@ header {
     z-index: 1102;
     position: absolute;
     right: 20px;
-    top: 32px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
     .hamburger span {
@@ -132,35 +141,56 @@ header {
     display: none;
     position: fixed;
     top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     background: rgba(15,15,15,0.98);
     backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     flex-direction: column;
     padding: 20px;
-    gap: 8px;
+    gap: 4px;
     z-index: 999;
-    border-radius: 15px;
 }
 
-    .mobil-menu.nyitva {
-        display: flex;
-    }
+.mobil-menu.nyitva {
+   display: flex;
+}
 
-    .mobil-menu a {
-        color: white;
-        text-decoration: none;
-        font-size: 1.1rem;
-        padding: 12px 16px;
+.mobil-menu a {
+   color: white;
+   text-decoration: none;
+   font-family: 'IBM Plex Serif', serif;
+   font-size: 1rem;
+   padding: 14px 16px;
+   border-radius: 10px;
+   transition: background 0.2s;
+}
+
+.mobil-menu a:hover {
+   background: rgba(255,255,255,0.06);
+}
+
+.mobil-menu a.active {
+    color: #ff3b3b;
+}
+
+    .mobil-menu button {
+        background: rgba(255,39,44,0.1);
+        border: 1px solid rgba(255,39,44,0.3);
+        color: #ff4d4d;
         border-radius: 10px;
-        transition: all 0.3s;
-        text-align: center;
+        padding: 14px 16px;
+        font-family: 'IBM Plex Serif', serif;
+        font-size: 1rem;
+        cursor: pointer;
+        text-align: left;
+        margin-top: 8px;
+        transition: background 0.2s;
     }
 
-        .mobil-menu a:hover {
-            background: rgba(255,59,59,0.1);
+        .mobil-menu button:hover {
+            background: rgba(255,39,44,0.2);
         }
-
 /* Reszponzív */
 @media (max-width: 900px) {
     .nav-center {
@@ -462,6 +492,30 @@ header {
 
 
 
+.footer-emails {
+    margin-top: 10px;
+}
+
+    .footer-emails p {
+        font-size: 0.85rem;
+        color: #9a9a9a;
+        margin: 4px 0;
+    }
+
+    .footer-emails a {
+        color: #ff4d4d;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+        .footer-emails a:hover {
+            color: #ffffff;
+        }
+
+
+
+
+
 /* Helyszinek szekció */
 
 .helyszinek-section {
@@ -684,6 +738,108 @@ header {
 @media (max-width: 900px) {
     .rolunk-tartalom {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .section {
+        padding: 100px 24px;
+    }
+
+    .helyszinek-section {
+        padding: 100px 24px;
+    }
+
+    .rolunk-tartalom {
+        grid-template-columns: 1fr;
+    }
+
+    .rolunkcim {
+        font-size: 36px;
+    }
+
+    .rolunk-kep img {
+        width: 100%;
+    }
+
+    .helyszin-blokk {
+        flex-direction: column;
+        gap: 30px;
+        padding: 40px 0;
+    }
+
+    .edzok-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edzok-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 30px 20px;
+    }
+
+    .eredmenyek-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 90px 16px 60px;
+    }
+
+    .helyszinek-section {
+        padding: 90px 16px 60px;
+    }
+
+    #cim {
+        font-size: 26px;
+        text-align: center;
+        padding: 0 16px;
+    }
+
+    .rolunkcim {
+        font-size: 28px;
+    }
+
+    .rolunk-szoveg p {
+        font-size: 15px;
+    }
+
+    .hely-cim {
+        font-size: 28px;
+    }
+
+    .helyszin-szoveg h3 {
+        font-size: 22px;
+    }
+
+    .helyszin-szoveg p {
+        font-size: 15px;
+    }
+
+    .edzok-cim {
+        font-size: 28px;
+    }
+
+    .edzo-kartya {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .eredmenyek-cim {
+        font-size: 28px;
+    }
+
+    .eredmeny-kartya {
+        height: auto;
+        min-height: 130px;
+    }
+
+    .edzok-footer {
+        padding: 24px 16px;
     }
 }
 

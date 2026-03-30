@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -76,11 +77,20 @@ public class AdminTagokController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var felhasznalo = await _context.Felhasznalo
-            .Include(f => f.Edzo)
+            .Include(f => f.Szerepkor)
             .FirstOrDefaultAsync(f => f.Id == id);
 
         if (felhasznalo == null)
             return NotFound();
+
+        // Admin nem törölhet másik admint
+        if (felhasznalo.Szerepkor?.Nev == "admin")
+        {
+            // Saját fiókját törölheti
+            var sajtaIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(sajtaIdStr, out int sajatId) || felhasznalo.Id != sajatId)
+                return BadRequest("Admin felhasználót nem lehet törölni.");
+        }
 
         _context.Felhasznalo.Remove(felhasznalo);
         await _context.SaveChangesAsync();

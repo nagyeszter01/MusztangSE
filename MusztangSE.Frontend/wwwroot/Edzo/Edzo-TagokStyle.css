@@ -92,16 +92,15 @@ nav a.active {
     display: none;
     position: fixed;
     top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     background: rgba(15,15,15,0.98);
     backdrop-filter: blur(20px);
-    border-radius: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     flex-direction: column;
     padding: 20px;
-    gap: 8px;
+    gap: 4px;
     z-index: 99;
-    min-width: 220px;
 }
 
 .mobil-menu.nyitva { display: flex; }
@@ -110,25 +109,25 @@ nav a.active {
     color: white;
     text-decoration: none;
     font-family: 'IBM Plex Serif', serif;
-    font-size: 1.1rem;
-    padding: 12px 16px;
+    font-size: 1rem;
+    padding: 14px 16px;
     border-radius: 10px;
-    transition: all 0.3s;
-    text-align: center;
+    transition: background 0.2s;
 }
 
-.mobil-menu a:hover { background: rgba(255,59,59,0.1); color: #ff3b3b; }
+.mobil-menu a:hover { background: rgba(255,255,255,0.06); }
+.mobil-menu a.active { color: #ff3b3b; }
 
 .mobil-menu button {
     background: rgba(255,39,44,0.1);
     border: 1px solid rgba(255,39,44,0.3);
     color: #ff4d4d;
     border-radius: 10px;
-    padding: 12px 16px;
+    padding: 14px 16px;
     font-family: 'IBM Plex Serif', serif;
     font-size: 1rem;
     cursor: pointer;
-    text-align: center;
+    text-align: left;
     margin-top: 8px;
     transition: background 0.2s;
 }
@@ -445,11 +444,138 @@ nav a.active {
     color: #4dff91; background: rgba(77,255,145,0.1);
     border: 1px solid rgba(77,255,145,0.3); display: block;
 }
+/* IGEN – veszélyes (törlés) */
+.confirm-igen {
+    background: linear-gradient(135deg, #ff3b3b, #c0392b);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 59, 59, 0.25);
+}
+
+.confirm-igen:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 59, 59, 0.4);
+    background: linear-gradient(135deg, #ff1f1f, #a93226);
+}
+
+/* NEM – visszalépés (semleges) */
+.confirm-nem {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(6px);
+}
+
+.confirm-nem:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-1px);
+}
+/* MODAL */
+.modal {
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-box {
+    animation: scaleIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 36px 40px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-title {
+    font-family: 'Goldman', cursive;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.modal-szoveg {
+    color: rgba(255,255,255,0.7);
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.modal-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.modal-gombok {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+.modal-gombok button {
+    border: none;
+    cursor: pointer;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-family: 'Goldman', cursive;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+
 
 /* FOOTER */
 .site-footer { background: #111; padding: 30px 20px; text-align: center; color: white; font-family: 'IBM Plex Serif', serif; }
 .footer-title { font-weight: bold; }
 .footer-subtitle { font-size: 0.9rem; opacity: 0.7; }
+
+
+.footer-emails {
+    margin-top: 10px;
+}
+
+    .footer-emails p {
+        font-size: 0.85rem;
+        color: #9a9a9a;
+        margin: 4px 0;
+    }
+
+    .footer-emails a {
+        color: #ff4d4d;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+        .footer-emails a:hover {
+            color: #ffffff;
+        }
+
+
 
 /* RESZPONZÍV */
 @media (max-width: 900px) {

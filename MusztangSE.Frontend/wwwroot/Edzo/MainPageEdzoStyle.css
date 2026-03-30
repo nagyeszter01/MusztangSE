@@ -98,52 +98,7 @@ nav a.active {
 .hamburger.aktiv span:nth-child(2) { opacity: 0; }
 .hamburger.aktiv span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-.mobil-menu {
-    display: none;
-    position: fixed;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15,15,15,0.98);
-    backdrop-filter: blur(20px);
-    border-radius: 15px;
-    flex-direction: column;
-    padding: 20px;
-    gap: 8px;
-    z-index: 99;
-    min-width: 220px;
-}
 
-.mobil-menu.nyitva { display: flex; }
-
-.mobil-menu a {
-    color: white;
-    text-decoration: none;
-    font-family: 'IBM Plex Serif', serif;
-    font-size: 1.1rem;
-    padding: 12px 16px;
-    border-radius: 10px;
-    transition: all 0.3s;
-    text-align: center;
-}
-
-.mobil-menu a:hover { background: rgba(255,59,59,0.1); color: #ff3b3b; }
-
-.mobil-menu button {
-    background: rgba(255,39,44,0.1);
-    border: 1px solid rgba(255,39,44,0.3);
-    color: #ff4d4d;
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-family: 'IBM Plex Serif', serif;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 8px;
-    transition: background 0.2s;
-}
-
-.mobil-menu button:hover { background: rgba(255,39,44,0.2); }
 
 @media (max-width: 900px) {
     .nav-center { display: none; }
@@ -403,6 +358,29 @@ nav a.active {
 .site-footer { background: #111; padding: 30px 20px; text-align: center; color: white; font-family: 'IBM Plex Serif', serif; }
 .footer-title { font-weight: bold; }
 .footer-subtitle { font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
+
+
+.footer-emails {
+    margin-top: 10px;
+}
+
+    .footer-emails p {
+        font-size: 0.85rem;
+        color: #9a9a9a;
+        margin: 4px 0;
+    }
+
+    .footer-emails a {
+        color: #ff4d4d;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+        .footer-emails a:hover {
+            color: #ffffff;
+        }
+
+
 
 /* RESZPONZÍV */
 @media (max-width: 900px) {

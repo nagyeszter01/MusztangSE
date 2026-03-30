@@ -58,7 +58,7 @@
             </div>
             <div class="edit-mezo">
                 <label>Kategória *</label>
-                <input id="csapat-kategoria" type="text" placeholder="pl. U18, Felnőtt">
+                <input id="csapat-kategoria" type="text" placeholder="pl. Ladies dance kisformáció">
             </div>
             <div class="edit-mezo checkbox-mezo">
                 <label>
@@ -77,10 +77,27 @@
     <div id="csapatok-container"></div>
 </section>
 
+<div id="confirm-modal" class="modal" style="display:none;">
+    <div class="modal-box">
+        <div class="modal-title">Megerősítés</div>
+        <div class="modal-szoveg" id="confirm-text"></div>
+
+        <div class="modal-gombok">
+            <button id="confirm-igen" class="confirm-igen">Igen</button>
+            <button id="confirm-nem" class="confirm-nem">Mégse</button>
+        </div>
+    </div>
+</div>
+
 <footer class="site-footer">
     <div class="footer-content">
         <p class="footer-title">Musztáng SE – edzői felület</p>
         <p class="footer-subtitle">Fejlesztve vizsgafeladat keretében</p>
+
+        <div class="footer-emails">
+            <p>Elérhetőségek: <a href="" style="color: white;">info@mustangse.hu</a></p>
+        </div>
+
     </div>
 </footer>
 

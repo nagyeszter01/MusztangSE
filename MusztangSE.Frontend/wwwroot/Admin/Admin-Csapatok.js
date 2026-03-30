@@ -13,6 +13,46 @@ function showMessage(id, message, isError) {
     el.className = 'uzenet ' + (isError ? 'hiba' : 'siker');
     setTimeout(() => { el.className = 'uzenet'; el.textContent = ''; }, 4000);
 }
+function customConfirm(message) {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('confirm-modal');
+        const text = document.getElementById('confirm-text');
+        const igen = document.getElementById('confirm-igen');
+        const nem = document.getElementById('confirm-nem');
+
+        text.textContent = message;
+        modal.style.display = 'flex';
+
+        function cleanup() {
+            modal.style.display = 'none';
+            igen.removeEventListener('click', onYes);
+            nem.removeEventListener('click', onNo);
+            document.removeEventListener('keydown', onEsc);
+        }
+
+        function onYes() {
+            cleanup();
+            resolve(true);
+        }
+
+        function onNo() {
+            cleanup();
+            resolve(false);
+        }
+
+        function onEsc(e) {
+            if (e.key === 'Escape') onNo();
+        }
+
+        igen.addEventListener('click', onYes);
+        nem.addEventListener('click', onNo);
+        document.addEventListener('keydown', onEsc);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) onNo();
+        });
+    });
+}
 
 async function loadAll() {
     try {
@@ -187,7 +227,8 @@ async function updateEdzo(csapatId) {
 }
 
 async function deleteCsapat(id, nev) {
-    if (!confirm(`Biztosan törlöd a(z) "${nev}" csapatot?`)) return;
+    const ok = await customConfirm(`Biztosan törlöd a(z) "${nev}" csapatot?`);
+    if (!ok) return;
     try {
         const response = await fetch(`https://localhost:7104/api/admin/csapatok/${id}`, {
             method: 'DELETE',
