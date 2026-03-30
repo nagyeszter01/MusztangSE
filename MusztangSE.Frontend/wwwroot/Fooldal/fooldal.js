@@ -1,30 +1,49 @@
 ﻿const szoveg = "MusztángSE";
 const cim = document.getElementById("cim");
-
 let index = 0;
+let torol = false;
 
-function kiir() {
+function animacio() {
     if (!cim) return;
-    if (index >= szoveg.length) return;
 
-    const karakter = szoveg[index];
-
-    if (karakter === " ") {
-        cim.innerHTML += " ";
-        index++;
-        kiir();
-        return;
+    if (!torol) {
+        // Gépelés fázis
+        if (index < szoveg.length) {
+            const karakter = szoveg[index];
+            if (karakter === " ") {
+                cim.innerHTML += " ";
+                index++;
+                animacio();
+                return;
+            }
+            const osztaly = index < 8 ? "feher" : "piros";
+            cim.innerHTML += `<span class="${osztaly}">${karakter}</span>`;
+            index++;
+            setTimeout(animacio, 180);
+        } else {
+            // Tele van – várunk, majd törlés indul
+            setTimeout(() => {
+                torol = true;
+                animacio();
+            }, 1500);
+        }
+    } else {
+        // Törlés fázis
+        const spanok = cim.querySelectorAll("span");
+        if (spanok.length > 0) {
+            spanok[spanok.length - 1].remove();
+            setTimeout(animacio, 100);
+        } else {
+            // Üres – várunk, majd gépelés indul újra
+            cim.innerHTML = "";
+            index = 0;
+            torol = false;
+            setTimeout(animacio, 800);
+        }
     }
-
-    const osztaly = index < 8 ? "feher" : "piros";
-
-    cim.innerHTML += `<span class="${osztaly}">${karakter}</span>`;
-
-    index++;
-    setTimeout(kiir, 180);
 }
 
-window.addEventListener("load", kiir);
+window.addEventListener("load", animacio);
 
 document.addEventListener('DOMContentLoaded', () => {
 
