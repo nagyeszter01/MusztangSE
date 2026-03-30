@@ -36,7 +36,8 @@ namespace MusztangSE_WebAPI.Controllers.Auth
 
             bool egyezik = (valasztottSzerep == "edzo" && valodiSzerep == "edzo") ||
                            (valasztottSzerep == "edzo" && valodiSzerep == "admin") || 
-                           (valasztottSzerep == "sportolo" && valodiSzerep == "tag");
+                           (valasztottSzerep == "sportolo" && valodiSzerep == "tag") ||
+                           (valasztottSzerep == "tag" && valodiSzerep == "tag");
 
             if (!egyezik)
                 return Unauthorized("A kiválasztott szerep nem egyezik a fiókod típusával.");

@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusztangSe.Teszt", "MusztangSe.Teszt\MusztangSe.Teszt.csproj", "{8FACC79E-8B96-491F-B871-2DAD807C0F61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{5A582F6E-9EEF-4D14-A462-7C3EC5DEEA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A582F6E-9EEF-4D14-A462-7C3EC5DEEA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A582F6E-9EEF-4D14-A462-7C3EC5DEEA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FACC79E-8B96-491F-B871-2DAD807C0F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FACC79E-8B96-491F-B871-2DAD807C0F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FACC79E-8B96-491F-B871-2DAD807C0F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FACC79E-8B96-491F-B871-2DAD807C0F61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
