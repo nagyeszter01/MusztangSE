@@ -18,7 +18,7 @@ A Musztáng SE Magyarország egyik meghatározó akrobatikus rock and roll sport
 - Edzők és elérhetőségek
 - Edzések helyszínei interaktív Google Térképekkel
 - Versenyeredmények kategóriánként (Területi, Országos, Magyar Bajnokság, Világbajnokság)
-- Galéria
+- Galéria oldal az egyesületről 
 
 **Tagi felület**
 - Személyes és sportolói adatok megtekintése és szerkesztése
@@ -48,7 +48,7 @@ A Musztáng SE Magyarország egyik meghatározó akrobatikus rock and roll sport
 | Adatbázis | SQL Server (Database First) |
 | Autentikáció | JWT token, szerepkör alapú jogosultságkezelés |
 | Verziókezelés | Git, GitHub |
-| Fejlesztői környezet | Visual Studio 2022, .NET 9 |
+| Fejlesztői környezet | Visual Studio 2022, .NET 8 |
 
 ## Projekt struktúra
 ```
