@@ -110,18 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const jelszoMegerosites = document.getElementById('confirmPassword').value;
 
         if (!azonosito || !jelszo || !jelszoMegerosites) {
-            showMessage('Minden mezot ki kell tolteni!', true);
+            showMessage('Minden mezőt ki kell tölteni!', true);
             return;
         }
 
         const k = ellenorizJelszo(jelszo);
         if (!k.hossz || !k.nagy || !k.kis || !k.spec) {
-            showMessage('A jelszo nem felel meg a kovetelményeknek!', true);
+            showMessage('A jelszó nem felel meg a követelményeknek!', true);
             return;
         }
 
         if (jelszo !== jelszoMegerosites) {
-            showMessage('A ket jelszo nem egyezik.', true);
+            showMessage('A két jelszó nem egyezik.', true);
             return;
         }
 
@@ -142,13 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            showMessage('Jelszo sikeresen beallitva! Atiranyitas...', false);
+            showMessage('Jelszó sikeresen beállítva! Átirányítás...', false);
             setTimeout(() => {
                 window.location.href = '/Bejelentkezes/bejelentkezes.html';
             }, 2000);
 
         } catch (err) {
-            showMessage('Kapcsolodasi hiba: az API nem erheto el.', true);
+            showMessage('Kapcsolódási hiba: az API nem érhető el.', true);
         }
     });
 });

@@ -38,12 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('bejelentkezes-gomb').click();
     }
   });
+    document.getElementById('azonosito').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            document.getElementById('bejelentkezes-gomb').click();
+        }
+    });
   document.getElementById('bejelentkezes-gomb').addEventListener('click', async () => {
     const azonosito = document.getElementById('azonosito').value.trim();
     const jelszo = document.getElementById('jelszo').value;
 
     if (!azonosito || !jelszo) {
-      showMessage('Minden mezot ki kell tolteni!', true);
+      showMessage('Minden mezőt ki kell tölteni!', true);
       return;
     }
 
@@ -87,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     } catch (err) {
-      showMessage('Kapcsolodasi hiba.', true);
+      showMessage('Kapcsolódási hiba.', true);
     }
   });
 });
