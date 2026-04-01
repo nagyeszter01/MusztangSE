@@ -17,7 +17,7 @@ function showMessage(targetId, message, isError) {
 
 async function loadData() {
     try {
-        const response = await fetch('https://localhost:7104/api/tag/me/adataim', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/tag/me/adataim', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -63,7 +63,7 @@ async function updateData() {
     };
 
     try {
-        const response = await fetch('https://localhost:7104/api/tag/me/adataim', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/tag/me/adataim', {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,

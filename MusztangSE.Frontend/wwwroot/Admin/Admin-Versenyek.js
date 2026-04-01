@@ -55,7 +55,7 @@ function customConfirm(message) {
 
 async function loadVersenyek() {
     try {
-        const response = await fetch('https://localhost:7104/api/admin/versenyek', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/versenyek', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (response.status === 401 || response.status === 403) {
@@ -148,7 +148,7 @@ async function saveEdit() {
     }
 
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/versenyek/${id}`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/versenyek/${id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -173,7 +173,7 @@ async function deleteVerseny(id, nev) {
     const ok = await customConfirm(`Biztosan törlöd: "${nev}"?`);
     if (!ok) return;
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/versenyek/${id}`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/versenyek/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -212,7 +212,7 @@ async function saveUjVerseny() {
     }
 
     try {
-        const response = await fetch('https://localhost:7104/api/admin/versenyek', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/versenyek', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

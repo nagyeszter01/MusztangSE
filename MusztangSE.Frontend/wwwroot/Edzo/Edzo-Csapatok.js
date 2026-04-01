@@ -58,7 +58,7 @@ function customConfirm(message) {
 
 async function loadOsszesTago() {
     try {
-        const response = await fetch('https://localhost:7104/api/coach/tagok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/tagok', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) return [];
@@ -70,7 +70,7 @@ async function loadOsszesTago() {
 
 async function loadCsapatok() {
     try {
-        const response = await fetch('https://localhost:7104/api/coach/csapatok/sajat', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/csapatok/sajat', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -212,7 +212,7 @@ function renderCsapatCsoport(csapatok, osszesTago, container, archivalt) {
 }
 async function archivalCsapat(id) {
     try {
-        const response = await fetch(`https://localhost:7104/api/coach/csapatok/${id}/archival`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/csapatok/${id}/archival`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -228,7 +228,7 @@ async function archivalCsapat(id) {
 }
 async function tagHozzaadas(csapatId, tagId) {
     try {
-        const response = await fetch('https://localhost:7104/api/coach/csapatok/tag-hozzaadas', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/csapatok/tag-hozzaadas', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -254,7 +254,7 @@ async function tagEltavolitas(csapatId, tagId, csapatNev) {
     if (!ok) return;
     try {
         const response = await fetch(
-            `https://localhost:7104/api/coach/csapatok/tag-eltavolitas/${csapatId}/${tagId}`,
+            `https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/csapatok/tag-eltavolitas/${csapatId}/${tagId}`,
             {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
@@ -278,7 +278,7 @@ async function deleteCsapat(id, nev) {
     if (!ok) return;
 
     try {
-        const response = await fetch(`https://localhost:7104/api/coach/csapatok/${id}`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/csapatok/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -318,7 +318,7 @@ async function saveUjCsapat() {
     }
 
     try {
-        const response = await fetch('https://localhost:7104/api/coach/csapatok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/csapatok', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

@@ -30,7 +30,7 @@ function loadUserName() {
 
 async function loadVersenyek() {
     try {
-        const response = await fetch('https://localhost:7104/api/shared/versenyek/kozelgo', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/shared/versenyek/kozelgo', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) return;
@@ -86,7 +86,7 @@ async function addVerseny() {
     }
 
     try {
-        const response = await fetch('https://localhost:7104/api/coach/versenyek', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/versenyek', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

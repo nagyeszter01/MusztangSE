@@ -22,7 +22,7 @@ function loadAdminNev() {
 
 async function loadStats() {
     try {
-        const response = await fetch('https://localhost:7104/api/admin/dashboard', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/dashboard', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

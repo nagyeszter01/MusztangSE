@@ -57,13 +57,13 @@ function customConfirm(message) {
 async function loadAll() {
     try {
         const [csapatRes, edzoRes, tagRes] = await Promise.all([
-            fetch('https://localhost:7104/api/admin/csapatok', {
+            fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/csapatok', {
                 headers: { 'Authorization': `Bearer ${token}` }
             }),
-            fetch('https://localhost:7104/api/admin/edzok', {
+            fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/edzok', {
                 headers: { 'Authorization': `Bearer ${token}` }
             }),
-            fetch('https://localhost:7104/api/coach/tagok', {
+            fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/tagok', {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
         ]);
@@ -207,7 +207,7 @@ function renderCsapatok() {
 async function updateEdzo(csapatId) {
     const edzoId = document.getElementById(`edzo-select-${csapatId}`).value;
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/csapatok/${csapatId}/edzo`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/csapatok/${csapatId}/edzo`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -230,7 +230,7 @@ async function deleteCsapat(id, nev) {
     const ok = await customConfirm(`Biztosan törlöd a(z) "${nev}" csapatot?`);
     if (!ok) return;
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/csapatok/${id}`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/csapatok/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -247,7 +247,7 @@ async function deleteCsapat(id, nev) {
 
 async function tagHozzaadas(csapatId, tagId) {
     try {
-        const response = await fetch('https://localhost:7104/api/admin/csapatok/tag-hozzaadas', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/csapatok/tag-hozzaadas', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -271,7 +271,7 @@ async function tagEltavolitas(csapatId, tagId) {
     if (!confirm('Biztosan eltávolítod a tagot?')) return;
     try {
         const response = await fetch(
-            `https://localhost:7104/api/admin/csapatok/tag-eltavolitas/${csapatId}/${tagId}`,
+            `https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/csapatok/tag-eltavolitas/${csapatId}/${tagId}`,
             {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
@@ -314,7 +314,7 @@ async function saveUjCsapat() {
     }
 
     try {
-        const response = await fetch('https://localhost:7104/api/admin/csapatok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/csapatok', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

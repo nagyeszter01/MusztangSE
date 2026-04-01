@@ -62,7 +62,7 @@ function getSajatId() {
 
 async function loadFelhasznalok() {
     try {
-        const response = await fetch('https://localhost:7104/api/admin/felhasznalok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/felhasznalok', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (response.status === 401 || response.status === 403) {
@@ -144,7 +144,7 @@ function renderFelhasznalok() {
 }
 async function toggleAktiv(id) {
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/felhasznalok/${id}/aktiv`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/felhasznalok/${id}/aktiv`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -162,7 +162,7 @@ async function deleteFelhasznalo(id, nev) {
     if (!ok) return;
 
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/felhasznalok/${id}`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/felhasznalok/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });

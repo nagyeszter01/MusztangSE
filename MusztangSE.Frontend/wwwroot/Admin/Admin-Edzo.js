@@ -41,7 +41,7 @@ async function saveUjEdzo() {
     }
 
     try {
-        const response = await fetch('https://localhost:7104/api/admin/felhasznalok/edzo', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/felhasznalok/edzo', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -64,7 +64,7 @@ async function saveUjEdzo() {
 }
 async function loadEdzok() {
     try {
-        const response = await fetch('https://localhost:7104/api/admin/edzok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/edzok', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (response.status === 401 || response.status === 403) {
@@ -80,7 +80,7 @@ async function loadEdzok() {
 }
 async function toggleMindenTagotLat(id) {
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/edzok/${id}/minden-tagot-lat`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/edzok/${id}/minden-tagot-lat`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -214,7 +214,7 @@ async function deleteEdzo() {
     if (!torlesId) return;
 
     const ujEdzoId = document.getElementById('uj-edzo-select').value;
-    let url = `https://localhost:7104/api/admin/edzok/${torlesId}`;
+    let url = `https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/edzok/${torlesId}`;
     if (ujEdzoId) url += `?ujEdzoId=${ujEdzoId}`;
 
     try {
@@ -241,7 +241,7 @@ async function saveNev(id) {
     if (!nev) return;
 
     try {
-        const response = await fetch(`https://localhost:7104/api/admin/edzok/${id}/nev`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/edzok/${id}/nev`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,

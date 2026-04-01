@@ -1,4 +1,4 @@
-﻿const API_URL = 'https://localhost:7104/api/Eredmenyek';
+﻿const API_URL = 'https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/Eredmenyek';
 
 // ── Helyezés CSS osztály ──
 function helyezesClass(h) {

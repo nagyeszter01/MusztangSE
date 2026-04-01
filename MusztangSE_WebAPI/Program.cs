@@ -32,11 +32,12 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowWeb", policy =>
     {
         policy.WithOrigins(
-                "https://localhost:7089",
-                "http://localhost:7089",
-                "http://localhost:5089"
-            )            
-            .AllowAnyHeader()
+       "https://localhost:7089/",
+       "http://localhost:7089/",
+       "http://localhost:5089/",
+       "https://musztangse-frontend-ecg4fgaug3fufyex.westeurope-01.azurewebsites.net/"
+   )
+               .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });

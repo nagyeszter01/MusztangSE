@@ -89,7 +89,7 @@ function generalEdzoAzonosito() {
 
 async function loadTagok() {
     try {
-        const response = await fetch('https://localhost:7104/api/coach/tagok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/tagok', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -193,7 +193,7 @@ async function deleteTag(id, nev) {
     if (!ok) return;
 
     try {
-        const response = await fetch(`https://localhost:7104/api/coach/tagok/${id}`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/tagok/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -262,7 +262,7 @@ async function saveEdit() {
     };
 
     try {
-        const response = await fetch(`https://localhost:7104/api/coach/tagok/${id}`, {
+        const response = await fetch(`https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/tagok/${id}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -333,7 +333,7 @@ async function saveUjTag() {
     }
 
     try {
-        const response = await fetch('https://localhost:7104/api/coach/tagok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/tagok', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -381,7 +381,7 @@ async function saveUjEdzo() {
     }
 
     try {
-        const response = await fetch('https://localhost:7104/api/admin/felhasznalok/edzo', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/admin/felhasznalok/edzo', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -404,7 +404,7 @@ async function saveUjEdzo() {
 
 async function ellenorizElnok() {
     try {
-        const response = await fetch('https://localhost:7104/api/coach/tagok/ellenorzes/elnok', {
+        const response = await fetch('https://musztangse-api-gghga9fnd3eqetcd.westeurope-01.azurewebsites.net/api/coach/tagok/ellenorzes/elnok', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (response.ok) {
