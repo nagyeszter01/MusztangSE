@@ -35,7 +35,7 @@ builder.Services.AddCors(options =>
        "https://localhost:7089/",
        "http://localhost:7089/",
        "http://localhost:5089/",
-       "https://musztangse-frontend-ecg4fgaug3fufyex.westeurope-01.azurewebsites.net/"
+       "https://www.mustangse.hu/"
    )
                .AllowAnyHeader()
             .AllowAnyMethod();
