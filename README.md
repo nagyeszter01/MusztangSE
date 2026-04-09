@@ -83,3 +83,38 @@ MusztangSE/
 | `tag` | Saját adatok megtekintése és szerkesztése |
 | `edzo` | Tagok, csapatok és eredmények kezelése |
 | `admin` | Teljes rendszerfelügyelet |
+
+## Munkamegosztás
+
+### Közös fejlesztések
+A csapat mindkét tagja közösen dolgozott az alábbi komponenseken:
+
+- **ApplicationDbContext.cs** – Központi adatbázis kontextus
+- **EredmenyService.cs** – Eredmények kezelése
+- **TagService.cs** – Tagok kezelése
+- **VersenyService.cs** – Versenyek kezelése
+- **VersenyekController.cs** – Versenyek API végpontjai
+- **EredmenyekController.cs** – Eredmények API végpontjai
+- **CsapatController.cs** – Csapatok API végpontjai
+- **TagokController.cs** – Tagok API végpontjai
+
+### Fejlesztők egyéni hozzájárulása
+
+#### Nagy Eszter Dóra
+- **JwtService.cs és PasswordService.cs** – Autentikáció
+- **ExceptionMiddleware.cs** – Globális hibakezelő middleware
+- **AuthController.cs és Admin controllerek** – API végpontok kezelése
+- **Összes DTO-k** – Adatátviteli objektumok definiálása
+- A tagok számára készült felhasználói felület (HTML, CSS és JavaScript fájlok) elkészítése
+- Az edzők számára készült felhasználói felület (HTML, CSS és JavaScript fájlok) kialakítása
+- Az adminisztrátorok számára készült felhasználói felület (HTML, CSS és JavaScript fájlok) fejlesztése
+- **Bejelentkezes.js**
+
+#### Zsitva Dániel Béla
+- **Összes Model osztályok** – Adatbázis modellek
+- A főoldal felhasználói felületének (HTML, CSS és JavaScript) megtervezése és megvalósítása
+- **galeria.html** – elérhető a főoldalról
+- A bejelentkezési oldal felhasználói felületének (HTML és CSS) kialakítása
+- A jelszóbeállítási oldal felhasználói felületének (HTML, CSS és JavaScript) elkészítése
+- Az eredmények oldalak felhasználói felületének (HTML, CSS és JavaScript) elkészítése
+
