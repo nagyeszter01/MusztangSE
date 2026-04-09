@@ -1,6 +1,6 @@
 # Musztáng SE – Vizsgaremek
 
-Ez a repository a Musztáng SE sportegyesület számára készült webalkalmazást tartalmazza, amelyet vizsgafeladat keretében fejlesztettünk. Az alkalmazás egy teljes körű információs és adminisztrációs rendszer, amely a nyilvános egyesületi weboldalt és a bejelentkezett felhasználók zárt felületét egyaránt tartalmazza.
+Ez a repository a Musztáng sportegyesület számára készült webalkalmazást tartalmazza, amelyet vizsgafeladat keretében fejlesztettünk. Az alkalmazás egy teljes körű információs és adminisztrációs rendszer, amely a nyilvános egyesületi weboldalt és a bejelentkezett felhasználók zárt felületét egyaránt tartalmazza.
 
 ## Csapattagok
 
