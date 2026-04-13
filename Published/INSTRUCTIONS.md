@@ -6,6 +6,8 @@ Az alkalmazás az alábbi címen érhető el:
 
 **[https://www.mustangse.hu](https://www.mustangse.hu)**
 
+> ⚠️ Megjegyzés: Az API nem minden esetben indul el azonnal. Előfordulhat, hogy az első megnyitáskor a szolgáltatás még „ébredő” állapotban van (Azure B1 csomag sajátossága). Ilyenkor kérjük, várjon 10–15 másodpercet, majd frissítse az oldalt az API megfelelő betöltése érdekében.
+
 ---
 
 ## Lokális futtatás
